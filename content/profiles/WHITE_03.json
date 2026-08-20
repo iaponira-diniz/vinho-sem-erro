@@ -1,0 +1,89 @@
+{
+  "id": "WHITE_03",
+  "version": "0.1",
+  "category": "white",
+  "name": "Branco Cremoso e Estruturado",
+  "customerSummary": "Um branco com mais corpo, textura e presença na boca, podendo trazer sensação cremosa e notas mais maduras ou tostadas. Ideal para quem prefere um branco mais envolvente e menos focado apenas em leveza e refrescância.",
+  "internalCharacteristics": [
+    "corpo médio a cheio",
+    "maior volume de boca",
+    "textura mais ampla",
+    "fruta madura",
+    "acidez suficiente para equilibrar",
+    "sensação cremosa",
+    "maior persistência",
+    "possível contato com borras",
+    "possível fermentação ou maturação em madeira",
+    "aromas mais complexos",
+    "álcool potencialmente mais perceptível"
+  ],
+  "mainClues": [
+    {
+      "name": "Chardonnay mais encorpado ou com madeira",
+      "note": "Principal referência deste perfil. Pode apresentar maior corpo, textura, fruta madura, cremosidade e, dependendo da elaboração, notas de baunilha, manteiga ou tostado. Chardonnay também pode produzir estilos leves, portanto o estilo é mais importante do que a variedade isolada."
+    },
+    {
+      "name": "Viognier",
+      "note": "Pode apresentar maior volume de boca, fruta madura, pêssego, damasco, flores e sensação envolvente. Versões mais focadas apenas em aroma podem pertencer a WHITE_02."
+    },
+    {
+      "name": "Pinot Gris de estilo mais rico",
+      "note": "Pode apresentar maior corpo, textura, fruta madura, especiarias e maior sensação de volume do que estilos mais leves associados a Pinot Grigio."
+    }
+  ],
+  "additionalClues": [
+    {
+      "name": "Marsanne / Roussanne",
+      "note": "Podem produzir brancos com corpo, textura, fruta madura, notas florais, ervas, especiarias e boa complexidade."
+    },
+    {
+      "name": "Encruzado",
+      "note": "Pode apresentar corpo, textura, boa acidez, mineralidade e capacidade de integrar madeira e maior complexidade."
+    },
+    {
+      "name": "Sémillon seco ou cortes com Sauvignon Blanc",
+      "note": "Pode trazer corpo, textura, fruta madura e maior profundidade, aparecendo também em cortes com Sauvignon Blanc."
+    }
+  ],
+  "internalLibrary": [
+    {
+      "name": "Antão Vaz",
+      "note": "Pode apresentar fruta madura, corpo, sensação ampla e boa presença, especialmente em estilos de regiões mais quentes."
+    },
+    {
+      "name": "Arinto estruturado",
+      "note": "Apesar de frequentemente associado a frescor e acidez, pode entrar neste perfil quando recebe trabalho de textura, borras, madeira ou maior maturação."
+    },
+    {
+      "name": "Sauvignon Blanc com madeira",
+      "note": "Pode apresentar mais corpo, textura, complexidade e profundidade do que versões focadas apenas em frescor."
+    }
+  ],
+  "labelClues": [
+    "Chardonnay",
+    "Viognier",
+    "Pinot Gris",
+    "Marsanne",
+    "Roussanne",
+    "Encruzado",
+    "Sémillon",
+    "encorpado",
+    "cremoso",
+    "complexo",
+    "rico",
+    "amplo",
+    "fermentado em barrica",
+    "maturado em carvalho",
+    "sobre borras"
+  ],
+  "avoid": [
+    "Vinhos descritos principalmente como muito leves quando a pessoa quer maior textura.",
+    "Vinhos extremamente cítricos quando a prioridade é corpo e cremosidade.",
+    "Vinhos muito delicados quando a pessoa pediu maior presença.",
+    "Não usar madeira como sinônimo automático de qualidade.",
+    "Não usar Chardonnay como garantia automática de perfil cremoso ou estruturado."
+  ],
+  "backupProfileId": "WHITE_02",
+  "askPhrase": "Estou procurando um branco com mais corpo e textura, de perfil cremoso e envolvente. Pode ter alguma madeira, mas quero que continue equilibrado. O que você recomenda nessa faixa de preço?",
+  "whyThisRoute": "Você escolheu um branco com mais presença. Por isso, estamos procurando estilos em que textura e corpo tenham destaque, mantendo acidez suficiente para que o vinho continue equilibrado."
+}

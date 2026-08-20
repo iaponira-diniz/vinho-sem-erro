@@ -1,0 +1,90 @@
+{
+  "id": "WHITE_01",
+  "version": "0.1",
+  "category": "white",
+  "name": "Branco Leve e Refrescante",
+  "customerSummary": "Um branco leve, fresco e fácil de beber, com boa acidez e sensação refrescante na boca. Ideal para quem prefere vinhos que tragam mais frescor do que cremosidade ou peso.",
+  "internalCharacteristics": [
+    "corpo leve a médio-leve",
+    "acidez média-alta a alta",
+    "sensação de frescor",
+    "perfil seco",
+    "fruta cítrica ou fruta fresca",
+    "eventualmente notas herbais, florais ou minerais",
+    "pouco ou nenhum impacto de madeira",
+    "final limpo e refrescante"
+  ],
+  "mainClues": [
+    {
+      "name": "Sauvignon Blanc",
+      "note": "Excelente pista para vinhos com acidez viva, frescor, frutas cítricas e, dependendo do estilo, notas herbais ou tropicais. Versões com madeira ou maior textura podem pertencer a outro perfil."
+    },
+    {
+      "name": "Pinot Grigio",
+      "note": "Pode ser uma ótima pista para leveza, frescor, fruta delicada e facilidade de beber, especialmente em estilos jovens e pouco estruturados."
+    },
+    {
+      "name": "Vermentino jovem",
+      "note": "Pode apresentar frescor, notas cítricas, fruta, caráter floral e, em alguns estilos, sensação mineral ou salina. Priorizar versões jovens e frescas."
+    }
+  ],
+  "additionalClues": [
+    {
+      "name": "Gavi / Cortese",
+      "note": "Pode apresentar frescor, cítricos, fruta branca, corpo relativamente leve e perfil seco e elegante."
+    },
+    {
+      "name": "Muscadet",
+      "note": "Pode oferecer corpo leve, acidez viva, cítricos, perfil discreto e sensação mineral ou salina."
+    },
+    {
+      "name": "Vinho Verde branco seco e leve",
+      "note": "Pode ser uma boa direção para quem procura leveza, frescor, acidez e consumo descontraído. O estilo varia conforme produtor e composição."
+    }
+  ],
+  "internalLibrary": [
+    {
+      "name": "Alvarinho / Albariño",
+      "note": "Pode combinar acidez, frescor, fruta cítrica ou de caroço e boa intensidade aromática, transitando entre WHITE_01 e WHITE_02 conforme o estilo."
+    },
+    {
+      "name": "Riesling seco",
+      "note": "Pode apresentar alta acidez, cítricos, fruta e grande frescor. É importante confirmar o estilo seco porque Riesling existe em diferentes níveis de doçura."
+    },
+    {
+      "name": "Chardonnay sem madeira",
+      "note": "Pode produzir brancos frescos, cítricos e relativamente leves quando elaborado sem madeira e sem foco em textura cremosa."
+    }
+  ],
+  "labelClues": [
+    "Sauvignon Blanc",
+    "Pinot Grigio",
+    "Vermentino",
+    "Gavi",
+    "Cortese",
+    "Muscadet",
+    "Vinho Verde",
+    "Alvarinho",
+    "Albariño",
+    "fresco",
+    "leve",
+    "cítrico",
+    "vibrante",
+    "seco",
+    "mineral",
+    "refrescante"
+  ],
+  "avoid": [
+    "Vinhos descritos como muito encorpados.",
+    "Vinhos muito cremosos.",
+    "Vinhos descritos como amanteigados.",
+    "Vinhos intensamente amadeirados.",
+    "Vinhos muito ricos ou potentes.",
+    "Vermentino di Gallura Superiore muito estruturado como exemplo automático deste perfil.",
+    "Chardonnay barricado ou muito cremoso como exemplo automático deste perfil.",
+    "Riesling sem informação suficiente sobre o nível de doçura como indicação automática."
+  ],
+  "backupProfileId": "WHITE_02",
+  "askPhrase": "Estou procurando um branco seco, leve e bem refrescante, com boa acidez e sem muita madeira. O que você recomenda nessa faixa de preço?",
+  "whyThisRoute": "Você escolheu um branco leve e refrescante. Por isso, estamos priorizando vinhos em que o frescor e a acidez aparecem mais do que a cremosidade ou o peso."
+}

@@ -1,0 +1,14 @@
+name = "vinho-sem-erro"
+main = "worker/index.ts"
+compatibility_date = "2026-08-20"
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+
+# Cloudflare D1 entra aqui quando existir:
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "vinho-sem-erro"
+# database_id = "<preencher>"

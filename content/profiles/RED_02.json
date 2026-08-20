@@ -1,0 +1,89 @@
+{
+  "id": "RED_02",
+  "version": "0.1",
+  "category": "red",
+  "name": "Tinto Macio e Frutado",
+  "customerSummary": "Um tinto com fruta evidente, sensação mais redonda na boca e taninos que não incomodam. Ideal para quem gosta de vinho saboroso e envolvente, mas não quer aquela sensação muito seca ou áspera na boca.",
+  "internalCharacteristics": [
+    "corpo leve-médio a médio",
+    "fruta madura ou bastante evidente",
+    "taninos baixos a moderados",
+    "taninos macios ou bem integrados",
+    "textura redonda",
+    "acidez moderada a equilibrada",
+    "sensação agradável e acessível",
+    "pouca austeridade",
+    "pouca adstringência"
+  ],
+  "mainClues": [
+    {
+      "name": "Merlot",
+      "note": "Pode ser uma excelente pista para vinhos frutados, redondos, macios e fáceis de beber. Também pode produzir estilos mais potentes, portanto não é garantia automática de maciez."
+    },
+    {
+      "name": "Montepulciano d'Abruzzo",
+      "note": "Excelente referência italiana para fruta, maciez e presença. Pode apresentar corpo médio, fruta vermelha e escura e taninos equilibrados."
+    },
+    {
+      "name": "Tempranillo jovem",
+      "note": "Pode apresentar fruta, corpo médio, taninos acessíveis e boa facilidade de beber quando elaborado em estilo jovem e com pouca influência de madeira."
+    }
+  ],
+  "additionalClues": [
+    {
+      "name": "Garnacha / Grenache",
+      "note": "Pode apresentar fruta madura, textura agradável e taninos relativamente macios. Alguns estilos podem ser mais alcoólicos ou concentrados."
+    },
+    {
+      "name": "Malbec jovem e macio",
+      "note": "Pode oferecer fruta, maciez, taninos maduros e textura redonda quando elaborado em estilo jovem e acessível."
+    },
+    {
+      "name": "Barbera frutada",
+      "note": "Pode apresentar bastante fruta, taninos discretos e facilidade de beber, embora sua acidez possa ser mais evidente."
+    }
+  ],
+  "internalLibrary": [
+    {
+      "name": "Primitivo jovem",
+      "note": "Pode funcionar em estilos mais frutados e acessíveis, mas versões muito concentradas podem migrar para perfis mais intensos."
+    },
+    {
+      "name": "Dolcetto",
+      "note": "Pode apresentar fruta e corpo moderado, embora os taninos possam ser perceptíveis."
+    },
+    {
+      "name": "Nero d'Avola",
+      "note": "Pode produzir versões frutadas e redondas, mas alguns exemplares apresentam maior corpo, álcool e estrutura."
+    },
+    {
+      "name": "Ciliegiolo",
+      "note": "Pode aparecer em estilos frutados, suculentos e macios, transitando entre RED_01 e RED_02 conforme produtor e região."
+    }
+  ],
+  "labelClues": [
+    "Merlot",
+    "Montepulciano d'Abruzzo",
+    "Tempranillo",
+    "Garnacha",
+    "Grenache",
+    "Malbec",
+    "Barbera",
+    "frutado",
+    "macio",
+    "redondo",
+    "aveludado"
+  ],
+  "avoid": [
+    "Vinhos descritos como muito tânicos.",
+    "Vinhos apresentados como muito austeros.",
+    "Vinhos muito potentes.",
+    "Vinhos muito estruturados.",
+    "Primitivo di Manduria muito concentrado como exemplo automático deste perfil.",
+    "Valpolicella Ripasso estruturado como exemplo principal deste perfil.",
+    "Amarone della Valpolicella como exemplo deste perfil."
+  ],
+  "backupProfileId": "RED_03",
+  "askPhrase": "Estou procurando um tinto bem frutado e macio, de corpo médio, com taninos que não sejam muito secos ou agressivos. O que você recomenda nessa faixa de preço?",
+  "whyThisRoute": "Você disse que prefere um vinho frutado e com sensação mais macia na boca. Por isso, estamos priorizando estilos em que a fruta aparece bastante e os taninos não dominam a experiência."
+}

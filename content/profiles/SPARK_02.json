@@ -1,0 +1,88 @@
+{
+  "id": "SPARK_02",
+  "version": "0.1",
+  "category": "sparkling",
+  "name": "Espumante Frutado e Aromático",
+  "customerSummary": "Um espumante fresco, perfumado e cheio de fruta, com borbulhas agradáveis e um estilo fácil de beber. Ideal para quem quer mais expressão de fruta e aroma do que austeridade, sem necessariamente procurar um espumante doce.",
+  "internalCharacteristics": [
+    "fruta evidente",
+    "intensidade aromática média a alta",
+    "boa sensação de frescor",
+    "corpo leve a médio",
+    "acidez equilibrada",
+    "perfil descontraído",
+    "aromas de frutas vermelhas, cítricas ou de caroço",
+    "notas florais possíveis",
+    "açúcar pouco ou moderadamente perceptível dependendo do estilo",
+    "boa facilidade de beber"
+  ],
+  "mainClues": [
+    {
+      "name": "Espumante Rosé Brut",
+      "note": "Excelente pista para fruta vermelha, frescor, boa acidez e perfil aromático sem necessariamente apresentar doçura evidente."
+    },
+    {
+      "name": "Prosecco Rosé Brut",
+      "note": "Pode apresentar fruta, flores, leveza, frescor e perfil fácil de beber, mantendo baixa percepção de doçura quando elaborado no estilo Brut."
+    },
+    {
+      "name": "Prosecco Extra Dry",
+      "note": "Pode apresentar bastante fruta, flores, frescor e sensação mais macia. Apesar do nome Extra Dry, pode conter mais açúcar do que um Brut e por isso funciona bem quando a prioridade é fruta e facilidade de beber, e não secura extrema."
+    }
+  ],
+  "additionalClues": [
+    {
+      "name": "Espumante Rosé brasileiro",
+      "note": "Pode ser uma ótima pista para fruta, frescor, aromas de frutas vermelhas e boa facilidade de beber. O nível de açúcar deve ser observado separadamente."
+    },
+    {
+      "name": "Cava Rosado Brut",
+      "note": "Pode apresentar fruta vermelha, frescor, boa acidez e perfil seco, funcionando bem para quem quer um espumante rosé frutado sem doçura evidente."
+    },
+    {
+      "name": "Prosecco Rosé Extra Dry",
+      "note": "Pode oferecer fruta, flores, leveza, frescor e uma sensação um pouco mais macia do que a versão Brut."
+    }
+  ],
+  "internalLibrary": [
+    {
+      "name": "Champagne Rosé",
+      "note": "Pode oferecer fruta vermelha, frescor, complexidade e maior profundidade, mas normalmente pertence a uma faixa de preço superior."
+    },
+    {
+      "name": "Franciacorta Rosé",
+      "note": "Pode funcionar como opção italiana mais sofisticada para quem procura fruta, frescor, estrutura e complexidade."
+    },
+    {
+      "name": "Lambrusco seco e frutado",
+      "note": "Pode apresentar grande expressão de fruta e frescor, mas o estilo precisa ser identificado corretamente porque Lambrusco existe em diferentes níveis de açúcar e efervescência."
+    }
+  ],
+  "labelClues": [
+    "Rosé",
+    "Brut",
+    "Extra Dry",
+    "Espumante Rosé",
+    "Prosecco Rosé",
+    "Cava Rosado",
+    "frutado",
+    "aromático",
+    "floral",
+    "fresco",
+    "frutas vermelhas",
+    "morango",
+    "framboesa",
+    "cereja"
+  ],
+  "avoid": [
+    "Moscatel quando a pessoa declarou não querer doçura evidente.",
+    "Asti Spumante quando a pessoa não quer um estilo doce.",
+    "Demi-Sec quando a prioridade é fruta sem muita doçura.",
+    "Não assumir que rosé significa doce.",
+    "Não assumir que Extra Dry é mais seco que Brut.",
+    "Não usar a cor rosé como indicador do nível de açúcar."
+  ],
+  "backupProfileId": "SPARK_01",
+  "askPhrase": "Estou procurando um espumante bem frutado e aromático, fácil de beber, mas sem ser muito doce. Pode ser rosé. O que você recomenda nessa faixa de preço?",
+  "whyThisRoute": "Você quer que fruta e aroma apareçam bastante, mas não está buscando necessariamente um espumante doce. Por isso, estamos priorizando estilos frutados, frescos e aromáticos, especialmente alguns espumantes rosés."
+}

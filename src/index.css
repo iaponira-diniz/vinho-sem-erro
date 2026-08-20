@@ -1,0 +1,531 @@
+/* Paleta provisória, centralizada em variáveis — não é identidade visual
+   definitiva. Elegante e contemporânea sem clichês de "curso online" nem
+   de vinho (sem bordô saturado, madeira, cachos de uva ou dourado). */
+:root {
+  --bg: #faf7f4;
+  --surface: #ffffff;
+  --surface-muted: #f1ebe6;
+  --text: #2a2320;
+  --text-muted: #6b5f58;
+  --border: #e3d9d1;
+  --accent: #7a3b52;
+  --accent-contrast: #fff8f6;
+  --accent-soft: #f3e7ec;
+  --focus-ring: #2f6f6a;
+  --danger-text: #6b3a2a;
+
+  color-scheme: light dark;
+  font: 16px/1.5 system-ui, "Segoe UI", Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1613;
+    --surface: #251d1a;
+    --surface-muted: #2c2320;
+    --text: #f1e9e4;
+    --text-muted: #b8a99f;
+    --border: #3c322c;
+    --accent: #d98fa8;
+    --accent-contrast: #241318;
+    --accent-soft: #33232a;
+    --focus-ring: #6fcfc7;
+    --danger-text: #e0a98f;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text);
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+
+p {
+  margin: 0 0 8px;
+  color: var(--text);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Layout base: coluna única, mobile-first, largura confortável no desktop. */
+.screen {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Identidade da marca ------------------------------------------------- */
+
+.brand-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.brand-mark-large {
+  margin: auto 0 32px;
+  gap: 6px;
+}
+
+.brand-logo {
+  /* Só existe no DOM quando BrandMark recebe logoSrc (asset oficial da
+     SaporeDiVino, a fornecer). Dimensão pronta para quando isso acontecer. */
+  max-width: 56px;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.brand-mark-large .brand-logo {
+  max-width: 88px;
+}
+
+.brand-product {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin: 0;
+}
+
+.brand-mark-large .brand-product {
+  font-size: 1.6rem;
+}
+
+.brand-tagline {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.brand-parent {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* Telas de pergunta ----------------------------------------------------- */
+
+.back-link {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding: 8px 4px;
+  margin: -8px 0 8px -4px;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.back-link:hover {
+  color: var(--text);
+}
+
+.screen-question {
+  font-size: 1.35rem;
+  margin: 4px 0 20px;
+}
+
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.option-button {
+  width: 100%;
+  text-align: left;
+  padding: 16px 18px;
+  min-height: 52px;
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.option-button[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+
+.option-button:hover {
+  border-color: var(--accent);
+}
+
+/* Progresso -------------------------------------------------------------- */
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.progress-track {
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--surface-muted);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: inherit;
+}
+
+.progress-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.qualitative-progress {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+/* Botões ------------------------------------------------------------------ */
+
+.cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  border: none;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+.cta-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.restart-button {
+  margin-top: 24px;
+  min-height: 48px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: 0.95rem;
+  cursor: pointer;
+  align-self: center;
+}
+
+/* Tela de intenção --------------------------------------------------------- */
+
+.intent-screen {
+  justify-content: center;
+  gap: 4px;
+}
+
+.intent-screen .cta-primary {
+  margin-top: 24px;
+}
+
+.intent-note {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 16px;
+}
+
+/* Tela inicial ("/") -------------------------------------------------------- */
+
+.home-screen {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.home-screen .cta-primary {
+  max-width: 320px;
+  margin-top: 0;
+}
+
+/* Resultado ----------------------------------------------------------------- */
+
+.result-title {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.result-name {
+  font-size: 1.5rem;
+  margin-bottom: 12px;
+}
+
+.result-summary {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.route-context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+
+.route-context-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.route-context-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.route-context-value {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.route-reason-message {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  padding-bottom: 16px;
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.result-block {
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
+}
+
+.result-block h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.result-block summary {
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.clue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.clue-list li strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.clue-list li p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background: var(--surface-muted);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.avoid-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  color: var(--danger-text);
+  font-size: 0.92rem;
+}
+
+.ask-phrase-block {
+  background: var(--accent-soft);
+  border: none;
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.ask-phrase-block--emphasized {
+  border: 2px solid var(--accent);
+}
+
+.ask-phrase-text {
+  font-size: 1.05rem;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.copy-button {
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1.5px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.copy-feedback {
+  margin-left: 12px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* Feedback de clareza (Momento A) -------------------------------------------- */
+
+.feedback-block h3 {
+  font-size: 1rem;
+}
+
+.feedback-reason {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--border);
+}
+
+.feedback-reason h4 {
+  font-size: 0.92rem;
+  margin-bottom: 10px;
+}
+
+.feedback-comment-label {
+  display: block;
+  margin: 16px 0 8px;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.feedback-comment-input {
+  width: 100%;
+  min-height: 90px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  resize: vertical;
+}
+
+.feedback-comment-helper {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 6px 0 16px;
+}
+
+.feedback-confirmation {
+  margin-bottom: 8px;
+}
+
+.feedback-change-link {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  padding: 8px 0;
+  min-height: 44px;
+  cursor: pointer;
+}
+
+/* Telas de mensagem (needs_help / invalid) ---------------------------------- */
+
+.message-screen {
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.message-screen h1 {
+  font-size: 1.3rem;
+}
+
+.message-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}

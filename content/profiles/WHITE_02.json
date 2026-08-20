@@ -1,0 +1,88 @@
+{
+  "id": "WHITE_02",
+  "version": "0.1",
+  "category": "white",
+  "name": "Branco Aromático e Frutado",
+  "customerSummary": "Um branco perfumado, cheio de aromas de frutas e flores e com bastante personalidade. Ideal para quem gosta de vinhos expressivos e quer sentir bastante aroma e sabor sem necessariamente procurar um vinho encorpado.",
+  "internalCharacteristics": [
+    "intensidade aromática média-alta a alta",
+    "fruta evidente",
+    "aromas florais frequentes",
+    "frutas cítricas, de caroço, tropicais ou exóticas",
+    "corpo leve-médio a médio",
+    "frescor suficiente para equilibrar",
+    "sensação aromática marcante",
+    "pouca necessidade de madeira",
+    "perfil expressivo"
+  ],
+  "mainClues": [
+    {
+      "name": "Torrontés",
+      "note": "Excelente referência para um branco muito aromático, floral e frutado. Pode lembrar flores e frutas intensamente e ainda assim ser seco."
+    },
+    {
+      "name": "Gewürztraminer seco",
+      "note": "Pode apresentar grande intensidade aromática, lichia, rosas, frutas exóticas e especiarias. O nível de doçura varia, portanto é importante priorizar versões secas quando essa for a preferência."
+    },
+    {
+      "name": "Muscat / Muscat d'Alsace seco",
+      "note": "Pode apresentar aromas florais e frutados muito intensos. Como a família Muscat/Moscato também produz estilos doces, o estilo seco deve ser identificado quando necessário."
+    }
+  ],
+  "additionalClues": [
+    {
+      "name": "Riesling seco",
+      "note": "Pode apresentar aromas cítricos, frutas de caroço, flores, ótima definição aromática e acidez elevada. Confirmar o estilo seco quando essa for a preferência."
+    },
+    {
+      "name": "Sauvignon Blanc aromático",
+      "note": "Pode entrar neste perfil quando a expressão aromática, frutas tropicais ou notas herbais têm maior protagonismo do que apenas a sensação de frescor."
+    },
+    {
+      "name": "Alvarinho / Albariño",
+      "note": "Pode apresentar fruta de caroço, cítricos, flores, boa intensidade aromática e frescor, transitando entre WHITE_01 e WHITE_02 conforme o estilo."
+    }
+  ],
+  "internalLibrary": [
+    {
+      "name": "Verdejo",
+      "note": "Pode apresentar fruta, cítricos, ervas, aromas expressivos e frescor, funcionando bem para quem quer um branco aromático e ainda seco."
+    },
+    {
+      "name": "Viognier de perfil fresco",
+      "note": "Pode apresentar pêssego, damasco, flores e grande intensidade aromática. Versões mais amplas e estruturadas podem migrar para WHITE_03."
+    }
+  ],
+  "labelClues": [
+    "Torrontés",
+    "Gewürztraminer",
+    "Muscat",
+    "Riesling",
+    "Sauvignon Blanc",
+    "Alvarinho",
+    "Albariño",
+    "Verdejo",
+    "Viognier",
+    "aromático",
+    "floral",
+    "frutado",
+    "perfumado",
+    "expressivo",
+    "cítrico",
+    "tropical",
+    "seco",
+    "dry",
+    "trocken"
+  ],
+  "avoid": [
+    "Vinhos muito amadeirados quando a prioridade é expressão aromática e fruta.",
+    "Vinhos muito amanteigados.",
+    "Vinhos extremamente cremosos.",
+    "Vinhos muito encorpados quando a pessoa não pediu maior textura.",
+    "Não assumir que frutado significa doce.",
+    "Não assumir que Gewürztraminer, Riesling ou Muscat serão secos apenas pela variedade."
+  ],
+  "backupProfileId": "WHITE_01",
+  "askPhrase": "Estou procurando um branco seco, bem aromático e frutado, com bastante perfume e boa sensação de frescor. O que você recomenda nessa faixa de preço?",
+  "whyThisRoute": "Você escolheu um vinho em que os aromas e a fruta tenham bastante destaque. Por isso, estamos priorizando estilos mais perfumados e expressivos, sem confundir intensidade aromática com doçura."
+}

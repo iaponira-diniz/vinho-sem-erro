@@ -1,0 +1,78 @@
+{
+  "id": "SPARK_03",
+  "version": "0.1",
+  "category": "sparkling",
+  "name": "Espumante Doce e Aromático",
+  "customerSummary": "Um espumante perfumado, frutado e com doçura perceptível, equilibrada por uma boa sensação de frescor. Ideal para quem realmente gosta de espumantes mais doces e aromáticos.",
+  "internalCharacteristics": [
+    "doçura perceptível",
+    "grande intensidade aromática",
+    "fruta madura ou fresca",
+    "aromas florais",
+    "sensação macia",
+    "boa acidez para equilibrar o açúcar",
+    "corpo leve a médio",
+    "álcool frequentemente mais moderado em alguns estilos",
+    "perfil alegre e fácil de beber",
+    "aromas possíveis de pêssego, damasco, frutas tropicais, cítricos, flores e mel"
+  ],
+  "mainClues": [
+    {
+      "name": "Espumante Moscatel brasileiro",
+      "note": "Uma das principais referências deste perfil para o público brasileiro. Pode apresentar grande intensidade aromática, flores, fruta, doçura perceptível e boa sensação de frescor."
+    },
+    {
+      "name": "Asti Spumante DOCG",
+      "note": "Excelente referência italiana para um espumante doce, aromático e fresco, produzido com Moscato Bianco e frequentemente associado a flores, pêssego, damasco e frutas cítricas."
+    },
+    {
+      "name": "Outros Espumantes Moscatéis",
+      "note": "Podem apresentar grande intensidade aromática, flores, fruta, doçura perceptível e frescor. É importante observar o tipo específico do produto."
+    }
+  ],
+  "additionalClues": [
+    {
+      "name": "Espumante Demi-Sec aromático",
+      "note": "Pode funcionar para quem gosta de doçura perceptível, embora Demi-Sec indique principalmente nível de açúcar e não determine sozinho todo o perfil aromático ou sensorial."
+    },
+    {
+      "name": "Prosecco Demi-Sec",
+      "note": "Pode apresentar fruta, flores, leveza e maior percepção de açúcar, funcionando como alternativa quando disponível."
+    },
+    {
+      "name": "Lambrusco doce / amabile",
+      "note": "Pode apresentar fruta, doçura e perfil fácil de beber. Deve ser identificado corretamente porque Lambrusco também existe em estilos secos."
+    }
+  ],
+  "internalLibrary": [
+    {
+      "name": "Moscatel de Farroupilha",
+      "note": "Referência brasileira importante para a biblioteca interna de espumantes Moscatéis, associada a uma região reconhecida pela produção de uvas e vinhos moscatéis."
+    },
+    {
+      "name": "Moscato d'Asti",
+      "note": "Pode aparecer futuramente como alternativa doce, aromática e levemente efervescente, mas não deve ser classificado simplesmente como espumante dentro do SPARK_03."
+    }
+  ],
+  "labelClues": [
+    "Moscatel",
+    "Asti Spumante DOCG",
+    "Moscato",
+    "Demi-Sec",
+    "doce",
+    "dolce",
+    "aromático",
+    "floral",
+    "frutado"
+  ],
+  "avoid": [
+    "Brut Nature como primeira recomendação para quem declarou gostar de doçura.",
+    "Extra Brut como primeira recomendação para quem declarou gostar de doçura.",
+    "Brut como indicação automática quando a preferência principal é por espumante doce.",
+    "Não classificar Moscato d'Asti simplesmente como espumante.",
+    "Não tratar gosto por vinho doce como erro ou preferência inferior."
+  ],
+  "backupProfileId": "SPARK_02",
+  "askPhrase": "Estou procurando um espumante doce, bem aromático e frutado, mas que continue fresco. Gosto de estilos como Moscatel. O que você recomenda nessa faixa de preço?",
+  "whyThisRoute": "Você indicou que gosta da sensação de doçura no espumante. Por isso, estamos priorizando estilos em que fruta, perfume e açúcar aparecem de maneira perceptível, equilibrados pelo frescor."
+}
