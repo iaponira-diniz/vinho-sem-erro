@@ -22,8 +22,10 @@ renderiza — nenhuma condicional de `reason`/`budget` sobrevive até o JSX.
   `RouteContext`, `RoutePresentation`.
 - `reasonPresentation.ts` — `REASON_LABELS`, `REASON_MESSAGES`,
   `REASON_FLAGS`: tabelas fixas por `reason`.
-- `budgetPresentation.ts` — `BUDGET_LABELS` e a composição de
-  `contextualAskPhrase`.
+- `budgetPresentation.ts` — a composição de `contextualAskPhrase`. Não
+  existe mais um "budgetLabel" de apresentação: o orçamento nesta versão é
+  complemento opcional só dentro da frase de pedir ajuda, nunca mostrado
+  como propriedade do perfil.
 - `buildRoutePresentation.ts` — a função pura que junta tudo.
 - `index.ts` — API pública.
 - `buildRoutePresentation.test.ts` — testes pela API pública.
@@ -45,7 +47,7 @@ por palavra nem editado, e nenhum parsing é feito sobre ele. Quando
 anteposta como frase própria:
 
 ```text
-"Meu orçamento hoje é até R$50. " + askPhrase original
+"Quero gastar até R$50. " + askPhrase original
 ```
 
 Para `budget === "open"`, `contextualAskPhrase` é exatamente igual ao

@@ -1,10 +1,9 @@
 # rules/microDiagnosis/
 
 Motor determinístico do "Me ajude a decidir" — substitui o beco sem saída
-de `wineType = unknown` / `*_unknown` por uma jornada curta (1 a 3
-perguntas) que termina em um dos 11 perfis existentes, ou num estado
-`unsupported` explícito. Nunca usa IA, nunca cria um 12º perfil, nunca lê
-`reason`/`budget`.
+de `wineType = unknown` / `*_unknown` por uma jornada curta (0 a 3
+perguntas) que sempre termina em um dos 11 perfis existentes. Nunca usa
+IA, nunca cria um 12º perfil, nunca lê `reason`/`budget`.
 
 ## Arquitetura
 
@@ -18,7 +17,7 @@ MicroDiagnosisState { entry, answers }
 evaluateMicroDiagnosis()  ← percorre QUESTION_TREE (dado, não código)
         │
         ▼
-MicroDiagnosisResolution: question | resolved | unsupported
+MicroDiagnosisResolution: question | resolved
 ```
 
 Igual a `resolveProfile` e `buildRoutePresentation`: **função pura, sem
@@ -53,7 +52,8 @@ type MicroDiagnosisEntry =
 
 `wineTypeUnknown` entra em `bubbles` (até 3 perguntas). `palateUnknown` já
 sabe a cor e entra direto na árvore daquela cor (`red`: até 2 perguntas;
-`white`/`rose`/`sparkling`: 1 pergunta) — nunca pergunta o tipo de novo.
+`white`/`sparkling`: 1 pergunta; `rose`: **0 perguntas**, resolve direto
+para `ROSE_01`) — nunca pergunta o tipo de novo.
 
 ## Por que a árvore é dado, não `if/else`
 
@@ -67,12 +67,16 @@ inteiro e verificar invariantes (todo `next` aponta pra um nó que existe,
 toda folha resolvida usa um dos 11 IDs reais, profundidade máxima por
 cenário) sem simular cada caminho manualmente.
 
-## `unsupported` — único caso da V1
+## Não existe mais estado `unsupported`
 
-`reason: "rose_sweet"` — alcançado quando a pessoa indica explicitamente
-que queria um rosé mais doce, algo que não existe no catálogo de 11
-perfis. Mensagem fixa, sem sugestão automática de perfil alternativo
-(`SPARK_03` não é oferecido nesta V1).
+A V1 anterior tinha um único caso `unsupported` ("rosé mais docinho"),
+alcançado quando a pessoa escolhia uma opção que a Rota depois recusava.
+Isso foi removido por princípio de produto: o sistema não deve oferecer
+uma opção para depois dizer que não consegue atendê-la. Como só existe
+`ROSE_01` no catálogo, a opção "rosé mais docinho" foi retirada das
+perguntas — nenhum caminho da árvore leva a um estado de falha. O próprio
+tipo `MicroDiagnosisResolution` não tem mais a variante `unsupported`; o
+compilador garante essa ausência, não é só uma convenção.
 
 ## Progresso
 

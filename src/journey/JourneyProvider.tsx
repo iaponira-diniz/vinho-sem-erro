@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import type { PalateOptionId, WineTypeId } from "../../rules/recommendation";
 import type { MicroDiagnosisAnswer, MicroDiagnosisState } from "../../rules/microDiagnosis";
-import type { BudgetId, IntentId, JourneyState, JourneyStepId, ReasonId } from "./types";
+import type { BudgetId, JourneyState, JourneyStepId, ReasonId } from "./types";
 
 interface NavState {
   currentStep: JourneyStepId;
@@ -18,18 +18,17 @@ interface FullState {
 }
 
 type Action =
-  | { type: "ANSWER_INTENT"; value: IntentId }
   | { type: "ANSWER_REASON"; value: ReasonId }
-  | { type: "ANSWER_BUDGET"; value: BudgetId }
   | { type: "ANSWER_WINE_TYPE"; value: WineTypeId }
   | { type: "ANSWER_PALATE"; value: PalateOptionId }
   | { type: "ANSWER_MICRO_DIAGNOSIS"; answer: MicroDiagnosisAnswer }
+  | { type: "ANSWER_BUDGET"; value: BudgetId }
   | { type: "BACK" }
   | { type: "BACK_MICRO_DIAGNOSIS" }
   | { type: "RESTART" };
 
 const INITIAL_JOURNEY: JourneyState = {
-  intent: null,
+  intent: "for_me",
   reason: null,
   budget: null,
   wineType: null,
@@ -37,7 +36,7 @@ const INITIAL_JOURNEY: JourneyState = {
 };
 
 const INITIAL_NAV: NavState = {
-  currentStep: "intent",
+  currentStep: "reason",
   history: [],
 };
 
@@ -47,48 +46,53 @@ function advance(state: FullState, patch: Partial<JourneyState>, nextStep: Journ
   return {
     journey: { ...state.journey, ...patch },
     nav: { currentStep: nextStep, history: [...state.nav.history, state.nav.currentStep] },
-    // Preservado por padrão — ANSWER_WINE_TYPE/ANSWER_PALATE sobrescrevem
-    // explicitamente quando precisam iniciar ou encerrar um diagnóstico.
+    // Preservado por padrão — ANSWER_WINE_TYPE sobrescreve explicitamente
+    // quando precisa iniciar ou encerrar um diagnóstico.
     microDiagnosis: state.microDiagnosis,
   };
 }
 
 function reducer(state: FullState, action: Action): FullState {
   switch (action.type) {
-    case "ANSWER_INTENT":
-      return advance(state, { intent: action.value }, "reason");
-
     case "ANSWER_REASON":
-      return advance(state, { reason: action.value }, "budget");
-
-    case "ANSWER_BUDGET":
-      return advance(state, { budget: action.value }, "wineType");
+      return advance(state, { reason: action.value }, "wineType");
 
     case "ANSWER_WINE_TYPE": {
       // Regra de invalidação: mudar wineType invalida a resposta de
       // paladar, porque ela dependia do tipo anterior. reason e budget
-      // nunca são tocados aqui. profileId não existe no estado — é
-      // derivado de wineType + palateOptionId só no ponto de resolução
-      // (WineJourney), então não há nada a apagar além da resposta.
+      // nunca são tocados aqui.
       const previousWineType = state.journey.wineType;
       const wineTypeChanged = previousWineType !== null && previousWineType !== action.value;
       const patch: Partial<JourneyState> = { wineType: action.value };
       if (wineTypeChanged) {
         patch.palateOptionId = null;
       }
-      // wineType = unknown entra no microdiagnóstico ("Me ajude a decidir")
-      // em vez de ir direto para o resultado. Qualquer outro valor limpa um
-      // diagnóstico anterior (troca de tipo invalida o diagnóstico também).
-      const nextStep: JourneyStepId = action.value === "unknown" ? "microDiagnosis" : "palate";
-      const microDiagnosis: MicroDiagnosisState | null =
-        action.value === "unknown" ? { entry: { kind: "wineTypeUnknown" }, answers: [] } : null;
+
+      let nextStep: JourneyStepId;
+      let microDiagnosis: MicroDiagnosisState | null = null;
+
+      if (action.value === "unknown") {
+        nextStep = "microDiagnosis";
+        microDiagnosis = { entry: { kind: "wineTypeUnknown" }, answers: [] };
+      } else if (action.value === "rose") {
+        // Só existe ROSE_01 nesta versão — nenhuma pergunta de paladar
+        // teria função diagnóstica real, então resolve direto via
+        // resolveProfile() (mesma derivação já existente, sem inventar
+        // um caminho novo): "rose_dry_refreshing" e "rose_fruity_refreshing"
+        // já mapeiam para o mesmo profileId.
+        patch.palateOptionId = "rose_dry_refreshing";
+        nextStep = "budget";
+      } else {
+        nextStep = "palate";
+      }
+
       return { ...advance(state, patch, nextStep), microDiagnosis };
     }
 
     case "ANSWER_PALATE": {
       const isUnknownAnswer = action.value.endsWith("_unknown");
       const wineType = state.journey.wineType;
-      const nextStep: JourneyStepId = isUnknownAnswer ? "microDiagnosis" : "result";
+      const nextStep: JourneyStepId = isUnknownAnswer ? "microDiagnosis" : "budget";
       const microDiagnosis: MicroDiagnosisState | null =
         isUnknownAnswer && wineType && wineType !== "unknown"
           ? { entry: { kind: "palateUnknown", wineType }, answers: [] }
@@ -103,10 +107,13 @@ function reducer(state: FullState, action: Action): FullState {
         answers: [...state.microDiagnosis.answers, action.answer],
       };
       // Fica em "microDiagnosis" — é o WineJourney quem decide, chamando
-      // evaluateMicroDiagnosis(), se mostra a próxima pergunta, o
-      // resultado ou a tela unsupported. Nenhum motor é chamado aqui.
+      // evaluateMicroDiagnosis(), se mostra a próxima pergunta ou o
+      // complemento de orçamento. Nenhum motor é chamado aqui.
       return { ...state, microDiagnosis };
     }
+
+    case "ANSWER_BUDGET":
+      return advance(state, { budget: action.value }, "result");
 
     case "BACK": {
       if (state.nav.history.length === 0) return state;
@@ -130,7 +137,7 @@ function reducer(state: FullState, action: Action): FullState {
         return { ...state, microDiagnosis };
       }
       // Nada para desfazer dentro do diagnóstico — sai dele inteiramente,
-      // delegando para a navegação normal (volta pra Tipo ou Paladar).
+      // delegando para a navegação normal (volta pra Tipo).
       if (state.nav.history.length === 0) return state;
       const history = state.nav.history.slice(0, -1);
       const currentStep = state.nav.history[state.nav.history.length - 1];
@@ -149,12 +156,11 @@ interface JourneyContextValue {
   journey: JourneyState;
   currentStep: JourneyStepId;
   microDiagnosis: MicroDiagnosisState | null;
-  answerIntent: (value: IntentId) => void;
   answerReason: (value: ReasonId) => void;
-  answerBudget: (value: BudgetId) => void;
   answerWineType: (value: WineTypeId) => void;
   answerPalate: (value: PalateOptionId) => void;
   answerMicroDiagnosis: (answer: MicroDiagnosisAnswer) => void;
+  answerBudget: (value: BudgetId) => void;
   back: () => void;
   backMicroDiagnosis: () => void;
   restart: () => void;
@@ -170,12 +176,11 @@ export function JourneyProvider({ children }: { children: ReactNode }) {
       journey: state.journey,
       currentStep: state.nav.currentStep,
       microDiagnosis: state.microDiagnosis,
-      answerIntent: (value) => dispatch({ type: "ANSWER_INTENT", value }),
       answerReason: (value) => dispatch({ type: "ANSWER_REASON", value }),
-      answerBudget: (value) => dispatch({ type: "ANSWER_BUDGET", value }),
       answerWineType: (value) => dispatch({ type: "ANSWER_WINE_TYPE", value }),
       answerPalate: (value) => dispatch({ type: "ANSWER_PALATE", value }),
       answerMicroDiagnosis: (answer) => dispatch({ type: "ANSWER_MICRO_DIAGNOSIS", answer }),
+      answerBudget: (value) => dispatch({ type: "ANSWER_BUDGET", value }),
       back: () => dispatch({ type: "BACK" }),
       backMicroDiagnosis: () => dispatch({ type: "BACK_MICRO_DIAGNOSIS" }),
       restart: () => dispatch({ type: "RESTART" }),

@@ -1,21 +1,30 @@
-/* Paleta provisória, centralizada em variáveis — não é identidade visual
-   definitiva. Elegante e contemporânea sem clichês de "curso online" nem
-   de vinho (sem bordô saturado, madeira, cachos de uva ou dourado). */
+/* Identidade visual: bordô profundo como accent principal, dourado
+   dessaturado só como detalhe, base crème quente. Fraunces para nome do
+   produto, títulos principais e nome do perfil; Manrope para interface,
+   perguntas, botões e textos. Sem grandes áreas bordô ou douradas. */
 :root {
-  --bg: #faf7f4;
+  --bg: #faf6f0;
   --surface: #ffffff;
-  --surface-muted: #f1ebe6;
-  --text: #2a2320;
-  --text-muted: #6b5f58;
-  --border: #e3d9d1;
-  --accent: #7a3b52;
-  --accent-contrast: #fff8f6;
-  --accent-soft: #f3e7ec;
+  --surface-muted: #f4ece1;
+  --text: #2b2320;
+  --text-muted: #6f6259;
+  --border: #e6dccf;
+  --accent: #7d1f3d;
+  --accent-strong: #671933;
+  --accent-contrast: #fff8f5;
+  --accent-soft: #f4e5e9;
+  --gold: #b8935a;
+  --gold-soft: #f0e6d3;
   --focus-ring: #2f6f6a;
   --danger-text: #6b3a2a;
 
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Manrope", system-ui, "Segoe UI", Roboto, sans-serif;
+
   color-scheme: light dark;
-  font: 16px/1.5 system-ui, "Segoe UI", Roboto, sans-serif;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
   color: var(--text);
   background: var(--bg);
 }
@@ -29,8 +38,11 @@
     --text-muted: #b8a99f;
     --border: #3c322c;
     --accent: #d98fa8;
+    --accent-strong: #e6a7bd;
     --accent-contrast: #241318;
     --accent-soft: #33232a;
+    --gold: #cbab77;
+    --gold-soft: #362c22;
     --focus-ring: #6fcfc7;
     --danger-text: #e0a98f;
   }
@@ -86,14 +98,14 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
   text-align: center;
   margin-bottom: 24px;
 }
 
 .brand-mark-large {
-  margin: auto 0 32px;
-  gap: 6px;
+  margin-bottom: 32px;
+  gap: 8px;
 }
 
 .brand-logo {
@@ -101,7 +113,7 @@ ul {
      SaporeDiVino, a fornecer). Dimensão pronta para quando isso acontecer. */
   max-width: 56px;
   height: auto;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .brand-mark-large .brand-logo {
@@ -109,16 +121,16 @@ ul {
 }
 
 .brand-product {
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--text);
   margin: 0;
 }
 
 .brand-mark-large .brand-product {
-  font-size: 1.6rem;
+  font-size: 2rem;
 }
 
 .brand-tagline {
@@ -128,9 +140,10 @@ ul {
 }
 
 .brand-parent {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
   color: var(--text-muted);
-  margin: 0;
+  margin: 2px 0 0;
 }
 
 /* Telas de pergunta ----------------------------------------------------- */
@@ -145,15 +158,21 @@ ul {
   margin: -8px 0 8px -4px;
   cursor: pointer;
   min-height: 44px;
+  transition: color 150ms ease;
 }
 
-.back-link:hover {
-  color: var(--text);
+@media (hover: hover) and (pointer: fine) {
+  .back-link:hover {
+    color: var(--text);
+  }
 }
 
 .screen-question {
-  font-size: 1.35rem;
-  margin: 4px 0 20px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  margin: 4px 0 22px;
 }
 
 .option-list {
@@ -164,17 +183,24 @@ ul {
 }
 
 .option-button {
+  position: relative;
   width: 100%;
   text-align: left;
   padding: 16px 18px;
   min-height: 52px;
-  border-radius: 14px;
-  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  border: 1px solid transparent;
   background: var(--surface);
   color: var(--text);
+  font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.35;
   cursor: pointer;
+  box-shadow: 0 1px 2px rgba(43, 35, 32, 0.06);
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease;
 }
 
 .option-button[aria-pressed="true"] {
@@ -183,8 +209,22 @@ ul {
   font-weight: 600;
 }
 
-.option-button:hover {
-  border-color: var(--accent);
+.option-button[aria-pressed="true"]::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .option-button:hover {
+    border-color: var(--gold);
+    box-shadow: 0 2px 8px rgba(43, 35, 32, 0.08);
+  }
 }
 
 /* Progresso -------------------------------------------------------------- */
@@ -202,12 +242,14 @@ ul {
   border-radius: 999px;
   background: var(--surface-muted);
   overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(43, 35, 32, 0.05);
 }
 
 .progress-fill {
   height: 100%;
-  background: var(--accent);
   border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+  transition: width 200ms ease;
 }
 
 .progress-label {
@@ -218,8 +260,15 @@ ul {
 
 .qualitative-progress {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: var(--gold);
+  font-weight: 600;
   margin-bottom: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .qualitative-progress {
+    color: var(--gold);
+  }
 }
 
 /* Botões ------------------------------------------------------------------ */
@@ -231,20 +280,34 @@ ul {
   width: 100%;
   min-height: 52px;
   padding: 14px 20px;
-  border-radius: 14px;
+  border-radius: 16px;
   border: none;
   background: var(--accent);
   color: var(--accent-contrast);
+  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
   margin-top: auto;
+  box-shadow: 0 6px 16px rgba(125, 31, 61, 0.25);
+  transition:
+    background-color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta-primary:hover:not(:disabled) {
+    background: var(--accent-strong);
+    box-shadow: 0 8px 20px rgba(125, 31, 61, 0.3);
+  }
 }
 
 .cta-primary:disabled {
   opacity: 0.45;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .cta-secondary {
@@ -254,13 +317,28 @@ ul {
   width: 100%;
   min-height: 52px;
   padding: 14px 20px;
-  border-radius: 14px;
+  border-radius: 16px;
   border: 1.5px solid var(--border);
   background: transparent;
   color: var(--text);
+  font-family: var(--font-body);
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .cta-secondary:hover:not(:disabled) {
+    border-color: var(--accent);
+  }
+}
+
+.cta-secondary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .restart-button {
@@ -270,28 +348,20 @@ ul {
   border-radius: 12px;
   border: 1.5px solid var(--border);
   background: transparent;
-  color: var(--text);
-  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 500;
   cursor: pointer;
   align-self: center;
+  transition: border-color 150ms ease, color 150ms ease;
 }
 
-/* Tela de intenção --------------------------------------------------------- */
-
-.intent-screen {
-  justify-content: center;
-  gap: 4px;
-}
-
-.intent-screen .cta-primary {
-  margin-top: 24px;
-}
-
-.intent-note {
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  margin-top: 16px;
+@media (hover: hover) and (pointer: fine) {
+  .restart-button:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
 }
 
 /* Tela inicial ("/") -------------------------------------------------------- */
@@ -311,28 +381,35 @@ ul {
 /* Resultado ----------------------------------------------------------------- */
 
 .result-title {
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--accent);
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 6px;
 }
 
 .result-name {
-  font-size: 1.5rem;
-  margin-bottom: 12px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
 }
 
 .result-summary {
   color: var(--text-muted);
-  margin-bottom: 20px;
+  font-size: 1rem;
+  margin-bottom: 22px;
 }
 
 .route-context {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .route-context-item {
@@ -342,38 +419,46 @@ ul {
 }
 
 .route-context-label {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   color: var(--text-muted);
 }
 
 .route-context-value {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   font-weight: 600;
+  color: var(--text-muted);
 }
 
 .route-reason-message {
   color: var(--text-muted);
   font-size: 0.92rem;
-  padding-bottom: 16px;
+  padding-bottom: 18px;
   margin-bottom: 4px;
   border-bottom: 1px solid var(--border);
 }
 
 .result-block {
-  padding: 16px 0;
+  padding: 22px 0;
+}
+
+.result-block + .result-block {
   border-top: 1px solid var(--border);
 }
 
 .result-block h3 {
-  font-size: 1rem;
-  margin-bottom: 10px;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 700;
+  margin-bottom: 12px;
 }
 
 .result-block summary {
-  font-size: 1rem;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text);
   cursor: pointer;
   padding: 4px 0;
   min-height: 44px;
@@ -381,15 +466,28 @@ ul {
   align-items: center;
 }
 
+.result-block--muted h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.result-block--muted .avoid-list {
+  font-size: 0.88rem;
+}
+
 .clue-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
 }
 
 .clue-list li strong {
   display: block;
   margin-bottom: 2px;
+  font-weight: 600;
 }
 
 .clue-list li p {
@@ -405,7 +503,7 @@ ul {
 }
 
 .chip {
-  background: var(--surface-muted);
+  background: var(--gold-soft);
   border-radius: 999px;
   padding: 6px 14px;
   font-size: 0.85rem;
@@ -423,8 +521,9 @@ ul {
 .ask-phrase-block {
   background: var(--accent-soft);
   border: none;
-  border-radius: 14px;
-  padding: 18px;
+  border-top: none;
+  border-radius: 18px;
+  padding: 22px;
 }
 
 .ask-phrase-block--emphasized {
@@ -432,9 +531,12 @@ ul {
 }
 
 .ask-phrase-text {
-  font-size: 1.05rem;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
   font-style: italic;
-  margin-bottom: 12px;
+  line-height: 1.4;
+  margin-bottom: 14px;
 }
 
 .copy-button {
@@ -444,8 +546,17 @@ ul {
   border: 1.5px solid var(--accent);
   background: transparent;
   color: var(--accent);
+  font-family: var(--font-body);
   font-size: 0.9rem;
+  font-weight: 500;
   cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .copy-button:hover {
+    background: var(--surface);
+  }
 }
 
 .copy-feedback {
@@ -455,6 +566,13 @@ ul {
 }
 
 /* Feedback de clareza (Momento A) -------------------------------------------- */
+
+.feedback-block {
+  margin-top: 8px;
+  padding: 22px;
+  border-radius: 18px;
+  background: var(--surface-muted);
+}
 
 .feedback-block h3 {
   font-size: 1rem;
@@ -520,7 +638,9 @@ ul {
 }
 
 .message-screen h1 {
-  font-size: 1.3rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
 }
 
 .message-actions {
@@ -528,4 +648,20 @@ ul {
   flex-direction: column;
   gap: 12px;
   margin-top: 20px;
+}
+
+/* Desktop — mais respiro e fundo sutil, sem mudar a coluna mobile-first ----- */
+
+@media (min-width: 960px) {
+  body {
+    background:
+      radial-gradient(ellipse 900px 520px at 50% -10%, rgba(184, 147, 90, 0.12), transparent 62%),
+      radial-gradient(ellipse 900px 620px at 50% 108%, rgba(125, 31, 61, 0.07), transparent 62%),
+      var(--bg);
+  }
+
+  .screen {
+    padding-top: 56px;
+    padding-bottom: 72px;
+  }
 }

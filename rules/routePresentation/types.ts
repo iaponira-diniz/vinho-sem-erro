@@ -25,8 +25,6 @@ export interface RoutePresentation {
   reasonLabel: string;
   reasonMessage: string;
 
-  budgetLabel: string;
-
   /** null quando profile.askPhrase é null — nunca string vazia. */
   contextualAskPhrase: string | null;
 

@@ -47,9 +47,6 @@ export function evaluateMicroDiagnosis(state: MicroDiagnosisState): MicroDiagnos
     return { status: "question", question };
   }
 
-  if (node.type === "resolved") {
-    return { status: "resolved", profileId: node.profileId };
-  }
-
-  return { status: "unsupported", reason: node.reason, message: node.message };
+  // Só resta "resolved" — não existe mais nenhum nó "unsupported" na árvore.
+  return { status: "resolved", profileId: node.profileId };
 }

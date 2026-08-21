@@ -1,5 +1,5 @@
 import type { WineProfile } from "../../content/types";
-import { buildContextualAskPhrase, BUDGET_LABELS } from "./budgetPresentation";
+import { buildContextualAskPhrase } from "./budgetPresentation";
 import { REASON_FLAGS, REASON_LABELS, REASON_MESSAGES } from "./reasonPresentation";
 import type { RouteContext, RoutePresentation } from "./types";
 
@@ -14,7 +14,6 @@ export function buildRoutePresentation(profile: WineProfile, context: RouteConte
   return {
     reasonLabel: REASON_LABELS[context.reason],
     reasonMessage: REASON_MESSAGES[context.reason],
-    budgetLabel: BUDGET_LABELS[context.budget],
     contextualAskPhrase: buildContextualAskPhrase(profile.askPhrase, context.budget),
     emphasizeAskPhrase: flags.emphasizeAskPhrase,
     expandAdditionalClues: flags.expandAdditionalClues,

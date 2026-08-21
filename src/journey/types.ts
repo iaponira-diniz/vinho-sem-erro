@@ -8,17 +8,14 @@ import type { BudgetId, ReasonId } from "../../rules/routePresentation";
  */
 export type { BudgetId, ReasonId };
 
-/** Única intenção ativa nesta alpha — as demais rotas ainda não existem. */
+/**
+ * Única intenção ativa nesta versão — assumida como padrão interno, sem
+ * tela própria. O tipo continua existindo para não fechar a possibilidade
+ * arquitetural de outras intenções no futuro (ex.: presente, restaurante).
+ */
 export type IntentId = "for_me";
 
-export type JourneyStepId =
-  | "intent"
-  | "reason"
-  | "budget"
-  | "wineType"
-  | "palate"
-  | "microDiagnosis"
-  | "result";
+export type JourneyStepId = "reason" | "wineType" | "palate" | "microDiagnosis" | "budget" | "result";
 
 /**
  * Estado de produto da jornada — só respostas da pessoa. `profileId` não
@@ -27,7 +24,8 @@ export type JourneyStepId =
  * arquitetural (WineJourney), nunca guardado como segunda fonte de verdade.
  */
 export interface JourneyState {
-  intent: IntentId | null;
+  /** Sempre "for_me" nesta versão — não há tela para escolher outra coisa. */
+  intent: IntentId;
   reason: ReasonId | null;
   budget: BudgetId | null;
   wineType: WineTypeId | null;

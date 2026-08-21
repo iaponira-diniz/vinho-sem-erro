@@ -13,7 +13,8 @@ interface QuestionScreenProps<T extends string> {
   /** Resposta já salva na jornada, se houver — pré-seleciona ao voltar. */
   selectedId: T | null;
   onContinue: (id: T) => void;
-  onBack: () => void;
+  /** Omitido na primeira tela real da jornada — não há nada para onde voltar. */
+  onBack?: () => void;
   /** Progresso numérico (jornada principal). */
   step?: { index: number; total: number };
   /** Progresso qualitativo (microdiagnóstico) — mutuamente exclusivo com `step`. */
@@ -38,9 +39,11 @@ export function QuestionScreen<T extends string>({
 
   return (
     <section className="screen question-screen">
-      <button type="button" className="back-link" onClick={onBack}>
-        ← Voltar
-      </button>
+      {onBack && (
+        <button type="button" className="back-link" onClick={onBack}>
+          ← Voltar
+        </button>
+      )}
 
       {step && <ProgressBar index={step.index} total={step.total} />}
       {qualitativeProgress && <p className="qualitative-progress">{qualitativeProgress}</p>}

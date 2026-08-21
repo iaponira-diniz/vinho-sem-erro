@@ -73,6 +73,6 @@
     "Não tratar gosto por vinho doce como erro ou preferência inferior."
   ],
   "backupProfileId": "SPARK_02",
-  "askPhrase": "Estou procurando um espumante doce, bem aromático e frutado, mas que continue fresco. Gosto de estilos como Moscatel. O que você recomenda nessa faixa de preço?",
+  "askPhrase": "Estou procurando um espumante doce, bem aromático e frutado, mas que continue fresco. Gosto de estilos como Moscatel. O que você recomenda?",
   "whyThisRoute": "Você indicou que gosta da sensação de doçura no espumante. Por isso, estamos priorizando estilos em que fruta, perfume e açúcar aparecem de maneira perceptível, equilibrados pelo frescor."
 }

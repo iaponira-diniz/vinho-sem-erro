@@ -52,10 +52,6 @@ export function ResultStep({ profileId, routeContext, onBack, onRestart }: Resul
           <span className="route-context-label">Seu momento</span>
           <span className="route-context-value">{presentation.reasonLabel}</span>
         </div>
-        <div className="route-context-item">
-          <span className="route-context-label">Seu orçamento</span>
-          <span className="route-context-value">{presentation.budgetLabel}</span>
-        </div>
       </div>
 
       <p className="route-reason-message">{presentation.reasonMessage}</p>
@@ -102,7 +98,7 @@ export function ResultStep({ profileId, routeContext, onBack, onRestart }: Resul
       )}
 
       {profile.avoid.length > 0 && (
-        <section className="result-block">
+        <section className="result-block result-block--muted">
           <h3>Talvez evite começar por</h3>
           <ul className="avoid-list">
             {profile.avoid.map((item) => (
@@ -113,8 +109,8 @@ export function ResultStep({ profileId, routeContext, onBack, onRestart }: Resul
       )}
 
       {presentation.discoveryOptions.length > 0 && (
-        <section className="result-block">
-          <h3>Se quiser sair do óbvio</h3>
+        <details className="result-block">
+          <summary>Se quiser sair do óbvio</summary>
           <ul className="clue-list">
             {presentation.discoveryOptions.map((clue) => (
               <li key={clue.name}>
@@ -123,7 +119,7 @@ export function ResultStep({ profileId, routeContext, onBack, onRestart }: Resul
               </li>
             ))}
           </ul>
-        </section>
+        </details>
       )}
 
       {presentation.contextualAskPhrase && (
@@ -151,10 +147,10 @@ export function ResultStep({ profileId, routeContext, onBack, onRestart }: Resul
       )}
 
       {profile.whyThisRoute && (
-        <section className="result-block">
-          <h3>Por que esta é sua Rota?</h3>
+        <details className="result-block">
+          <summary>Por que esta é sua Rota?</summary>
           <p>{profile.whyThisRoute}</p>
-        </section>
+        </details>
       )}
 
       <ClarityFeedbackBlock />

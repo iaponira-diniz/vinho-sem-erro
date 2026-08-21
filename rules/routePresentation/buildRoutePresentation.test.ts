@@ -83,29 +83,15 @@ describe("buildRoutePresentation — flags por reason (exclusividade)", () => {
   });
 });
 
-describe("buildRoutePresentation — budgetLabel", () => {
-  it.each([
-    ["under_50", "Até R$50"],
-    ["50_80", "R$50 a R$80"],
-    ["80_120", "R$80 a R$120"],
-    ["120_200", "R$120 a R$200"],
-    ["over_200", "Mais de R$200"],
-    ["open", "Sem faixa definida"],
-  ] as const)("%s -> %s", (budget, expectedLabel) => {
-    const result = buildRoutePresentation(makeProfile(), { reason: "everyday", budget });
-    expect(result.budgetLabel).toBe(expectedLabel);
-  });
-});
-
 describe("buildRoutePresentation — contextualAskPhrase", () => {
   const askPhrase = "Pergunta de teste. O que você recomenda?";
 
   it.each([
-    ["under_50", "Meu orçamento hoje é até R$50. " + askPhrase],
-    ["50_80", "Meu orçamento hoje é entre R$50 e R$80. " + askPhrase],
-    ["80_120", "Meu orçamento hoje é entre R$80 e R$120. " + askPhrase],
-    ["120_200", "Meu orçamento hoje é entre R$120 e R$200. " + askPhrase],
-    ["over_200", "Meu orçamento hoje é acima de R$200. " + askPhrase],
+    ["under_50", "Quero gastar até R$50. " + askPhrase],
+    ["50_80", "Quero gastar entre R$50 e R$80. " + askPhrase],
+    ["80_120", "Quero gastar entre R$80 e R$120. " + askPhrase],
+    ["120_200", "Quero gastar entre R$120 e R$200. " + askPhrase],
+    ["over_200", "Quero gastar mais de R$200. " + askPhrase],
   ] as const)("%s antepõe a cláusula de orçamento, askPhrase original intacto", (budget, expected) => {
     const result = buildRoutePresentation(makeProfile({ askPhrase }), { reason: "everyday", budget });
     expect(result.contextualAskPhrase).toBe(expected);

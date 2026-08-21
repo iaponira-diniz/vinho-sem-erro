@@ -27,17 +27,21 @@ export const WINE_TYPE_OPTIONS: readonly QuestionOption<WineTypeId>[] = [
   { id: "unknown", label: "Não sei — me ajude a decidir" },
 ];
 
-type KnownWineTypeId = Exclude<WineTypeId, "unknown">;
+/**
+ * "rose" fica de fora: só existe ROSE_01 nesta versão, então escolher
+ * "Rosé" resolve direto (ver JourneyProvider) — não há pergunta de
+ * paladar com função diagnóstica real a fazer para essa cor.
+ */
+type PalateAskedWineTypeId = Exclude<WineTypeId, "unknown" | "rose">;
 
-export const PALATE_TITLES: Record<KnownWineTypeId, string> = {
+export const PALATE_TITLES: Record<PalateAskedWineTypeId, string> = {
   red: "O que parece mais gostoso hoje?",
   white: "O que parece mais gostoso hoje?",
-  rose: "O que parece mais gostoso hoje?",
   sparkling: "Que tipo de espumante parece mais gostoso?",
 };
 
 export const PALATE_OPTIONS_BY_WINE_TYPE: Record<
-  KnownWineTypeId,
+  PalateAskedWineTypeId,
   readonly QuestionOption<PalateOptionId>[]
 > = {
   red: [
@@ -52,11 +56,6 @@ export const PALATE_OPTIONS_BY_WINE_TYPE: Record<
     { id: "white_aromatic_fruity", label: "Perfumado, aromático e cheio de fruta" },
     { id: "white_creamy_structured", label: "Mais encorpado, cremoso e envolvente" },
     { id: "white_unknown", label: "Não sei" },
-  ],
-  rose: [
-    { id: "rose_dry_refreshing", label: "Seco e bem refrescante" },
-    { id: "rose_fruity_refreshing", label: "Frutado, fresco e fácil de beber" },
-    { id: "rose_unknown", label: "Não sei" },
   ],
   sparkling: [
     { id: "sparkling_dry_refreshing", label: "Seco, fresco e com pouca sensação de açúcar" },

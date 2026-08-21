@@ -11,8 +11,7 @@ type LeafNodeId =
   | "ROSE_01"
   | "SPARK_01"
   | "SPARK_02"
-  | "SPARK_03"
-  | "UNSUPPORTED_ROSE_SWEET";
+  | "SPARK_03";
 
 export type TreeNodeId = MicroDiagnosisQuestionId | LeafNodeId;
 
@@ -29,16 +28,13 @@ interface ResolvedTreeNode {
   profileId: string;
 }
 
-interface UnsupportedTreeNode {
-  type: "unsupported";
-  reason: "rose_sweet";
-  message: string;
-}
-
-export type TreeNode = QuestionTreeNode | ResolvedTreeNode | UnsupportedTreeNode;
-
-const UNSUPPORTED_ROSE_SWEET_MESSAGE =
-  "Hoje nossa Rota de rosés está focada nos estilos secos e refrescantes.";
+/**
+ * Só "question" e "resolved" existem nesta V1 — nenhum caminho da árvore
+ * leva a um estado unsupported (o único caso, rosé mais doce, foi
+ * removido: ROSE_01 é o único perfil de rosé, então não há como oferecer
+ * uma opção que a Rota depois recusa).
+ */
+export type TreeNode = QuestionTreeNode | ResolvedTreeNode;
 
 /**
  * A árvore inteira do microdiagnóstico, como dado — evaluateMicroDiagnosis()
@@ -118,13 +114,11 @@ export const QUESTION_TREE: Record<TreeNodeId, TreeNode> = {
       { id: "red_light", label: "Tinto leve" },
       { id: "white_light", label: "Branco leve e refrescante" },
       { id: "rose_dry", label: "Rosé seco e refrescante" },
-      { id: "rose_sweet", label: "Rosé mais docinho" },
     ],
     next: {
       red_light: "RED_01",
       white_light: "WHITE_01",
       rose_dry: "ROSE_01",
-      rose_sweet: "UNSUPPORTED_ROSE_SWEET",
     },
   },
 
@@ -136,14 +130,12 @@ export const QUESTION_TREE: Record<TreeNodeId, TreeNode> = {
       { id: "red_light", label: "Tinto leve" },
       { id: "white_light", label: "Branco leve e refrescante" },
       { id: "rose_dry", label: "Rosé seco e refrescante" },
-      { id: "rose_sweet", label: "Rosé mais docinho" },
       { id: "sparkling_dry", label: "Espumante seco e refrescante" },
     ],
     next: {
       red_light: "RED_01",
       white_light: "WHITE_01",
       rose_dry: "ROSE_01",
-      rose_sweet: "UNSUPPORTED_ROSE_SWEET",
       sparkling_dry: "SPARK_01",
     },
   },
@@ -223,16 +215,8 @@ export const QUESTION_TREE: Record<TreeNodeId, TreeNode> = {
   },
 
   // --- palateUnknown: rose ------------------------------------------------
-  roseSweetness: {
-    type: "question",
-    id: "roseSweetness",
-    prompt: "Você imagina um rosé mais seco e refrescante, ou mais docinho?",
-    options: [
-      { id: "dry", label: "Seco e refrescante" },
-      { id: "sweet", label: "Mais docinho" },
-    ],
-    next: { dry: "ROSE_01", sweet: "UNSUPPORTED_ROSE_SWEET" },
-  },
+  // Sem pergunta: só existe ROSE_01 nesta versão, então "Não sei" para rosé
+  // não teria função diagnóstica — resolve direto (ver PALATE_UNKNOWN_ENTRY_NODE).
 
   // --- folhas: resolved ----------------------------------------------------
   RED_01: { type: "resolved", profileId: "RED_01" },
@@ -246,25 +230,20 @@ export const QUESTION_TREE: Record<TreeNodeId, TreeNode> = {
   SPARK_01: { type: "resolved", profileId: "SPARK_01" },
   SPARK_02: { type: "resolved", profileId: "SPARK_02" },
   SPARK_03: { type: "resolved", profileId: "SPARK_03" },
-
-  // --- folha: unsupported ----------------------------------------------------
-  UNSUPPORTED_ROSE_SWEET: {
-    type: "unsupported",
-    reason: "rose_sweet",
-    message: UNSUPPORTED_ROSE_SWEET_MESSAGE,
-  },
 };
 
 /** Nó de entrada quando o tipo de vinho ainda não é conhecido. */
 export const WINE_TYPE_UNKNOWN_ENTRY_NODE: MicroDiagnosisQuestionId = "bubbles";
 
-/** Nó de entrada quando o tipo já é conhecido, só o paladar ficou "não sei". */
-export const PALATE_UNKNOWN_ENTRY_NODE: Record<
-  "red" | "white" | "rose" | "sparkling",
-  MicroDiagnosisQuestionId
-> = {
+/**
+ * Nó de entrada quando o tipo já é conhecido, só o paladar ficou "não
+ * sei". `rose` aponta direto para a folha `ROSE_01` (não para uma
+ * pergunta) — só existe um perfil de rosé nesta versão, então não há
+ * nenhuma pergunta com função diagnóstica real a fazer.
+ */
+export const PALATE_UNKNOWN_ENTRY_NODE: Record<"red" | "white" | "rose" | "sparkling", TreeNodeId> = {
   red: "redWeight",
   white: "whiteStyle",
-  rose: "roseSweetness",
+  rose: "ROSE_01",
   sparkling: "sparklingSweetness",
 };

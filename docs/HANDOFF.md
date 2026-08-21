@@ -59,12 +59,11 @@ O Vinho Sem Erro já possui um MVP funcional em React/Vite com:
 * GitHub configurado;
 * testes automatizados.
 
-A reestruturação de jornada conhecida como "Fase 14" — remoção da tela de intenção, reordenação da jornada, preço como complemento opcional pós-resolução, resolução direta do rosé, remoção de `rose_sweet`/`unsupported`, correção do bug vertical da Home, refinamento visual (Fraunces/Manrope/paleta) — **já está implementada no working tree local**, com testes e build passando. **Nada disso foi commitado ou publicado ainda.**
+A reestruturação de jornada conhecida como "Fase 14" — remoção da tela de intenção, reordenação da jornada, preço como complemento opcional pós-resolução, resolução direta do rosé, remoção de `rose_sweet`/`unsupported`, correção do bug vertical da Home, refinamento visual (Fraunces/Manrope/paleta) — **já está implementada no working tree local**, com testes e build passando. A pendência de conteúdo dos 11 `askPhrase` (redundância com "nessa faixa de preço") também **já foi corrigida no working tree local**. **Nada disso foi commitado ou publicado ainda.**
 
-Existem duas pendências reais, não implementadas:
+Existe uma pendência real, não implementada:
 
-1. Uma pendência de **conteúdo**: os 11 `askPhrase` atuais contêm a frase "nessa faixa de preço", redundante com os novos prefixos "Quero gastar...".
-2. Uma pendência de **decisão funcional**: a revisão da lógica de espumantes (pergunta e possivelmente SPARK_02) segue em aberto, sem nenhuma alteração de código feita.
+* Uma pendência de **decisão funcional**: a revisão da lógica de espumantes (pergunta e possivelmente SPARK_02) segue em aberto, sem nenhuma alteração de código feita.
 
 ---
 
@@ -251,7 +250,7 @@ SPARK_03 — Espumante Doce e Aromático
 
 Todos utilizam versão `"0.1"`.
 
-Nenhum dos 11 arquivos JSON de perfil foi alterado durante a Fase 14 (confirmado por `git diff --stat` — `content/profiles/` não aparece na lista de arquivos modificados). Existe, porém, uma pendência de conteúdo confirmada nos `askPhrase` — ver seção "ASKPHRASES — PENDÊNCIA CONFIRMADA".
+Nenhum dos 11 arquivos JSON de perfil foi alterado durante a Fase 14 propriamente dita (confirmado por `git diff --stat` no momento da Fase 14 — `content/profiles/` não aparecia na lista). Em etapa separada e posterior, os 11 `askPhrase` foram corrigidos para remover a redundância com "nessa faixa de preço" — ver seção "ASKPHRASES — PENDÊNCIA RESOLVIDA". Nenhum outro campo dos 11 perfis foi tocado nessa correção.
 
 Não reescrever os perfis automaticamente para encaixar alterações de interface.
 
@@ -371,28 +370,29 @@ O `margin-top: auto` consumia o espaço livre do flex container e empurrava o co
 ---
 
 ==================================================
-ASKPHRASES — PENDÊNCIA CONFIRMADA
+ASKPHRASES — PENDÊNCIA RESOLVIDA
 ==================================================
 
-# 17. ASKPHRASES — PENDÊNCIA DE CONTEÚDO
+# 17. ASKPHRASES — 🟠 IMPLEMENTADO LOCALMENTE / RESOLVIDO NESTA FASE
 
-🟡 PENDÊNCIA DE CONTEÚDO
-
-Os **11 perfis atuais** possuem `askPhrase` terminando com uma variação de:
-
-> ...O que você recomenda nessa faixa de preço?
-
-Confirmado por busca direta em `content/profiles/*.json` — RED_01, RED_02, RED_03, RED_04, WHITE_01, WHITE_02, WHITE_03, ROSE_01, SPARK_01, SPARK_02, SPARK_03 têm todos essa mesma construção.
-
-Isso gera **redundância confirmada** com os novos prefixos de orçamento ("Quero gastar..."). Exemplo concreto — RED_01 com `budget = under_50` produz:
+Pendência original: os 11 perfis tinham `askPhrase` terminando com uma variação de "...O que você recomenda nessa faixa de preço?", redundante com os novos prefixos de orçamento ("Quero gastar..."). Exemplo do problema original — RED_01 com `budget = under_50` produzia:
 
 > "Quero gastar até R$50. Estou procurando um tinto mais leve e fresco [...]. O que você recomenda **nessa faixa de preço**?"
 
-A faixa de preço é mencionada duas vezes na mesma frase.
+A faixa de preço era mencionada duas vezes na mesma frase.
 
-Esta redundância foi **CONFIRMADA por auditoria**, mas **ainda NÃO foi corrigida**.
+**Correção aplicada e confirmada por auditoria de código:**
 
-REGRA: não reescrever os 11 perfis automaticamente. É alteração de conteúdo enológico/copy, não um ajuste técnico — precisa de revisão e aprovação explícita antes de qualquer edição em `content/profiles/*.json`.
+* nos 11 perfis (RED_01, RED_02, RED_03, RED_04, WHITE_01, WHITE_02, WHITE_03, ROSE_01, SPARK_01, SPARK_02, SPARK_03), a referência a "nessa faixa de preço" (ou equivalente, como em RED_04: "Quero algo marcante nessa faixa de preço.") foi removida do `askPhrase`;
+* nenhuma outra informação enológica foi alterada em nenhum perfil — `customerSummary`, `internalCharacteristics`, `mainClues`, `additionalClues`, `internalLibrary`, `labelClues`, `avoid`, `backupProfileId`, `whyThisRoute`, `id`, `name`, `version` e `category` permanecem idênticos em todos os 11 arquivos (confirmado por `git diff` linha a linha: exatamente uma linha alterada por arquivo, o campo `askPhrase`);
+* os três perfis de espumante (SPARK_01, SPARK_02, SPARK_03) tiveram **somente essa mesma correção textual genérica** — nenhum termo como "Brut", "Moscatel", "pouca sensação de doçura" ou "sem ser muito doce" foi tocado, e nenhuma outra parte do conteúdo desses três perfis mudou;
+* busca por "nessa faixa de preço" em `content/profiles/*.json` após a correção: **zero ocorrências**;
+* testes após a correção: **113/113 passando** (nenhum teste cobria o texto literal do `askPhrase`, então a contagem não mudou);
+* build após a correção: **sucesso**, sem erros.
+
+IMPORTANTE:
+
+Esta correção é puramente textual/genérica em todos os 11 perfis, incluindo os três de espumante. Ela **não representa nenhuma decisão conceitual sobre espumantes** — a revisão da pergunta/eixo de diferenciação dos espumantes continua **🔴 PENDENTE**, exatamente como antes. Ver seção "ESPUMANTES" abaixo.
 
 ---
 
@@ -404,7 +404,7 @@ ESPUMANTES
 
 🔴 PENDENTE DE DECISÃO FUNCIONAL/ENOLÓGICA
 
-Confirmado por auditoria: **nenhuma lógica de espumantes foi alterada durante a Fase 14.** `content/profiles/SPARK_01.json`, `SPARK_02.json` e `SPARK_03.json` não aparecem no diff da Fase 14. Em `src/journey/journeyOptions.ts`, `PALATE_TITLES.sparkling` e as 4 opções de `PALATE_OPTIONS_BY_WINE_TYPE.sparkling` seguem idênticas ao estado anterior (o único diff nesse arquivo é a remoção de `rose` do tipo `PalateAskedWineTypeId`). Em `rules/microDiagnosis/questionTree.ts`, os nós `sparklingSweetness` e `aromaticStyleAnyBubbles` seguem com prompt e opções idênticos.
+Confirmado por auditoria: **nenhuma lógica de espumantes foi alterada durante a Fase 14, nem durante a correção dos askPhrases.** `content/profiles/SPARK_01.json`, `SPARK_02.json` e `SPARK_03.json` só receberam a correção textual genérica do `askPhrase` descrita na seção "ASKPHRASES — PENDÊNCIA RESOLVIDA" — nenhum outro campo mudou. Em `src/journey/journeyOptions.ts`, `PALATE_TITLES.sparkling` e as 4 opções de `PALATE_OPTIONS_BY_WINE_TYPE.sparkling` seguem idênticas ao estado anterior (o único diff nesse arquivo é a remoção de `rose` do tipo `PalateAskedWineTypeId`). Em `rules/microDiagnosis/questionTree.ts`, os nós `sparklingSweetness` e `aromaticStyleAnyBubbles` seguem com prompt e opções idênticos.
 
 NÃO IMPLEMENTAR NOVA LÓGICA DE ESPUMANTES AUTOMATICAMENTE.
 
@@ -482,7 +482,6 @@ IMPORTANTE — este é o ponto central desta seção:
 Não implementar ainda:
 
 * nova lógica de espumantes;
-* reescrita dos 11 `askPhrase`;
 * Supabase;
 * API;
 * banco;
@@ -510,21 +509,17 @@ npm test -- --run
 npm run build
 ```
 
-Não alterar nada. Confirmar que o estado bate com este documento (Fase 14 implementada localmente, não commitada; espumantes e askPhrases pendentes).
+Não alterar nada. Confirmar que o estado bate com este documento (Fase 14 e correção dos askPhrases implementadas localmente, não commitadas; espumantes pendente).
 
-## Etapa 2 — Decidir estratégia de commit da Fase 14
+## Etapa 2 — Decidir estratégia de commit
 
-A Fase 14 já está pronta e validada (testes + build passando). Falta decidir como dividir os commits — ver "REGRA PARA COMMITS" abaixo. Não commitar sem confirmação explícita do responsável pelo produto.
+A Fase 14 e a correção dos askPhrases já estão prontas e validadas (testes + build passando). Falta decidir como dividir os commits — ver "REGRA PARA COMMITS" abaixo. Não commitar sem confirmação explícita do responsável pelo produto.
 
-## Etapa 3 — Resolver a pendência de conteúdo dos askPhrases
-
-Revisar e (com aprovação) reescrever os 11 `askPhrase` para remover a redundância com "nessa faixa de preço".
-
-## Etapa 4 — Só depois: espumantes
+## Etapa 3 — Só depois: espumantes
 
 Resolver a decisão funcional/enológica dos espumantes (pergunta + eventual revisão de SPARK_02), como etapa própria e isolada.
 
-## Etapa 5 — Só depois da jornada e conteúdo estáveis: Supabase
+## Etapa 4 — Só depois da jornada e conteúdo estáveis: Supabase
 
 ---
 
@@ -589,11 +584,10 @@ Mesmo este HANDOFF, atualizado após auditoria real, pode ficar desatualizado as
 
 # 28. PRÓXIMO MARCO TÉCNICO
 
-A jornada funcional V1 já está implementada e testada localmente (Fase 14 completa). O que falta antes do próximo marco:
+A jornada funcional V1 já está implementada e testada localmente (Fase 14 completa, com a correção dos askPhrases). O que falta antes do próximo marco:
 
-* decidir e executar o commit/push da Fase 14;
-* resolver a pendência de conteúdo dos askPhrases;
-* resolver a decisão dos espumantes (antes do beta amplo, não necessariamente antes do commit da Fase 14).
+* decidir e executar o commit/push da Fase 14 e da correção dos askPhrases;
+* resolver a decisão dos espumantes (antes do beta amplo, não necessariamente antes desse commit).
 
 ---
 
@@ -644,10 +638,7 @@ RESUMO FINAL
 * remoção de `RoutePresentation.budgetLabel` e de "Seu orçamento" do resultado
 * novos prefixos "Quero gastar..."
 * correção do bug vertical da Home
-
-## 🟡 Pendente de conteúdo
-
-* revisar a redundância dos 11 `askPhrase` com "nessa faixa de preço" frente aos novos prefixos de orçamento
+* correção dos 11 `askPhrase` (remoção da redundância com "nessa faixa de preço", sem tocar em nenhum outro campo)
 
 ## 🔴 Pendente de decisão funcional/enológica
 

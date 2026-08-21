@@ -22,7 +22,7 @@ export function ClarityFeedbackBlock() {
 
   if (state.submitted && state.clarity) {
     return (
-      <section className="result-block feedback-block">
+      <section className="feedback-block">
         <p className="feedback-confirmation">{CLARITY_CONFIRMATION_MESSAGE[state.clarity]}</p>
         <button
           type="button"
@@ -36,7 +36,7 @@ export function ClarityFeedbackBlock() {
   }
 
   return (
-    <section className="result-block feedback-block">
+    <section className="feedback-block">
       <h3>Essa Rota ajudou você a saber o que procurar?</h3>
       <div className="option-list" role="group" aria-label="Essa Rota ajudou você a saber o que procurar?">
         {CLARITY_OPTIONS.map((option) => (

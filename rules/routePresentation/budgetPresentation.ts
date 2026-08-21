@@ -1,23 +1,19 @@
 import type { BudgetId } from "./types";
 
-export const BUDGET_LABELS: Record<BudgetId, string> = {
-  under_50: "Até R$50",
-  "50_80": "R$50 a R$80",
-  "80_120": "R$80 a R$120",
-  "120_200": "R$120 a R$200",
-  over_200: "Mais de R$200",
-  open: "Sem faixa definida",
-};
-
+/**
+ * Cláusula a antepor ao askPhrase original — a única função pública desta
+ * faixa. Não existe mais um "budgetLabel" de apresentação: nesta versão o
+ * orçamento é complemento opcional de "Pode pedir assim", não um dado
+ * mostrado como propriedade do perfil.
+ */
 const BUDGET_CLAUSES: Record<Exclude<BudgetId, "open">, string> = {
-  under_50: "Meu orçamento hoje é até R$50.",
-  "50_80": "Meu orçamento hoje é entre R$50 e R$80.",
-  "80_120": "Meu orçamento hoje é entre R$80 e R$120.",
-  "120_200": "Meu orçamento hoje é entre R$120 e R$200.",
-  over_200: "Meu orçamento hoje é acima de R$200.",
+  under_50: "Quero gastar até R$50.",
+  "50_80": "Quero gastar entre R$50 e R$80.",
+  "80_120": "Quero gastar entre R$80 e R$120.",
+  "120_200": "Quero gastar entre R$120 e R$200.",
+  over_200: "Quero gastar mais de R$200.",
 };
 
-/** Cláusula a antepor ao askPhrase original. null para "open" (sem frase adicional). */
 function budgetClause(budget: BudgetId): string | null {
   if (budget === "open") return null;
   return BUDGET_CLAUSES[budget];

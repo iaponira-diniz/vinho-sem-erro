@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import { wineProfiles } from "../../content/profiles";
-import { QUESTION_TREE } from "./questionTree";
+import { PALATE_UNKNOWN_ENTRY_NODE, QUESTION_TREE } from "./questionTree";
 import type { TreeNode, TreeNodeId } from "./questionTree";
 import { evaluateMicroDiagnosis } from "./index";
 import type { MicroDiagnosisAnswer, MicroDiagnosisEntry } from "./types";
@@ -50,18 +50,6 @@ describe("evaluateMicroDiagnosis — wineType unknown — bubbles = Não", () =>
       answer("styleNoBubbles", styleId),
     ]);
     expect(profileId).toBe(expectedProfileId);
-  });
-
-  it("Não + leve/refrescante + rosé mais docinho -> unsupported rose_sweet", () => {
-    const resolution = evaluateMicroDiagnosis({
-      entry: WINE_TYPE_UNKNOWN,
-      answers: [answer("bubbles", "no"), answer("sensationNoBubbles", "light"), answer("styleNoBubbles", "rose_sweet")],
-    });
-    expect(resolution).toEqual({
-      status: "unsupported",
-      reason: "rose_sweet",
-      message: "Hoje nossa Rota de rosés está focada nos estilos secos e refrescantes.",
-    });
   });
 
   it("Não + macio e bem frutado resolve direto RED_02 (2 perguntas)", () => {
@@ -114,18 +102,6 @@ describe("evaluateMicroDiagnosis — wineType unknown — bubbles = Tanto faz", 
       answer("styleAnyBubbles", styleId),
     ]);
     expect(profileId).toBe(expectedProfileId);
-  });
-
-  it("Tanto faz + leve/refrescante + rosé mais docinho -> unsupported rose_sweet", () => {
-    const resolution = evaluateMicroDiagnosis({
-      entry: WINE_TYPE_UNKNOWN,
-      answers: [
-        answer("bubbles", "any"),
-        answer("sensationAnyBubbles", "light"),
-        answer("styleAnyBubbles", "rose_sweet"),
-      ],
-    });
-    expect(resolution.status).toBe("unsupported");
   });
 
   it("Tanto faz + macio e bem frutado resolve direto RED_02", () => {
@@ -199,21 +175,9 @@ describe("evaluateMicroDiagnosis — palateUnknown: white", () => {
 });
 
 describe("evaluateMicroDiagnosis — palateUnknown: rose", () => {
-  it("seco e refrescante -> ROSE_01", () => {
-    const profileId = resolveProfileId(palateUnknown("rose"), [answer("roseSweetness", "dry")]);
-    expect(profileId).toBe("ROSE_01");
-  });
-
-  it("mais docinho -> unsupported rose_sweet", () => {
-    const resolution = evaluateMicroDiagnosis({
-      entry: palateUnknown("rose"),
-      answers: [answer("roseSweetness", "sweet")],
-    });
-    expect(resolution).toEqual({
-      status: "unsupported",
-      reason: "rose_sweet",
-      message: "Hoje nossa Rota de rosés está focada nos estilos secos e refrescantes.",
-    });
+  it("resolve direto para ROSE_01, sem nenhuma pergunta (só existe um perfil de rosé)", () => {
+    const resolution = evaluateMicroDiagnosis({ entry: palateUnknown("rose"), answers: [] });
+    expect(resolution).toEqual({ status: "resolved", profileId: "ROSE_01" });
   });
 });
 
@@ -305,12 +269,9 @@ describe("QUESTION_TREE — invariantes estruturais", () => {
     }
   });
 
-  it("o único unsupportedReason usado é rose_sweet", () => {
-    for (const node of Object.values(QUESTION_TREE) as TreeNode[]) {
-      if (node.type !== "unsupported") continue;
-      expect(node.reason).toBe("rose_sweet");
-    }
-  });
+  // Não há teste de "nenhum nó é unsupported" aqui porque não é mais
+  // necessário: TreeNode = QuestionTreeNode | ResolvedTreeNode, então o
+  // próprio compilador já impede um nó "unsupported" de existir.
 });
 
 function maxDepth(nodeId: TreeNodeId, visited: Set<TreeNodeId> = new Set()): number {
@@ -335,8 +296,8 @@ describe("QUESTION_TREE — limites de perguntas por cenário", () => {
     expect(maxDepth("whiteStyle")).toBeLessThanOrEqual(1);
   });
 
-  it("rose_unknown (a partir de 'roseSweetness') nunca ultrapassa 1 pergunta", () => {
-    expect(maxDepth("roseSweetness")).toBeLessThanOrEqual(1);
+  it("rose_unknown resolve imediatamente, sem nenhuma pergunta", () => {
+    expect(maxDepth(PALATE_UNKNOWN_ENTRY_NODE.rose)).toBe(0);
   });
 
   it("sparkling_unknown (a partir de 'sparklingSweetness') nunca ultrapassa 1 pergunta", () => {

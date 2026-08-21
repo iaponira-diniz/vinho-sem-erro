@@ -20,8 +20,7 @@ export type MicroDiagnosisQuestionId =
   | "redWeight"
   | "redLightRefine"
   | "redFullRefine"
-  | "whiteStyle"
-  | "roseSweetness";
+  | "whiteStyle";
 
 export interface MicroDiagnosisAnswer {
   questionId: MicroDiagnosisQuestionId;
@@ -49,5 +48,4 @@ export interface MicroDiagnosisState {
 
 export type MicroDiagnosisResolution =
   | { status: "question"; question: MicroDiagnosisQuestion }
-  | { status: "resolved"; profileId: string }
-  | { status: "unsupported"; reason: "rose_sweet"; message: string };
+  | { status: "resolved"; profileId: string };
