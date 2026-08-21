@@ -1849,6 +1849,11 @@ HANDOFF
 
 Git
 → histórico
+
+docs/OFFER_REFERENCE.md
+→ material de apoio: copy de venda, dados de mercado e direção visual.
+  Consultar ao trabalhar na Home/landing page. Não faz parte da leitura
+  obrigatória antes de alterar código.
 ```
 
 ---
