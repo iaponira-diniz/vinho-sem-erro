@@ -6,6 +6,7 @@
 **Status:** MVP em desenvolvimento
 **Objetivo:** permitir que outra IA ou desenvolvedor continue o projeto sem depender do histórico das conversas anteriores.
 **Última auditoria de código:** feita por leitura direta do working tree (`git diff`, `npm test`, `npm run build`) — não por suposição a partir deste documento.
+**Último commit conhecido antes desta atualização documental:** `912d372` (`feat: refine MVP journey and purchase guidance`) — publicado em `origin/main`.
 
 ---
 
@@ -34,12 +35,13 @@ IMPORTANTE:
 
 Não assuma que decisões de produto já foram implementadas — e também não assuma o contrário. Este documento foi atualizado após uma auditoria real de código (diff, testes, build), mas o working tree pode mudar depois desta auditoria. Confirme sempre.
 
-Este projeto possui quatro estados diferentes:
+Este projeto possui cinco estados diferentes:
 
 * ✅ implementado e commitado/publicado;
 * 🟠 implementado no working tree local, ainda não commitado;
 * 🟡 pendente de conteúdo ou de decisão técnica menor;
-* 🔴 pendente de decisão funcional/enológica maior.
+* 🔴 pendente de decisão funcional/enológica maior;
+* 🟣 nova frente estratégica registrada em documentação, ainda sem nenhuma implementação técnica iniciada.
 
 ---
 
@@ -59,21 +61,25 @@ O Vinho Sem Erro já possui um MVP funcional em React/Vite com:
 * GitHub configurado;
 * testes automatizados.
 
-A reestruturação de jornada conhecida como "Fase 14" — remoção da tela de intenção, reordenação da jornada, preço como complemento opcional pós-resolução, resolução direta do rosé, remoção de `rose_sweet`/`unsupported`, correção do bug vertical da Home, refinamento visual (Fraunces/Manrope/paleta) — **já está implementada no working tree local**, com testes e build passando. A pendência de conteúdo dos 11 `askPhrase` (redundância com "nessa faixa de preço") também **já foi corrigida no working tree local**. **Nada disso foi commitado ou publicado ainda.**
+A reestruturação de jornada conhecida como "Fase 14" — remoção da tela de intenção, reordenação da jornada, preço como complemento opcional pós-resolução, resolução direta do rosé, remoção de `rose_sweet`/`unsupported`, correção do bug vertical da Home, refinamento visual (Fraunces/Manrope/paleta) — e, junto com ela, a correção dos 11 `askPhrase` (remoção da redundância com "nessa faixa de preço") **já estão implementadas, testadas, commitadas e enviadas para `origin/main`** no commit `912d372` (`feat: refine MVP journey and purchase guidance`). O working tree ficou limpo (`working tree clean`) logo após esse commit e esse push.
 
 Existe uma pendência real, não implementada:
 
 * Uma pendência de **decisão funcional**: a revisão da lógica de espumantes (pergunta e possivelmente SPARK_02) segue em aberto, sem nenhuma alteração de código feita.
 
+Além disso, existe uma nova frente estratégica registrada nesta atualização documental, ainda **sem nenhuma implementação técnica**:
+
+* 🟣 **"Encontrar vinhos para comprar"** — funcionalidade planejada para, depois do diagnóstico e da resolução do perfil, mostrar opções reais de vinhos compatíveis e links para lojas. Ver seção "NOVA FRENTE ESTRATÉGICA" mais abaixo, e as seções correspondentes em `docs/PRODUCT_SPEC.md` e `docs/TECH_SPEC.md`.
+
 ---
 
 ==================================================
-ESTADO IMPLEMENTADO LOCALMENTE, NÃO COMMITADO
+ESTADO IMPLEMENTADO, COMMITADO E ENVIADO (commit 912d372)
 ==================================================
 
-# 3. FASE 14 — 🟠 IMPLEMENTADO LOCALMENTE, AINDA NÃO COMMITADO
+# 3. FASE 14 — ✅ IMPLEMENTADO, COMMITADO E ENVIADO PARA ORIGIN/MAIN
 
-Confirmado por auditoria direta do `git diff` do working tree atual. Tudo abaixo já está no código, não é mais "decidido, não implementado":
+Confirmado por auditoria direta do `git diff`/`git log` no momento do commit `912d372`. Tudo abaixo já está no código, commitado e publicado — não é mais "decidido, não implementado" nem "implementado localmente, não commitado":
 
 * remoção de `IntentStep` (`src/journey/steps/IntentStep.tsx` deletado, `case "intent"` removido de `WineJourney.tsx`);
 * `/app` começa diretamente em `reason` / momento (`INITIAL_NAV.currentStep = "reason"`);
@@ -123,13 +129,13 @@ result
 
 IMPORTANTE — o que isso significa na prática:
 
-Nada da lista acima precisa ser reimplementado. O que falta é **decisão de commit/push**, não decisão de produto. Antes de commitar, ver a seção "GITHUB / DEPLOY" e "REGRA PARA COMMITS" mais abaixo.
+Nada da lista acima precisa ser reimplementado nem recommitado. O commit `912d372` já está em `origin/main`. O push deve disparar automaticamente um novo deploy no Vercel (não verificado manualmente nesta atualização documental — confirmar no painel do Vercel ou visitando o site publicado antes de assumir que já está no ar). Ver seção "GITHUB / DEPLOY" mais abaixo.
 
 ---
 
 # 4. ESTADO DO GITHUB
 
-Ver seção "GITHUB / DEPLOY" mais abaixo para o estado real e a relação com o working tree local.
+Ver seção "GITHUB / DEPLOY" mais abaixo para o estado real. Resumo: `origin/main` está em `912d372`, mesmo commit do working tree local no momento desta atualização documental.
 
 Repositório:
 
@@ -155,7 +161,7 @@ O repositório está conectado ao GitHub.
 
 # 5. ESTADO DO VERCEL
 
-✅ IMPLEMENTADO (na versão publicada — que está atrás do working tree local, ver seção GITHUB / DEPLOY)
+✅ CONECTADO AO GITHUB — deploy do commit `912d372` presumivelmente disparado automaticamente pelo push, mas **não confirmado manualmente** nesta atualização documental. Confirmar no painel do Vercel ou visitando o site publicado antes de assumir que a Fase 14 já está no ar.
 
 O projeto está conectado ao GitHub e publicado no Vercel.
 
@@ -203,7 +209,7 @@ Não existe atualmente:
 * persistência de feedback;
 * persistência de sessão.
 
-Não iniciar essa etapa antes de estabilizar e commitar a jornada funcional (Fase 14 já está pronta localmente — falta só formalizar o commit/push, ver seções acima).
+Não iniciar essa etapa antes de resolver a decisão dos espumantes e validar a nova frente "Encontrar vinhos para comprar" (ver seções correspondentes mais abaixo). A jornada funcional (Fase 14 + correção dos askPhrases) já está commitada e publicada — isso não é mais o bloqueio.
 
 ---
 
@@ -345,7 +351,7 @@ Build atual (`npm run build`):
 
 # 15. REFINAMENTO VISUAL LOCAL
 
-🟠 IMPLEMENTADO LOCALMENTE, AINDA NÃO COMMITADO
+✅ IMPLEMENTADO, COMMITADO E ENVIADO (commit 912d372)
 
 Já descrito em detalhe na seção 3. Arquivos afetados: `index.html`, `src/index.css`, `src/journey/steps/ResultStep.tsx`, `src/feedback/ClarityFeedbackBlock.tsx`.
 
@@ -355,7 +361,7 @@ Testes (113/113) e build passaram após essa rodada — ver seção TESTES.
 
 # 16. BUG VISUAL DA HOME
 
-🟠 IMPLEMENTADO LOCALMENTE, AINDA NÃO COMMITADO
+✅ IMPLEMENTADO, COMMITADO E ENVIADO (commit 912d372)
 
 Causa identificada originalmente:
 
@@ -373,7 +379,7 @@ O `margin-top: auto` consumia o espaço livre do flex container e empurrava o co
 ASKPHRASES — PENDÊNCIA RESOLVIDA
 ==================================================
 
-# 17. ASKPHRASES — 🟠 IMPLEMENTADO LOCALMENTE / RESOLVIDO NESTA FASE
+# 17. ASKPHRASES — ✅ RESOLVIDO, COMMITADO E ENVIADO (commit 912d372)
 
 Pendência original: os 11 perfis tinham `askPhrase` terminando com uma variação de "...O que você recomenda nessa faixa de preço?", redundante com os novos prefixos de orçamento ("Quero gastar..."). Exemplo do problema original — RED_01 com `budget = under_50` produzia:
 
@@ -388,7 +394,8 @@ A faixa de preço era mencionada duas vezes na mesma frase.
 * os três perfis de espumante (SPARK_01, SPARK_02, SPARK_03) tiveram **somente essa mesma correção textual genérica** — nenhum termo como "Brut", "Moscatel", "pouca sensação de doçura" ou "sem ser muito doce" foi tocado, e nenhuma outra parte do conteúdo desses três perfis mudou;
 * busca por "nessa faixa de preço" em `content/profiles/*.json` após a correção: **zero ocorrências**;
 * testes após a correção: **113/113 passando** (nenhum teste cobria o texto literal do `askPhrase`, então a contagem não mudou);
-* build após a correção: **sucesso**, sem erros.
+* build após a correção: **sucesso**, sem erros;
+* commitado junto com a Fase 14 no commit `912d372` (`feat: refine MVP journey and purchase guidance`) e enviado para `origin/main`.
 
 IMPORTANTE:
 
@@ -446,7 +453,7 @@ rules/recommendation/resolveProfile.ts
 content/profiles/SPARK_02.json
 ```
 
-NÃO alterar esses arquivos por causa dos espumantes sem aprovação funcional explícita.
+NÃO alterar esses arquivos por causa dos espumantes sem aprovação funcional explícita. A nova frente "Encontrar vinhos para comprar" (ver seção correspondente mais abaixo) **não deve ser misturada** com a decisão pendente dos espumantes — são pendências independentes.
 
 ---
 
@@ -456,23 +463,25 @@ GITHUB / DEPLOY
 
 # 19. GITHUB / DEPLOY — RELAÇÃO ENTRE LOCAL E REMOTO
 
-Último commit publicado conhecido no remoto (`origin/main`):
+Último commit publicado conhecido no remoto (`origin/main`) no momento desta atualização documental:
 
 ```text
-ba5726e fix: add Vercel SPA rewrite
+912d372 feat: refine MVP journey and purchase guidance
 ```
 
-Commit anterior:
+Commits anteriores:
 
 ```text
+0f05e4b docs: add product technical and handoff specifications
+ba5726e fix: add Vercel SPA rewrite
 16583f8 feat: establish Vinho Sem Erro MVP foundation
 ```
 
 IMPORTANTE — este é o ponto central desta seção:
 
-* **GitHub e Vercel ainda NÃO contêm a Fase 14.** Tudo listado na seção 3 (jornada nova, preço como complemento, rosé direto, remoção de unsupported, refinamento visual, correção da Home) existe **somente no working tree local**.
-* O working tree local está **à frente** do remoto — não o contrário.
-* **Não considerar a versão publicada no Vercel como representação do estado local atual.** Se alguém abrir o site publicado hoje, verá o fluxo antigo (com IntentStep, orçamento antes do tipo de vinho, "Seu orçamento" no resultado, rosé com opção docinho/unsupported). Isso é esperado e não indica regressão — é só o remoto desatualizado.
+* **GitHub já contém a Fase 14 e a correção dos askPhrases.** O commit `912d372` foi enviado com sucesso para `origin/main` (`0f05e4b..912d372  main -> main`), e o working tree ficou clean logo em seguida.
+* Esta atualização documental (a que você está lendo agora) é **posterior** ao commit `912d372` e **ainda não foi commitada** — ela existe apenas nos arquivos `docs/PRODUCT_SPEC.md`, `docs/TECH_SPEC.md` e `docs/HANDOFF.md` do working tree local. Rodar `git status` deve mostrar esses três arquivos como `modified`, sem nenhuma outra alteração.
+* **O deploy no Vercel a partir do commit `912d372` não foi confirmado manualmente** nesta atualização documental. Presume-se que o push disparou o deploy automático, mas isso deve ser verificado antes de comunicar a Fase 14 como "no ar" para qualquer pessoa fora da equipe técnica.
 * Antes de trabalhar, sempre confirmar via `git status` e `git log -3 --oneline` se existem commits posteriores a este documento.
 
 ---
@@ -492,7 +501,8 @@ Não implementar ainda:
 * IA;
 * banco de rótulos;
 * preços reais;
-* geolocalização.
+* geolocalização;
+* a funcionalidade "Encontrar vinhos para comprar" (nenhum conector, integração com Awin/Amazon/Mercado Livre, endpoint `/api`, Product Matching Engine ou schema de `ProductSource` — está só documentada, ver seção correspondente mais abaixo).
 
 ---
 
@@ -509,17 +519,17 @@ npm test -- --run
 npm run build
 ```
 
-Não alterar nada. Confirmar que o estado bate com este documento (Fase 14 e correção dos askPhrases implementadas localmente, não commitadas; espumantes pendente).
+Não alterar nada. Confirmar que o estado bate com este documento (Fase 14 e correção dos askPhrases já commitadas e enviadas como `912d372`; espumantes pendente; "Encontrar vinhos para comprar" apenas documentada).
 
-## Etapa 2 — Decidir estratégia de commit
-
-A Fase 14 e a correção dos askPhrases já estão prontas e validadas (testes + build passando). Falta decidir como dividir os commits — ver "REGRA PARA COMMITS" abaixo. Não commitar sem confirmação explícita do responsável pelo produto.
-
-## Etapa 3 — Só depois: espumantes
+## Etapa 2 — Espumantes
 
 Resolver a decisão funcional/enológica dos espumantes (pergunta + eventual revisão de SPARK_02), como etapa própria e isolada.
 
-## Etapa 4 — Só depois da jornada e conteúdo estáveis: Supabase
+## Etapa 3 — Validar fontes reais para "Encontrar vinhos para comprar"
+
+Não implementar a funcionalidade ainda. Seguir a investigação descrita na seção "PRÓXIMO EXPERIMENTO" mais abaixo antes de desenhar qualquer integração técnica.
+
+## Etapa 4 — Só depois da jornada, conteúdo e fontes de produto validadas: Supabase
 
 ---
 
@@ -584,10 +594,11 @@ Mesmo este HANDOFF, atualizado após auditoria real, pode ficar desatualizado as
 
 # 28. PRÓXIMO MARCO TÉCNICO
 
-A jornada funcional V1 já está implementada e testada localmente (Fase 14 completa, com a correção dos askPhrases). O que falta antes do próximo marco:
+A jornada funcional V1 já está implementada, testada, commitada e enviada (Fase 14 completa, com a correção dos askPhrases, no commit `912d372`). O que falta antes do próximo marco:
 
-* decidir e executar o commit/push da Fase 14 e da correção dos askPhrases;
-* resolver a decisão dos espumantes (antes do beta amplo, não necessariamente antes desse commit).
+* confirmar o deploy no Vercel a partir de `912d372`;
+* resolver a decisão dos espumantes (antes do beta amplo);
+* validar pelo menos uma fonte real de produtos antes de prometer "Encontrar vinhos para comprar" comercialmente (ver seção correspondente).
 
 ---
 
@@ -612,12 +623,56 @@ Quando houver dúvida entre adicionar complexidade e simplificar a decisão do u
 ---
 
 ==================================================
+NOVA FRENTE ESTRATÉGICA — ENCONTRAR VINHOS PARA COMPRAR
+==================================================
+
+# 32. "ENCONTRAR VINHOS PARA COMPRAR" — 🟣 PLANEJADO, NÃO IMPLEMENTADO
+
+Registrado nesta atualização documental como nova decisão de produto. Detalhamento completo em `docs/PRODUCT_SPEC.md` (seções sobre a nova funcionalidade, princípio de segurança/credibilidade, UX planejada, modelo de afiliados e responsabilidade sobre álcool) e `docs/TECH_SPEC.md` (arquitetura planejada, fontes de produtos candidatas, matching/inteligência).
+
+Resumo do que foi decidido:
+
+* depois que o diagnóstico resolve o perfil e mostra "Pode pedir assim", o produto poderá **opcionalmente** oferecer "Encontrar vinhos para comprar" — opções reais de vinhos compatíveis e links para lojas;
+* essa funcionalidade **não substitui** o diagnóstico nem `resolveProfile()` — acontece só depois que o perfil já foi definido;
+* **regra central inegociável:** comissão de afiliado nunca pode ser critério de compatibilidade ou ranking enológico; se a confiança nos dados for baixa, o sistema deve preferir não recomendar nenhum vinho a recomendar um inadequado;
+* fontes de produto são tratadas como **candidatas a validar**, não integrações confirmadas: Awin (com Decanter, Wine, Evino, Descorcha/Concha y Toro, Divvino e Zé Delivery identificados na pesquisa inicial como programas/lojas), Amazon (Associados/Product Advertising API) e Mercado Livre (APIs oficiais) — nada disso foi validado na conta real de nenhuma plataforma ainda;
+* existe interesse em possivelmente lançar o produto já com essa funcionalidade, mas isso é **condicional**: exige comprovar antes que pelo menos uma fonte real entrega dados suficientes para matching seguro.
+
+Nenhum código foi escrito para esta frente. Nenhum arquivo de `rules/`, `src/` ou `content/` foi tocado.
+
+---
+
+# 33. PRÓXIMO EXPERIMENTO — VALIDAR UMA FONTE REAL ANTES DE IMPLEMENTAR
+
+NÃO desenvolver a funcionalidade "Encontrar vinhos para comprar" ainda. Primeiro, validar uma fonte real de produtos.
+
+Primeira investigação sugerida:
+
+1. criar/acessar conta de publisher na Awin;
+2. verificar quais programas de lojas de vinho estão disponíveis;
+3. investigar Decanter como primeira candidata (identificada na pesquisa inicial como programa da Awin e possível porta de entrada para uma prova de conceito — mas isso **não está confirmado**, precisa ser verificado na conta real);
+4. verificar se existe Product Feed acessível para essa loja;
+5. inspecionar quais campos reais o feed fornece (nome, preço, imagem, disponibilidade, deep link, descrição, uva, região etc.);
+6. descobrir se os dados são suficientes para fazer matching seguro com um `WineProfile`;
+7. somente depois desenhar a integração técnica (módulo de Product Sources, normalização, Product Matching Engine — ver `docs/TECH_SPEC.md`).
+
+Pergunta que precisa ser respondida antes de qualquer implementação:
+
+> "Com os dados reais fornecidos pelo catálogo, conseguimos afirmar com segurança que determinado vinho corresponde a um WineProfile?"
+
+Se a resposta for não, ou se a confiança for baixa, não implementar a funcionalidade com essa fonte — voltar à pesquisa de outra fonte candidata.
+
+Antes de revisar regras brasileiras de publicidade de bebidas alcoólicas, políticas das plataformas parceiras e disclosures necessários (ver `docs/PRODUCT_SPEC.md`, seção "Álcool / Responsabilidade"), esta funcionalidade não deve ser comunicada como pronta para lançamento.
+
+---
+
+==================================================
 RESUMO FINAL
 ==================================================
 
-# 32. RESUMO FINAL DE STATUS
+# 34. RESUMO FINAL DE STATUS
 
-## ✅ Implementado e publicado
+## ✅ Implementado, testado, commitado e enviado (`912d372`)
 
 * React + TypeScript + Vite
 * Git
@@ -627,9 +682,6 @@ RESUMO FINAL
 * motor de recomendação original
 * 11 perfis
 * feedback de clareza V1
-
-## 🟠 Implementado localmente, não commitado
-
 * refinamento visual (Fraunces, Manrope, nova paleta, ajustes da tela de resultado, feedback visual)
 * Fase 14 completa (jornada nova, remoção de IntentStep, botão Voltar corrigido)
 * preço como complemento opcional pós-resolução, fora da progressão diagnóstica
@@ -639,6 +691,9 @@ RESUMO FINAL
 * novos prefixos "Quero gastar..."
 * correção do bug vertical da Home
 * correção dos 11 `askPhrase` (remoção da redundância com "nessa faixa de preço", sem tocar em nenhum outro campo)
+* 113/113 testes passando
+* build aprovado (`npm run build` sem erros)
+* working tree clean confirmado logo após o commit `912d372`
 
 ## 🔴 Pendente de decisão funcional/enológica
 
@@ -647,8 +702,16 @@ RESUMO FINAL
 * eventual segundo estilo não-doce de espumante
 * novo fallback "Não sei" dos espumantes, sem eixo de açúcar
 
+## 🟣 Nova frente estratégica (documentada, sem código)
+
+* "Encontrar vinhos para comprar" — funcionalidade planejada para depois do diagnóstico
+* princípio central: afiliado nunca é critério enológico; baixa confiança = não recomendar
+* fontes candidatas a validar: Awin (Decanter, Wine, Evino, Descorcha/Concha y Toro, Divvino, Zé Delivery), Amazon, Mercado Livre — nenhuma confirmada
+* arquitetura (Product Sources, Product Matching Engine, schema `ProductSource`) apenas conceitual em `docs/TECH_SPEC.md`
+
 ## ⏳ Futuro
 
+* validar pelo menos uma fonte real de produtos antes de assumir "Encontrar vinhos para comprar" como promessa comercial de lançamento
 * Supabase integrado
 * Vercel Functions
 * banco
@@ -660,7 +723,7 @@ RESUMO FINAL
 
 ---
 
-# 33. PRIMEIRA FRASE PARA UMA NOVA IA
+# 35. PRIMEIRA FRASE PARA UMA NOVA IA
 
 Ao iniciar uma nova sessão com outro agente, usar:
 

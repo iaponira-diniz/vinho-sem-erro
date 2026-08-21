@@ -1968,3 +1968,174 @@ priorizar:
 O código deve servir à experiência do usuário.
 
 O produto não deve ser alterado apenas para justificar uma arquitetura mais sofisticada.
+
+---
+
+# 91. NOVA FRENTE — "ENCONTRAR VINHOS PARA COMPRAR" (🟣 PLANEJADO, NÃO IMPLEMENTADO)
+
+Decisão de produto correspondente em `docs/PRODUCT_SPEC.md`, seções 50–56. Esta seção e as seguintes (92–95) registram apenas a arquitetura e a estratégia técnica planejadas — **nada abaixo está implementado**. Nenhum arquivo em `rules/`, `src/` ou `content/` foi tocado para esta frente.
+
+---
+
+# 92. FONTES DE PRODUTOS — ESTRATÉGIA
+
+A prioridade **NÃO é** fazer scraping indiscriminado de sites.
+
+Preferência técnica, em ordem:
+
+1. APIs oficiais;
+2. feeds de produtos;
+3. plataformas de afiliados;
+4. catálogos autorizados de parceiros;
+5. integrações diretas com lojas.
+
+Evitar depender de scraping de páginas públicas como base estrutural do produto.
+
+Motivos:
+
+* preço pode ficar desatualizado;
+* estoque pode mudar;
+* estrutura do site pode quebrar;
+* informações podem estar incompletas;
+* questões de autorização/termos de uso.
+
+---
+
+# 93. PESQUISA INICIAL DE FONTES (CANDIDATOS A VALIDAR — NÃO INTEGRAÇÕES CONFIRMADAS)
+
+IMPORTANTE: tudo nesta seção é **pesquisa preliminar**, não integração confirmada. Termos, comissões, aceitação de Pessoa Física/Pessoa Jurídica, feeds disponíveis e permissões podem mudar e devem ser revalidados diretamente na plataforma antes de qualquer integração.
+
+## AWIN
+
+* plataforma de afiliados;
+* possui recursos de product feed para publishers;
+* feeds podem incluir, conforme o anunciante: nome, descrição, preço, imagem, disponibilidade, deep link;
+* pode permitir que várias lojas sejam acessadas por uma mesma infraestrutura.
+
+Lojas/programas encontrados na pesquisa inicial:
+
+* Decanter;
+* Wine;
+* Evino;
+* Descorcha / Concha y Toro;
+* Divvino;
+* Zé Delivery.
+
+Decanter foi identificada como candidata especialmente interessante para uma primeira prova de conceito, por ter aparecido na pesquisa como programa da Awin e potencial porta de entrada para teste. **NÃO afirmar ainda que temos acesso ao feed** — isso precisa ser verificado na conta real da Awin.
+
+## AMAZON
+
+Candidata a validar:
+
+* Programa de Associados;
+* Product Advertising API;
+* precisa verificar elegibilidade, regras e disponibilidade de catálogo de vinhos no Brasil.
+
+## MERCADO LIVRE
+
+Candidata a validar:
+
+* possui APIs oficiais;
+* precisa investigar se o modelo de uso atende ao caso de recomendação ao consumidor e quais permissões serão necessárias.
+
+## OUTRAS LOJAS
+
+Wine, Evino, Grand Cru, Mistral, Decanter e outras podem futuramente ser integradas por API, feed, plataforma de afiliados ou parceria direta.
+
+**Não presumir API pública sem confirmação.**
+
+---
+
+# 94. ARQUITETURA PLANEJADA — PRODUCT SOURCES (FUTURA / NÃO IMPLEMENTADA)
+
+Fluxo conceitual:
+
+```text
+React/Vite
+→ endpoint server-side em /api
+→ módulo de Product Sources
+→ conectores por fonte autorizada
+→ normalização dos produtos
+→ Product Matching Engine
+→ WineProfile atual
+→ filtro/score de compatibilidade
+→ resultado para o cliente
+```
+
+Estrutura conceitual (schema NÃO definitivo):
+
+```ts
+ProductSource {
+  sourceId
+  sourceName
+  sourceType
+  productId
+  productName
+  producer
+  url
+  affiliateUrl?
+  imageUrl?
+  price?
+  currency?
+  availability?
+  description?
+  grape?
+  region?
+  country?
+  style?
+  updatedAt
+}
+```
+
+Supabase poderá futuramente armazenar:
+
+* fontes;
+* produtos normalizados;
+* última atualização;
+* resultados de matching;
+* cliques;
+* histórico de disponibilidade;
+* feedback do usuário.
+
+**Nada disso está implementado.** Não criar tabelas, migrations, endpoints `/api` ou conectores a partir apenas desta seção — é registro de arquitetura futura, não uma tarefa aprovada para execução.
+
+---
+
+# 95. MATCHING / INTELIGÊNCIA DE PRODUTOS (FUTURO — NÃO IMPLEMENTADO)
+
+A futura inteligência de produtos deve utilizar o `WineProfile` como referência.
+
+Ela **NÃO deve substituir** `resolveProfile()`.
+
+Fluxo:
+
+```text
+resolveProfile()
+→ WineProfile
+→ Product Matching
+```
+
+O matching poderá considerar futuramente:
+
+* categoria;
+* estilo;
+* corpo;
+* acidez;
+* tanino;
+* fruta/aroma;
+* doçura;
+* madeira;
+* região/uva quando forem pistas relevantes;
+* descrição do produto;
+* faixa de preço;
+* disponibilidade.
+
+Precisa ser definida posteriormente uma política explícita de confidence score. Regra provisória:
+
+* **HIGH CONFIDENCE** — informação suficiente e compatibilidade clara.
+* **MEDIUM CONFIDENCE** — compatibilidade provável, mas com dados incompletos.
+* **LOW CONFIDENCE** — não apresentar como recomendação.
+
+**Ainda NÃO definir thresholds matemáticos.**
+
+Regra técnica que reforça o princípio de produto (ver `docs/PRODUCT_SPEC.md`, seção "Princípio de Segurança e Credibilidade"): a comissão de afiliado de uma fonte **nunca** pode ser usada como input do score de compatibilidade ou como critério de desempate entre candidatos — o score deve refletir só compatibilidade enológica e suficiência de dados.

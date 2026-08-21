@@ -1058,3 +1058,192 @@ priorizar:
 **clareza da decisão.**
 
 O produto deve parecer simples para quem usa, mesmo quando a inteligência por trás dele é sofisticada.
+
+---
+
+# 50. NOVA FRENTE — "ENCONTRAR VINHOS PARA COMPRAR" (🟣 PLANEJADO, NÃO IMPLEMENTADO)
+
+Nome funcional provisório:
+
+**"Encontrar vinhos para comprar"**
+
+Objetivo:
+
+Depois que o usuário concluir o diagnóstico e descobrir o perfil de vinho ideal, o Vinho Sem Erro poderá mostrar opções reais de vinhos disponíveis para compra e links para as lojas.
+
+Jornada pretendida:
+
+```text
+Diagnóstico
+↓
+Perfil recomendado
+↓
+Como reconhecer esse perfil
+↓
+Como pedir ajuda / askPhrase
+↓
+Opcionalmente:
+  "Encontrar vinhos para comprar"
+↓
+Opções reais compatíveis
+↓
+Onde comprar
+```
+
+DECISÕES:
+
+* essa funcionalidade **NÃO substitui** o diagnóstico;
+* ela acontece **DEPOIS** que o perfil já foi definido;
+* o diferencial do produto continua sendo: primeiro descobrir **o que** a pessoa deve procurar, e só depois procurar produtos reais compatíveis.
+
+STATUS: nenhum código foi escrito para esta frente. Ver `docs/TECH_SPEC.md` para a arquitetura planejada e `docs/HANDOFF.md` para o próximo passo (validação de fontes).
+
+---
+
+# 51. PRINCÍPIO DE SEGURANÇA E CREDIBILIDADE — REGRA CENTRAL DO PRODUTO
+
+O Vinho Sem Erro **NÃO pode recomendar** qualquer vinho apenas porque:
+
+* está disponível;
+* tem comissão;
+* está em promoção;
+* está dentro do orçamento;
+* aparece primeiro em uma busca.
+
+A recomendação leva a reputação profissional da criadora do produto.
+
+Por isso, um vinho real só pode ser apresentado como recomendação quando existirem informações suficientes para justificar a compatibilidade com o `WineProfile` correspondente.
+
+**A comissão de afiliado NUNCA pode ser critério de compatibilidade ou ranking enológico.**
+
+Se os dados disponíveis forem insuficientes ou a confiança for baixa, o sistema deve preferir **NÃO recomendar**.
+
+Mensagem conceitual possível:
+
+> "Não encontrei uma opção com informações suficientes para recomendar com segurança agora."
+
+É melhor não indicar nenhum vinho do que indicar um vinho inadequado.
+
+---
+
+# 52. COMO A RECOMENDAÇÃO DE PRODUTOS DEVE FUNCIONAR (CONCEITUAL)
+
+Entrada:
+
+* `WineProfile` resolvido pelo motor atual (`resolveProfile()`);
+* faixa de preço, se o usuário tiver informado;
+* contexto/ocasião, quando relevante;
+* características e pistas do `WineProfile`.
+
+Fluxo conceitual:
+
+1. consultar fontes de produtos autorizadas;
+2. obter produtos disponíveis;
+3. analisar os dados conhecidos de cada vinho;
+4. comparar com os critérios do `WineProfile`;
+5. excluir candidatos incompatíveis ou com informação insuficiente;
+6. atribuir nível de confiança;
+7. selecionar poucas opções de boa compatibilidade;
+8. explicar de forma simples POR QUE cada opção combina com o perfil;
+9. mostrar preço/fonte/data da consulta quando disponíveis;
+10. oferecer link "Ver onde comprar".
+
+O preço é filtro/contexto comercial. Não determina sozinho a recomendação enológica.
+
+Este fluxo é conceitual — ver `docs/TECH_SPEC.md` para a arquitetura técnica planejada (Product Sources, Product Matching Engine).
+
+---
+
+# 53. UX PLANEJADA — "ENCONTRAR VINHOS PARA COMPRAR" (HIPÓTESE, NÃO IMPLEMENTAR AGORA)
+
+Hipótese de interface após o resultado:
+
+```text
+[ Encontrar vinhos para comprar ]
+```
+
+Ao clicar:
+
+> "Encontrei algumas opções compatíveis com o seu perfil."
+
+Para cada vinho, poderemos mostrar futuramente:
+
+* nome do vinho;
+* produtor;
+* imagem, se autorizada pela fonte;
+* preço encontrado;
+* loja;
+* principais características;
+* por que combina com o perfil;
+* nível interno de confiança;
+* botão "Ver onde comprar".
+
+O nível interno de confiança não precisa necessariamente ser exposto como número ao cliente.
+
+Exemplo conceitual:
+
+```text
+Vinho X
+R$ XX
+Loja Y
+
+"Por que combina com sua Rota:
+perfil frutado, corpo médio e taninos macios."
+
+[ Ver onde comprar ]
+```
+
+**Não criar essa interface agora. Somente documentar.**
+
+---
+
+# 54. MODELO DE AFILIADOS (POSSIBILIDADE COMERCIAL FUTURA)
+
+O botão "Ver onde comprar" poderá usar link de afiliado quando existir programa autorizado.
+
+Isso poderá gerar uma segunda fonte de receita além da venda do Vinho Sem Erro.
+
+Regra explícita:
+
+**RECEITA DE AFILIADO NÃO PODE INTERFERIR NA ESCOLHA ENOLÓGICA.**
+
+Uma opção com maior comissão não deve receber prioridade por esse motivo — ver seção "PRINCÍPIO DE SEGURANÇA E CREDIBILIDADE".
+
+Se houver conteúdo patrocinado ou relação comercial que exija divulgação, isso deverá ser comunicado de forma transparente.
+
+---
+
+# 55. ÁLCOOL / RESPONSABILIDADE — REVISÃO NECESSÁRIA ANTES DO LANÇAMENTO
+
+Por se tratar de bebida alcoólica, antes do lançamento da funcionalidade "Encontrar vinhos para comprar" deverão ser revisados:
+
+* regras brasileiras aplicáveis à publicidade de bebidas alcoólicas;
+* políticas das plataformas parceiras;
+* comunicação para público adulto;
+* avisos e disclosures necessários;
+* regras de afiliados de cada parceiro.
+
+**Não implementar mecanismos jurídicos agora. Somente registrar a necessidade.**
+
+---
+
+# 56. ESCOPO DE LANÇAMENTO — HIPÓTESE A VALIDAR
+
+Existe interesse em lançar o Vinho Sem Erro **já com** a funcionalidade "Encontrar vinhos para comprar", em vez de adicioná-la apenas depois do lançamento.
+
+Isso ainda depende de validação técnica.
+
+Condição para entrar no produto de lançamento:
+
+Antes de prometer essa funcionalidade comercialmente, precisamos comprovar que pelo menos uma fonte real e confiável consegue entregar dados suficientes como:
+
+* produtos;
+* preço;
+* link;
+* identificação do vinho;
+* informações mínimas para matching;
+* atualização razoável.
+
+Idealmente validar 1 ou 2 fontes antes de assumir essa promessa na oferta.
+
+Ver `docs/HANDOFF.md`, seção "PRÓXIMO EXPERIMENTO", para a investigação inicial planejada.
