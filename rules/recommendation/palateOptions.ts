@@ -20,7 +20,8 @@ export const PALATE_OPTIONS_BY_WINE_TYPE: Record<
   rose: ["rose_dry_refreshing", "rose_fruity_refreshing", "rose_unknown"],
   sparkling: [
     "sparkling_dry_refreshing",
-    "sparkling_fruity_aromatic",
+    "sparkling_structured_traditional",
+    "sparkling_rose_fruity",
     "sparkling_sweet_aromatic",
     "sparkling_unknown",
   ],

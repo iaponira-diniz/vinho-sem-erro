@@ -62,7 +62,8 @@ assinatura sugerida na especificação; o conceito dos três estados
 | rose | `rose_dry_refreshing` | `ROSE_01` |
 | rose | `rose_fruity_refreshing` | `ROSE_01` |
 | sparkling | `sparkling_dry_refreshing` | `SPARK_01` |
-| sparkling | `sparkling_fruity_aromatic` | `SPARK_02` |
+| sparkling | `sparkling_structured_traditional` | `SPARK_02` |
+| sparkling | `sparkling_rose_fruity` | `SPARK_04` |
 | sparkling | `sparkling_sweet_aromatic` | `SPARK_03` |
 
 ## `needs_help` — quando não escolher automaticamente

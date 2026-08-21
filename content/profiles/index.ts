@@ -11,6 +11,7 @@ import ROSE_01 from "./ROSE_01.json";
 import SPARK_01 from "./SPARK_01.json";
 import SPARK_02 from "./SPARK_02.json";
 import SPARK_03 from "./SPARK_03.json";
+import SPARK_04 from "./SPARK_04.json";
 
 // O JSON importado tem `category: string`; o cast para WineProfile aqui é só
 // para restaurar o literal type (WineCategory), sem tocar nos dados.
@@ -26,6 +27,7 @@ const rawProfiles = [
   SPARK_01,
   SPARK_02,
   SPARK_03,
+  SPARK_04,
 ];
 
 /** Todos os perfis de vinho, na ordem em que foram definidos. */

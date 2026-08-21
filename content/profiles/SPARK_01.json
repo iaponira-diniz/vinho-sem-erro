@@ -1,6 +1,6 @@
 {
   "id": "SPARK_01",
-  "version": "0.1",
+  "version": "0.2",
   "category": "sparkling",
   "name": "Espumante Seco e Refrescante",
   "customerSummary": "Um espumante fresco, vibrante e com pouca sensação de doçura. Ideal para quem gosta de borbulhas mais secas, com boa acidez e sensação refrescante.",
@@ -18,32 +18,19 @@
   ],
   "mainClues": [
     {
-      "name": "Espumante Brut brasileiro",
-      "note": "Uma das pistas mais úteis para o público brasileiro quando a preferência é por um espumante seco e refrescante. Observar a indicação Brut no rótulo e as características descritas pelo produtor."
+      "name": "Espumante brasileiro",
+      "note": "Uma das pistas mais úteis para o público brasileiro quando a preferência é por um espumante seco e refrescante. Observar as características descritas pelo produtor."
     },
     {
-      "name": "Cava Brut",
-      "note": "Pode oferecer boa acidez, frescor, perfil seco, fruta e grande versatilidade. Extra Brut e Brut Nature podem ser alternativas para quem busca ainda menos sensação de doçura."
+      "name": "Prosecco",
+      "note": "Pode apresentar frescor, fruta, leveza e borbulhas em um estilo mais seco. É importante observar a indicação Brut ou Extra Dry no rótulo, pois Prosecco existe em diferentes níveis de açúcar."
     },
     {
-      "name": "Prosecco Brut",
-      "note": "Pode apresentar frescor, fruta, leveza e borbulhas em um estilo mais seco. É importante observar a indicação Brut, pois Prosecco existe em diferentes níveis de açúcar."
+      "name": "Método Charmat no rótulo",
+      "note": "Método Charmat no rótulo é uma boa pista de espumante mais leve e frutado, é o método mais usado no Brasil e também no Prosecco. Já Método Tradicional (ou Champenoise) indica mais estrutura e tempo de elaboração — ver SPARK_02."
     }
   ],
-  "additionalClues": [
-    {
-      "name": "Champagne Brut",
-      "note": "Pode apresentar acidez, frescor, fruta e maior complexidade, incluindo notas de pão, brioche ou evolução. Pode estar em uma faixa de preço superior, portanto deve ser tratado como possibilidade e não como obrigação."
-    },
-    {
-      "name": "Franciacorta Brut",
-      "note": "Pode ser uma boa referência italiana para espumantes secos, estruturados e complexos, elaborados pelo método tradicional."
-    },
-    {
-      "name": "Trento DOC Brut",
-      "note": "Pode oferecer frescor, elegância, boa acidez e complexidade, sendo uma referência italiana interessante para o perfil seco e refrescante."
-    }
-  ],
+  "additionalClues": [],
   "internalLibrary": [
     {
       "name": "Extra Brut",
@@ -63,11 +50,8 @@
     "Extra Brut",
     "Brut Nature",
     "Espumante Brut",
-    "Cava Brut",
     "Prosecco Brut",
-    "Champagne Brut",
-    "Franciacorta Brut",
-    "Trento DOC Brut",
+    "Método Charmat",
     "seco",
     "fresco",
     "refrescante",
@@ -81,7 +65,7 @@
     "Não assumir que Extra Dry é mais seco que Brut.",
     "Não usar Blanc de Blancs como garantia automática de perfil seco e leve."
   ],
-  "backupProfileId": "SPARK_02",
-  "askPhrase": "Estou procurando um espumante seco e refrescante, de preferência Brut, com boa acidez e pouca sensação de doçura. O que você recomenda?",
+  "backupProfileId": null,
+  "askPhrase": "Estou procurando um espumante seco e refrescante, com boa acidez, para dias refrescantes, praia, piscina. O que você recomenda?",
   "whyThisRoute": "Você indicou que prefere um espumante seco e fresco. Por isso, estamos priorizando estilos em que a acidez e a refrescância aparecem mais do que a sensação de doçura."
 }

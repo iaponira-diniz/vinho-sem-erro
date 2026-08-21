@@ -37,7 +37,7 @@ type PalateAskedWineTypeId = Exclude<WineTypeId, "unknown" | "rose">;
 export const PALATE_TITLES: Record<PalateAskedWineTypeId, string> = {
   red: "O que parece mais gostoso hoje?",
   white: "O que parece mais gostoso hoje?",
-  sparkling: "Que tipo de espumante parece mais gostoso?",
+  sparkling: "Como você quer aproveitar esse espumante?",
 };
 
 export const PALATE_OPTIONS_BY_WINE_TYPE: Record<
@@ -58,11 +58,12 @@ export const PALATE_OPTIONS_BY_WINE_TYPE: Record<
     { id: "white_unknown", label: "Não sei" },
   ],
   sparkling: [
-    { id: "sparkling_dry_refreshing", label: "Seco, fresco e com pouca sensação de açúcar" },
+    { id: "sparkling_dry_refreshing", label: "Leve e fresco, ótimo pra brindar ou dias de calor" },
     {
-      id: "sparkling_fruity_aromatic",
-      label: "Bem frutado, aromático e fácil de beber, mas sem ser muito doce",
+      id: "sparkling_structured_traditional",
+      label: "Mais estruturado, com corpo e presença à mesa",
     },
+    { id: "sparkling_rose_fruity", label: "Rosé, frutado e fácil de beber, sempre seco" },
     { id: "sparkling_sweet_aromatic", label: "Doce, perfumado e bem frutado" },
     { id: "sparkling_unknown", label: "Não sei" },
   ],

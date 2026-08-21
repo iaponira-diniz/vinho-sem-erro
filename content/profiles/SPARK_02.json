@@ -1,88 +1,64 @@
 {
   "id": "SPARK_02",
-  "version": "0.1",
+  "version": "0.2",
   "category": "sparkling",
-  "name": "Espumante Frutado e Aromático",
-  "customerSummary": "Um espumante fresco, perfumado e cheio de fruta, com borbulhas agradáveis e um estilo fácil de beber. Ideal para quem quer mais expressão de fruta e aroma do que austeridade, sem necessariamente procurar um espumante doce.",
+  "name": "Espumante Estruturado (Mais Presença à Mesa)",
+  "customerSummary": "Um espumante mais estruturado e complexo, com notas de pão, torrada ou fruta madura, e corpo suficiente para acompanhar pratos com mais sabor, inclusive carnes e feijoada.",
   "internalCharacteristics": [
-    "fruta evidente",
-    "intensidade aromática média a alta",
-    "boa sensação de frescor",
-    "corpo leve a médio",
-    "acidez equilibrada",
-    "perfil descontraído",
-    "aromas de frutas vermelhas, cítricas ou de caroço",
-    "notas florais possíveis",
-    "açúcar pouco ou moderadamente perceptível dependendo do estilo",
-    "boa facilidade de beber"
+    "corpo médio a cheio",
+    "acidez estruturante",
+    "notas de pão, brioche ou torrada (autólise)",
+    "fruta mais madura",
+    "maior complexidade e tempo de elaboração",
+    "efervescência fina e persistente",
+    "produzido pelo método tradicional (segunda fermentação na garrafa)",
+    "boa capacidade de acompanhar pratos com mais sabor e presença"
   ],
   "mainClues": [
     {
-      "name": "Espumante Rosé Brut",
-      "note": "Excelente pista para fruta vermelha, frescor, boa acidez e perfil aromático sem necessariamente apresentar doçura evidente."
+      "name": "Champagne",
+      "note": "Referência mundial de espumante produzido pelo método tradicional. Pode apresentar acidez, estrutura, fruta e notas de pão, brioche ou evolução, com boa capacidade de acompanhar pratos de mais presença."
     },
     {
-      "name": "Prosecco Rosé Brut",
-      "note": "Pode apresentar fruta, flores, leveza, frescor e perfil fácil de beber, mantendo baixa percepção de doçura quando elaborado no estilo Brut."
+      "name": "Cava",
+      "note": "Espanhol, produzido pelo método tradicional. Pode oferecer estrutura, fruta e complexidade, geralmente a um custo mais acessível que o Champagne."
     },
     {
-      "name": "Prosecco Extra Dry",
-      "note": "Pode apresentar bastante fruta, flores, frescor e sensação mais macia. Apesar do nome Extra Dry, pode conter mais açúcar do que um Brut e por isso funciona bem quando a prioridade é fruta e facilidade de beber, e não secura extrema."
+      "name": "Franciacorta",
+      "note": "Referência italiana para espumantes estruturados e complexos, elaborados pelo método tradicional."
+    },
+    {
+      "name": "Trento DOC",
+      "note": "Espumante italiano de método tradicional, com frescor, elegância e boa estrutura."
+    },
+    {
+      "name": "Espumante brasileiro de método tradicional",
+      "note": "Denominações como Vale dos Vinhedos e Pinto Bandeira são referências brasileiras para espumantes estruturados, produzidos pelo método tradicional, com potencial de acompanhar pratos mais robustos."
     }
   ],
-  "additionalClues": [
-    {
-      "name": "Espumante Rosé brasileiro",
-      "note": "Pode ser uma ótima pista para fruta, frescor, aromas de frutas vermelhas e boa facilidade de beber. O nível de açúcar deve ser observado separadamente."
-    },
-    {
-      "name": "Cava Rosado Brut",
-      "note": "Pode apresentar fruta vermelha, frescor, boa acidez e perfil seco, funcionando bem para quem quer um espumante rosé frutado sem doçura evidente."
-    },
-    {
-      "name": "Prosecco Rosé Extra Dry",
-      "note": "Pode oferecer fruta, flores, leveza, frescor e uma sensação um pouco mais macia do que a versão Brut."
-    }
-  ],
-  "internalLibrary": [
-    {
-      "name": "Champagne Rosé",
-      "note": "Pode oferecer fruta vermelha, frescor, complexidade e maior profundidade, mas normalmente pertence a uma faixa de preço superior."
-    },
-    {
-      "name": "Franciacorta Rosé",
-      "note": "Pode funcionar como opção italiana mais sofisticada para quem procura fruta, frescor, estrutura e complexidade."
-    },
-    {
-      "name": "Lambrusco seco e frutado",
-      "note": "Pode apresentar grande expressão de fruta e frescor, mas o estilo precisa ser identificado corretamente porque Lambrusco existe em diferentes níveis de açúcar e efervescência."
-    }
-  ],
+  "additionalClues": [],
+  "internalLibrary": [],
   "labelClues": [
-    "Rosé",
-    "Brut",
-    "Extra Dry",
-    "Espumante Rosé",
-    "Prosecco Rosé",
-    "Cava Rosado",
-    "frutado",
-    "aromático",
-    "floral",
-    "fresco",
-    "frutas vermelhas",
-    "morango",
-    "framboesa",
-    "cereja"
+    "Champagne",
+    "Cava",
+    "Franciacorta",
+    "Trento DOC",
+    "Método Tradicional",
+    "Método Champenoise",
+    "Vale dos Vinhedos",
+    "Pinto Bandeira",
+    "estruturado",
+    "complexo",
+    "torrada",
+    "brioche"
   ],
   "avoid": [
-    "Moscatel quando a pessoa declarou não querer doçura evidente.",
-    "Asti Spumante quando a pessoa não quer um estilo doce.",
-    "Demi-Sec quando a prioridade é fruta sem muita doçura.",
-    "Não assumir que rosé significa doce.",
-    "Não assumir que Extra Dry é mais seco que Brut.",
-    "Não usar a cor rosé como indicador do nível de açúcar."
+    "Espumantes simples de Método Charmat como indicação principal deste perfil — ver SPARK_01.",
+    "Espumantes rosé frutados como indicação principal deste perfil — ver SPARK_04.",
+    "Estilos doces ou Demi-Sec como indicação principal deste perfil — ver SPARK_03.",
+    "Não usar preço alto como sinônimo automático deste perfil."
   ],
   "backupProfileId": "SPARK_01",
-  "askPhrase": "Estou procurando um espumante bem frutado e aromático, fácil de beber, mas sem ser muito doce. Pode ser rosé. O que você recomenda?",
-  "whyThisRoute": "Você quer que fruta e aroma apareçam bastante, mas não está buscando necessariamente um espumante doce. Por isso, estamos priorizando estilos frutados, frescos e aromáticos, especialmente alguns espumantes rosés."
+  "askPhrase": "Estou procurando um espumante mais estruturado, com corpo suficiente para acompanhar um prato mais robusto. O que você recomenda?",
+  "whyThisRoute": "Você indicou que quer um espumante com mais estrutura e presença, capaz de acompanhar um prato com mais sabor. Por isso, estamos priorizando estilos de método tradicional, com corpo e complexidade suficientes para isso."
 }

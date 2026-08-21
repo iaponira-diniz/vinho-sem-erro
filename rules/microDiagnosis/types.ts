@@ -10,7 +10,7 @@ export type MicroDiagnosisEntry =
 
 export type MicroDiagnosisQuestionId =
   | "bubbles"
-  | "sparklingSweetness"
+  | "sparklingOccasion"
   | "sensationNoBubbles"
   | "sensationAnyBubbles"
   | "styleNoBubbles"

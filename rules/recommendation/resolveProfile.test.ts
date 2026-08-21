@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { resolveProfile } from "./index";
 
-describe("resolveProfile — resolved (os 12 mapeamentos oficiais)", () => {
+describe("resolveProfile — resolved (os 13 mapeamentos oficiais)", () => {
   it.each([
     ["red", "red_light", "RED_01"],
     ["red", "red_soft_fruity", "RED_02"],
@@ -14,7 +14,8 @@ describe("resolveProfile — resolved (os 12 mapeamentos oficiais)", () => {
     ["rose", "rose_dry_refreshing", "ROSE_01"],
     ["rose", "rose_fruity_refreshing", "ROSE_01"],
     ["sparkling", "sparkling_dry_refreshing", "SPARK_01"],
-    ["sparkling", "sparkling_fruity_aromatic", "SPARK_02"],
+    ["sparkling", "sparkling_structured_traditional", "SPARK_02"],
+    ["sparkling", "sparkling_rose_fruity", "SPARK_04"],
     ["sparkling", "sparkling_sweet_aromatic", "SPARK_03"],
   ] as const)("%s + %s -> %s", (wineType, palateOptionId, expectedProfileId) => {
     const result = resolveProfile(wineType, palateOptionId);

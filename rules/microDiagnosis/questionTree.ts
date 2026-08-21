@@ -11,7 +11,8 @@ type LeafNodeId =
   | "ROSE_01"
   | "SPARK_01"
   | "SPARK_02"
-  | "SPARK_03";
+  | "SPARK_03"
+  | "SPARK_04";
 
 export type TreeNodeId = MicroDiagnosisQuestionId | LeafNodeId;
 
@@ -51,19 +52,23 @@ export const QUESTION_TREE: Record<TreeNodeId, TreeNode> = {
       { id: "no", label: "Não" },
       { id: "any", label: "Tanto faz" },
     ],
-    next: { yes: "sparklingSweetness", no: "sensationNoBubbles", any: "sensationAnyBubbles" },
+    next: { yes: "sparklingOccasion", no: "sensationNoBubbles", any: "sensationAnyBubbles" },
   },
 
-  sparklingSweetness: {
+  sparklingOccasion: {
     type: "question",
-    id: "sparklingSweetness",
-    prompt: "Pensando em doçura, o que combina mais com você agora?",
+    id: "sparklingOccasion",
+    prompt: "Não sabe? Vamos simplificar.",
     options: [
-      { id: "dry", label: "Bem sequinho, quase sem doçura" },
-      { id: "fruity", label: "Frutado e perfumado, mas sem ser doce" },
-      { id: "sweet", label: "Docinho mesmo, com bastante perfume" },
+      { id: "toast", label: "Quer algo pra brindar ou beber sem compromisso?" },
+      { id: "meal", label: "Quer algo pra acompanhar uma refeição mais robusta?" },
+      { id: "rose", label: "Prefere fruta e leveza, tipo rosé?" },
+      { id: "sweet", label: "Gosta de espumante mais doce?" },
+      { id: "unsure", label: "Ainda não sei" },
     ],
-    next: { dry: "SPARK_01", fruity: "SPARK_02", sweet: "SPARK_03" },
+    // "unsure" cai no fallback mais seguro/genérico (SPARK_01) — mesma
+    // regra de nunca deixar a pessoa num beco sem saída.
+    next: { toast: "SPARK_01", meal: "SPARK_02", rose: "SPARK_04", sweet: "SPARK_03", unsure: "SPARK_01" },
   },
 
   sensationNoBubbles: {
@@ -157,12 +162,12 @@ export const QUESTION_TREE: Record<TreeNodeId, TreeNode> = {
     prompt: "Qual desses combina mais com o que você imaginou?",
     options: [
       { id: "white_aromatic", label: "Branco perfumado" },
-      { id: "sparkling_fruity", label: "Espumante frutado e aromático" },
+      { id: "sparkling_rose_fruity", label: "Espumante rosé e frutado" },
       { id: "sparkling_sweet", label: "Espumante docinho e perfumado" },
     ],
     next: {
       white_aromatic: "WHITE_02",
-      sparkling_fruity: "SPARK_02",
+      sparkling_rose_fruity: "SPARK_04",
       sparkling_sweet: "SPARK_03",
     },
   },
@@ -230,6 +235,7 @@ export const QUESTION_TREE: Record<TreeNodeId, TreeNode> = {
   SPARK_01: { type: "resolved", profileId: "SPARK_01" },
   SPARK_02: { type: "resolved", profileId: "SPARK_02" },
   SPARK_03: { type: "resolved", profileId: "SPARK_03" },
+  SPARK_04: { type: "resolved", profileId: "SPARK_04" },
 };
 
 /** Nó de entrada quando o tipo de vinho ainda não é conhecido. */
@@ -245,5 +251,5 @@ export const PALATE_UNKNOWN_ENTRY_NODE: Record<"red" | "white" | "rose" | "spark
   red: "redWeight",
   white: "whiteStyle",
   rose: "ROSE_01",
-  sparkling: "sparklingSweetness",
+  sparkling: "sparklingOccasion",
 };

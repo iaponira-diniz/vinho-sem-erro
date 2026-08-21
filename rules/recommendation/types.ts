@@ -25,7 +25,8 @@ export type PalateOptionId =
   | "rose_fruity_refreshing"
   | "rose_unknown"
   | "sparkling_dry_refreshing"
-  | "sparkling_fruity_aromatic"
+  | "sparkling_structured_traditional"
+  | "sparkling_rose_fruity"
   | "sparkling_sweet_aromatic"
   | "sparkling_unknown";
 

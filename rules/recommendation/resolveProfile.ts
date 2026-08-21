@@ -17,7 +17,8 @@ const PROFILE_ID_BY_PALATE_OPTION: Partial<Record<PalateOptionId, string>> = {
   rose_dry_refreshing: "ROSE_01",
   rose_fruity_refreshing: "ROSE_01",
   sparkling_dry_refreshing: "SPARK_01",
-  sparkling_fruity_aromatic: "SPARK_02",
+  sparkling_structured_traditional: "SPARK_02",
+  sparkling_rose_fruity: "SPARK_04",
   sparkling_sweet_aromatic: "SPARK_03",
 };
 

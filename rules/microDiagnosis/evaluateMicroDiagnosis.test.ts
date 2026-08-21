@@ -26,13 +26,15 @@ function resolveProfileId(entry: MicroDiagnosisEntry, answers: MicroDiagnosisAns
 
 describe("evaluateMicroDiagnosis — wineType unknown — bubbles = Sim", () => {
   it.each([
-    ["dry", "SPARK_01"],
-    ["fruity", "SPARK_02"],
+    ["toast", "SPARK_01"],
+    ["meal", "SPARK_02"],
+    ["rose", "SPARK_04"],
     ["sweet", "SPARK_03"],
-  ] as const)("Sim + %s -> %s", (sweetnessId, expectedProfileId) => {
+    ["unsure", "SPARK_01"],
+  ] as const)("Sim + %s -> %s", (occasionId, expectedProfileId) => {
     const profileId = resolveProfileId(WINE_TYPE_UNKNOWN, [
       answer("bubbles", "yes"),
-      answer("sparklingSweetness", sweetnessId),
+      answer("sparklingOccasion", occasionId),
     ]);
     expect(profileId).toBe(expectedProfileId);
   });
@@ -114,7 +116,7 @@ describe("evaluateMicroDiagnosis — wineType unknown — bubbles = Tanto faz", 
 
   it.each([
     ["white_aromatic", "WHITE_02"],
-    ["sparkling_fruity", "SPARK_02"],
+    ["sparkling_rose_fruity", "SPARK_04"],
     ["sparkling_sweet", "SPARK_03"],
   ] as const)("Tanto faz + perfumado + %s -> %s", (styleId, expectedProfileId) => {
     const profileId = resolveProfileId(WINE_TYPE_UNKNOWN, [
@@ -183,12 +185,14 @@ describe("evaluateMicroDiagnosis — palateUnknown: rose", () => {
 
 describe("evaluateMicroDiagnosis — palateUnknown: sparkling", () => {
   it.each([
-    ["dry", "SPARK_01"],
-    ["fruity", "SPARK_02"],
+    ["toast", "SPARK_01"],
+    ["meal", "SPARK_02"],
+    ["rose", "SPARK_04"],
     ["sweet", "SPARK_03"],
-  ] as const)("%s -> %s", (sweetnessId, expectedProfileId) => {
+    ["unsure", "SPARK_01"],
+  ] as const)("%s -> %s", (occasionId, expectedProfileId) => {
     const profileId = resolveProfileId(palateUnknown("sparkling"), [
-      answer("sparklingSweetness", sweetnessId),
+      answer("sparklingOccasion", occasionId),
     ]);
     expect(profileId).toBe(expectedProfileId);
   });
@@ -203,14 +207,14 @@ describe("evaluateMicroDiagnosis — pergunta inicial e isFinal", () => {
     });
   });
 
-  it("sparklingSweetness é sempre a última pergunta (isFinal = true)", () => {
+  it("sparklingOccasion é sempre a última pergunta (isFinal = true)", () => {
     const resolution = evaluateMicroDiagnosis({
       entry: WINE_TYPE_UNKNOWN,
       answers: [answer("bubbles", "yes")],
     });
     expect(resolution).toEqual({
       status: "question",
-      question: expect.objectContaining({ id: "sparklingSweetness", isFinal: true }),
+      question: expect.objectContaining({ id: "sparklingOccasion", isFinal: true }),
     });
   });
 
@@ -251,19 +255,19 @@ describe("QUESTION_TREE — invariantes estruturais", () => {
     }
   });
 
-  it("toda folha resolved usa um dos 11 profileId reais de content/profiles", () => {
+  it("toda folha resolved usa um dos 12 profileId reais de content/profiles", () => {
     for (const node of Object.values(QUESTION_TREE) as TreeNode[]) {
       if (node.type !== "resolved") continue;
       expect(KNOWN_PROFILE_IDS.has(node.profileId), `profileId desconhecido: ${node.profileId}`).toBe(true);
     }
   });
 
-  it("nenhum profileId fora dos 11 conhecidos aparece na árvore (sem 12º perfil)", () => {
+  it("nenhum profileId fora dos 12 conhecidos aparece na árvore (sem 13º perfil)", () => {
     const profileIdsInTree = Object.values(QUESTION_TREE)
       .filter((node): node is Extract<TreeNode, { type: "resolved" }> => node.type === "resolved")
       .map((node) => node.profileId);
     const uniqueProfileIds = new Set(profileIdsInTree);
-    expect(uniqueProfileIds.size).toBe(11);
+    expect(uniqueProfileIds.size).toBe(12);
     for (const id of uniqueProfileIds) {
       expect(KNOWN_PROFILE_IDS.has(id)).toBe(true);
     }
@@ -300,7 +304,7 @@ describe("QUESTION_TREE — limites de perguntas por cenário", () => {
     expect(maxDepth(PALATE_UNKNOWN_ENTRY_NODE.rose)).toBe(0);
   });
 
-  it("sparkling_unknown (a partir de 'sparklingSweetness') nunca ultrapassa 1 pergunta", () => {
-    expect(maxDepth("sparklingSweetness")).toBeLessThanOrEqual(1);
+  it("sparkling_unknown (a partir de 'sparklingOccasion') nunca ultrapassa 1 pergunta", () => {
+    expect(maxDepth("sparklingOccasion")).toBeLessThanOrEqual(1);
   });
 });

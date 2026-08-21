@@ -2,8 +2,9 @@
 
 Motor determinístico do "Me ajude a decidir" — substitui o beco sem saída
 de `wineType = unknown` / `*_unknown` por uma jornada curta (0 a 3
-perguntas) que sempre termina em um dos 11 perfis existentes. Nunca usa
-IA, nunca cria um 12º perfil, nunca lê `reason`/`budget`.
+perguntas) que sempre termina em um dos 12 perfis existentes. Nunca usa
+IA, nunca inventa um perfil além dos que existem em `content/profiles`,
+nunca lê `reason`/`budget`.
 
 ## Arquitetura
 
@@ -64,7 +65,7 @@ ou o mapeamento de saída é editar o dado, nunca reescrever o algoritmo de
 travessia. Isso também é o que torna os testes estruturais possíveis (ver
 `evaluateMicroDiagnosis.test.ts`): dá para varrer `QUESTION_TREE`
 inteiro e verificar invariantes (todo `next` aponta pra um nó que existe,
-toda folha resolvida usa um dos 11 IDs reais, profundidade máxima por
+toda folha resolvida usa um dos 12 IDs reais, profundidade máxima por
 cenário) sem simular cada caminho manualmente.
 
 ## Não existe mais estado `unsupported`
