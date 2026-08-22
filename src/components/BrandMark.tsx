@@ -1,5 +1,11 @@
 import { brand } from "../config/brand";
 
+/**
+ * Sem uso desde o redesign da home, que passou a ter tratamento próprio de
+ * título e assinatura. Mantido de propósito, não é ponta solta de limpeza:
+ * a intenção é reaproveitar no cabeçalho do /app, que hoje não tem marca
+ * nenhuma. Mesmo critério aplicado a RoutePresentation.reasonMessage.
+ */
 interface BrandMarkProps {
   /** "large" para a página inicial; padrão é o cabeçalho discreto do /app. */
   size?: "default" | "large";
