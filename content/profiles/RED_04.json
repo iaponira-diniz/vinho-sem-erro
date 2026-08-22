@@ -1,6 +1,6 @@
 {
   "id": "RED_04",
-  "version": "0.1",
+  "version": "0.2",
   "category": "red",
   "name": "Tinto Intenso e Estruturado",
   "customerSummary": "Um tinto encorpado, concentrado e com bastante presença na boca. Ideal para quem gosta de vinhos mais potentes, com sabores intensos e taninos perceptíveis.",
@@ -19,58 +19,54 @@
   "mainClues": [
     {
       "name": "Cabernet Sauvignon",
-      "note": "Pode oferecer estrutura, taninos firmes, fruta negra, especiarias, profundidade e boa capacidade de evolução. Não é garantia automática de um vinho extremamente encorpado."
+      "note": "Estrutura, taninos firmes, fruta negra, especiarias, profundidade e boa capacidade de evolução. Não é garantia automática de um vinho extremamente encorpado."
     },
     {
       "name": "Syrah / Shiraz",
-      "note": "Pode apresentar fruta negra, especiarias, corpo, intensidade, estrutura e taninos perceptíveis. O estilo varia bastante conforme região e produtor."
+      "note": "Fruta negra, especiarias, corpo, intensidade, estrutura e taninos perceptíveis. O estilo varia bastante conforme região e produtor."
     },
     {
       "name": "Amarone della Valpolicella",
-      "note": "Excelente referência italiana para um tinto seco, intenso, estruturado e de maior concentração, normalmente com teor alcoólico elevado e longa capacidade de evolução."
+      "note": "Tinto seco, intenso, estruturado e de maior concentração, normalmente com teor alcoólico elevado e longa capacidade de evolução. É a referência italiana clássica deste perfil."
     }
   ],
   "additionalClues": [
     {
       "name": "Brunello di Montalcino",
-      "note": "Pode apresentar estrutura, profundidade, taninos, intensidade e longa persistência, mantendo também elegância e frescor."
+      "note": "Estrutura, profundidade, taninos, intensidade e longa persistência, mantendo também elegância e frescor."
     },
     {
       "name": "Primitivo / Primitivo di Manduria",
-      "note": "Pode apresentar fruta muito madura, corpo, concentração e sensação envolvente. Alguns exemplares podem privilegiar maciez mais do que taninos."
+      "note": "Fruta muito madura, corpo, concentração e sensação envolvente. Alguns exemplares podem privilegiar maciez mais do que taninos."
     },
     {
       "name": "Malbec estruturado",
-      "note": "Pode apresentar concentração, fruta negra, corpo, taninos maduros, madeira e maior intensidade."
+      "note": "Concentração, fruta negra, corpo, taninos maduros, madeira e maior intensidade."
     }
   ],
   "internalLibrary": [
     {
       "name": "Touriga Nacional / Douro estruturado",
-      "note": "Pode oferecer grande intensidade aromática, fruta escura, corpo, taninos e concentração, com grande variação conforme o corte."
+      "note": "Grande intensidade aromática, fruta escura, corpo, taninos e concentração, com grande variação conforme o corte."
     },
     {
       "name": "Nebbiolo / Barolo",
-      "note": "Pode apresentar taninos elevados, grande estrutura, intensidade aromática e alta capacidade de envelhecimento, mesmo sem cor extremamente escura."
+      "note": "Taninos elevados, grande estrutura, intensidade aromática e alta capacidade de envelhecimento, mesmo sem cor extremamente escura."
     },
     {
       "name": "Aglianico",
-      "note": "Pode oferecer taninos elevados, boa acidez, corpo, intensidade e grande capacidade de evolução."
+      "note": "Taninos elevados, boa acidez, corpo, intensidade e grande capacidade de evolução."
     },
     {
       "name": "Mourvèdre",
-      "note": "Pode produzir vinhos profundos, encorpados e estruturados, especialmente em estilos mais concentrados."
+      "note": "Vinhos profundos, encorpados e estruturados, especialmente em estilos mais concentrados."
     },
     {
       "name": "Petit Verdot",
-      "note": "Pode contribuir com cor, taninos, estrutura e intensidade, aparecendo frequentemente em cortes."
+      "note": "Contribui com cor, taninos, estrutura e intensidade, aparecendo frequentemente em cortes."
     }
   ],
   "labelClues": [
-    "Cabernet Sauvignon",
-    "Syrah",
-    "Shiraz",
-    "Amarone della Valpolicella",
     "Brunello di Montalcino",
     "Primitivo",
     "Malbec",

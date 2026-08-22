@@ -236,26 +236,26 @@ Não remover os arquivos antigos automaticamente. Fazer a retirada em etapa cont
 Existem **12 perfis** em `content/profiles/`:
 
 ```text
-RED_01 — Tinto Leve e Vivo
-RED_02 — Tinto Macio e Frutado
-RED_03 — Tinto Médio e Equilibrado
-RED_04 — Tinto Intenso e Estruturado
+RED_01 — Tinto Leve e Vivo                         (version 0.2)
+RED_02 — Tinto Macio e Frutado                     (version 0.2)
+RED_03 — Tinto Médio e Equilibrado                 (version 0.2)
+RED_04 — Tinto Intenso e Estruturado               (version 0.2)
 
-WHITE_01 — Branco Leve e Refrescante
-WHITE_02 — Branco Aromático e Frutado
-WHITE_03 — Branco Cremoso e Estruturado
+WHITE_01 — Branco Leve e Refrescante               (version 0.2)
+WHITE_02 — Branco Aromático e Frutado              (version 0.2)
+WHITE_03 — Branco Cremoso e Estruturado            (version 0.2)
 
-ROSE_01 — Rosé Seco e Refrescante
+ROSE_01 — Rosé Seco e Refrescante                  (version 0.2)
 
-SPARK_01 — Espumante Seco e Refrescante            (version 0.2)
-SPARK_02 — Espumante Estruturado (Mais Presença à Mesa)  (version 0.2)
-SPARK_03 — Espumante Suave e Doce                  (version 0.2)
-SPARK_04 — Espumante Rosé e Frutado                (version 0.1, novo)
+SPARK_01 — Espumante Seco e Refrescante            (version 0.3)
+SPARK_02 — Espumante Estruturado (Mais Presença à Mesa)  (version 0.3)
+SPARK_03 — Espumante Suave e Doce                  (version 0.3)
+SPARK_04 — Espumante Rosé e Frutado                (version 0.2)
 ```
 
-Os perfis de tinto, branco e rosé continuam na versão `"0.1"`. Os três perfis de espumante existentes subiram para `"0.2"` na decisão dos espumantes (commit `20c60cf`), e SPARK_04 nasceu em `"0.1"`.
+Histórico das versões: todos os perfis nasceram em `"0.1"`. Os três espumantes então existentes subiram para `"0.2"` na decisão dos espumantes (commit `20c60cf`), quando SPARK_04 nasceu em `"0.1"`. Na revisão da tela de resultado, os 12 perfis subiram mais um degrau de uma vez só.
 
-Nenhum dos JSONs de perfil foi alterado durante a Fase 14 propriamente dita. Em etapa separada e posterior, os `askPhrase` foram corrigidos para remover a redundância com "nessa faixa de preço" — ver seção "ASKPHRASES — PENDÊNCIA RESOLVIDA". Depois disso, apenas os quatro perfis de espumante foram alterados, na decisão descrita na seção "ESPUMANTES".
+Nenhum dos JSONs de perfil foi alterado durante a Fase 14 propriamente dita. Em etapa separada e posterior, os `askPhrase` foram corrigidos para remover a redundância com "nessa faixa de preço" — ver seção "ASKPHRASES — PENDÊNCIA RESOLVIDA". Depois vieram a decisão dos espumantes (seção "ESPUMANTES") e a revisão da tela de resultado, que alterou os 12 perfis: notas de `mainClues`, `additionalClues` e `internalLibrary` reescritas para não começarem por "pista" e irem direto à característica sensorial; nomes duplicados removidos de `labelClues` quando já aparecem como título de `mainClues`; e códigos internos de perfil (do tipo "migra para WHITE_03") trocados por linguagem de cliente nas notas visíveis.
 
 Não reescrever os perfis automaticamente para encaixar alterações de interface.
 
@@ -339,17 +339,21 @@ Histórico da contagem, para não assustar quem comparar com documentos antigos:
 
 Não é necessário "recuperar" nenhum número anterior. Cobertura coerente importa mais que quantidade fixa.
 
-Build atual (`npm run build`), no estado do commit `20c60cf`:
+Build atual (`npm run build`), após a revisão da tela de resultado:
 
 ```text
 ✓ 55 modules transformed.
 dist/index.html                   0.77 kB │ gzip:  0.41 kB
-dist/assets/index-B5ZfiXoS.css    9.17 kB │ gzip:  2.44 kB
-dist/assets/index-DSvxVsI2.js   250.90 kB │ gzip: 76.04 kB
-✓ built in 1.00s
+dist/assets/index-*.css           8.80 kB │ gzip:  2.38 kB
+dist/assets/index-*.js          248.15 kB │ gzip: 75.61 kB
 ```
 
-`tsc -b && vite build` sem erros. Baseline anterior (Fase 14, commit `912d372`): 54 módulos, JS 249.52 kB / gzip 75.56 kB, CSS 9.17 kB. O crescimento do JS vem do SPARK_04 e das novas opções de espumante. O hash do arquivo JS muda a cada build de conteúdo — comparar tamanho, não nome.
+`tsc -b && vite build` sem erros. Baselines anteriores:
+
+* Fase 14 (`912d372`): 54 módulos, JS 249.52 kB / gzip 75.56 kB, CSS 9.17 kB;
+* decisão dos espumantes (`20c60cf`): 55 módulos, JS 250.90 kB / gzip 76.04 kB, CSS 9.17 kB.
+
+O CSS encolheu na revisão da tela de resultado porque as regras do bloco removido (`.result-block--muted`, `.avoid-list`, `.route-reason-message`) saíram junto. O hash no nome do arquivo muda a cada build de conteúdo — comparar tamanho, não nome.
 
 ---
 
@@ -417,10 +421,10 @@ A decisão funcional/enológica dos espumantes foi tomada e aplicada. **O bloque
 
 ## Os 4 perfis de espumante, como ficaram
 
-* **SPARK_01 — "Espumante Seco e Refrescante"** (`version 0.2`): seco e refrescante, para brindar/dias de calor. Pistas de **Método Charmat**: Espumante brasileiro, Prosecco, e o próprio termo "Método Charmat" no rótulo. Cava, Champagne, Franciacorta e Trento DOC saíram daqui (foram para SPARK_02). `backupProfileId: null` — **sem fallback**.
-* **SPARK_02 — "Espumante Estruturado (Mais Presença à Mesa)"** (`version 0.2`): **reescrito por completo**. Método tradicional, com corpo para acompanhar pratos de mais sabor (inclusive carnes e feijoada). Pistas: Champagne, Cava, Franciacorta, Trento DOC e espumante brasileiro de método tradicional (denominações Vale dos Vinhedos e Pinto Bandeira). `backupProfileId: "SPARK_01"`. O conteúdo antigo (rosé/frutado/morango) **não pertence mais a este ID** — migrou para SPARK_04.
-* **SPARK_03 — "Espumante Suave e Doce"** (`version 0.2`): apenas **renomeado** (era "Espumante Doce e Aromático"). Conteúdo, pistas e askPhrase preservados. `backupProfileId: null` — **sem fallback**, porque doce não aceita substituto de outro estilo; se não encontrar, a orientação é procurar outra opção dentro do próprio estilo Moscatel/Asti.
-* **SPARK_04 — "Espumante Rosé e Frutado"** (`version 0.1`, **perfil novo**): fresco, perfumado, cheio de fruta, fácil de beber — **sempre seco**, sem sensação de doçura. Pistas: Espumante Rosé, Prosecco Rosé, Cava Rosado. `backupProfileId: "SPARK_01"`.
+* **SPARK_01 — "Espumante Seco e Refrescante"** (`version 0.3`): seco e refrescante, para brindar/dias de calor. Duas pistas apenas: **Prosecco** e **"Método Charmat" no rótulo**. Cava, Champagne, Franciacorta e Trento DOC saíram daqui (foram para SPARK_02). A pista genérica "Espumante brasileiro" foi removida na revisão da tela de resultado: o Brasil produz tanto Charmat quanto método tradicional, então a origem não indica o estilo, e um brasileiro de método tradicional pertence ao SPARK_02. `backupProfileId: null` — **sem fallback**.
+* **SPARK_02 — "Espumante Estruturado (Mais Presença à Mesa)"** (`version 0.3`): **reescrito por completo**. Método tradicional, com corpo para acompanhar pratos de mais sabor (inclusive carnes e feijoada). Pistas: Champagne, Cava, Franciacorta, Trento DOC e espumante brasileiro de método tradicional (denominações Vale dos Vinhedos e Pinto Bandeira). `backupProfileId: "SPARK_01"`. O conteúdo antigo (rosé/frutado/morango) **não pertence mais a este ID** — migrou para SPARK_04.
+* **SPARK_03 — "Espumante Suave e Doce"** (`version 0.3`): **renomeado** na decisão dos espumantes (era "Espumante Doce e Aromático"), com pistas e askPhrase preservados; as notas foram reescritas depois, na revisão da tela de resultado. `backupProfileId: null` — **sem fallback**, porque doce não aceita substituto de outro estilo; se não encontrar, a orientação é procurar outra opção dentro do próprio estilo Moscatel/Asti.
+* **SPARK_04 — "Espumante Rosé e Frutado"** (`version 0.2`, criado na decisão dos espumantes): fresco, perfumado, cheio de fruta, fácil de beber — **sempre seco**, sem sensação de doçura. Pistas: Espumante Rosé, Prosecco Rosé, Cava Rosado. `backupProfileId: "SPARK_01"`.
 
 ## Linha de corte editorial
 
@@ -576,7 +580,9 @@ Testar manualmente em 375px e desktop.
 
 Verificar: `/`; `/app`; refresh `/app`; primeira pergunta (sem botão Voltar); voltar; tinto; branco; rosé (deve ir direto para orçamento, sem pergunta de paladar); **espumante nas 4 novas opções (leve e fresco → SPARK_01; presença à mesa → SPARK_02; rosé frutado → SPARK_04; doce → SPARK_03)**; **"Não sei" de espumante (as 5 opções de `sparklingOccasion`, incluindo "Ainda não sei" → SPARK_01)**; complemento de orçamento (sem numeração de progresso); resultado (sem "Seu orçamento" no topo); "Pode pedir assim" (prefixo "Quero gastar..."); feedback; recomeçar.
 
-Pendência conhecida: a jornada de espumante pós-`20c60cf` foi validada por testes automatizados e build, **mas ainda não foi testada manualmente em navegador**.
+Na tela de resultado, conferir também: "Boas pistas" (título curto), ausência do bloco "Talvez evite começar por", ausência do parágrafo de instrução abaixo de "SEU MOMENTO", e o separador entre o cabeçalho e o primeiro bloco.
+
+Pendência conhecida: a jornada de espumante pós-`20c60cf` e a revisão da tela de resultado foram validadas por testes automatizados e build, **mas nenhuma das duas foi testada manualmente em navegador**.
 
 ---
 
@@ -710,13 +716,26 @@ Base e Fase 14 (commit `912d372`):
 Decisão dos espumantes (commit `20c60cf`):
 
 * 12 perfis no total — SPARK_04 ("Espumante Rosé e Frutado") criado
-* SPARK_01 reposicionado em Método Charmat (Espumante brasileiro, Prosecco), sem fallback
+* SPARK_01 reposicionado em Método Charmat, sem fallback
 * SPARK_02 reescrito como "Espumante Estruturado (Mais Presença à Mesa)", método tradicional, fallback SPARK_01
 * SPARK_03 renomeado para "Espumante Suave e Doce", sem fallback
 * pergunta da jornada de espumante com 4 opções + "Não sei", eixo ocasião/uso em vez de açúcar
 * microdiagnóstico `sparklingSweetness` → `sparklingOccasion`, sem eixo de açúcar
 * linha de corte editorial: a partir de Demi-Sec é sempre SPARK_03
 * 118/118 testes passando, build aprovado, working tree clean após o commit
+
+Revisão da tela de resultado:
+
+* bloco "Talvez evite começar por" removido da interface; o campo `avoid` continua nos JSONs como nota interna de curadoria, não é mais exibido
+* parágrafo de instrução abaixo de "SEU MOMENTO" removido (rótulo e valor mantidos); `RoutePresentation.reasonMessage` fica em stand-by, sem consumidor, aguardando o retrabalho de design do bloco
+* "Boas pistas para procurar" encurtado para "Boas pistas"
+* notas de pistas reescritas nos 12 perfis, sem começar por "pista" e indo direto à característica sensorial, preservando ressalvas técnicas
+* nomes duplicados removidos de `labelClues` quando já aparecem como título de `mainClues` (tags que só existem em `additionalClues` ficam: "Mais opções" vem fechado por padrão, então a tag é a única chance de a pessoa ler aquele nome)
+* códigos internos de perfil trocados por linguagem de cliente nas notas visíveis
+* pista genérica "Espumante brasileiro" removida do SPARK_01
+* travessões removidos dos textos de interface e de conteúdo; comentários de código mantidos
+* CSS órfão removido (`.result-block--muted`, `.avoid-list`, `.route-reason-message`)
+* 118/118 testes passando, build aprovado
 
 ## 🟣 Nova frente estratégica (documentada, sem código)
 
@@ -727,7 +746,7 @@ Decisão dos espumantes (commit `20c60cf`):
 
 ## ⏳ Futuro
 
-* testar manualmente em navegador a nova jornada de espumante (`20c60cf`)
+* testar manualmente em navegador a nova jornada de espumante (`20c60cf`) e a tela de resultado revisada
 * confirmar o deploy no Vercel
 * validar pelo menos uma fonte real de produtos antes de assumir "Encontrar vinhos para comprar" como promessa comercial de lançamento
 * Supabase integrado

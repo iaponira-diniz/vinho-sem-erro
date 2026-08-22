@@ -1,6 +1,6 @@
 {
   "id": "SPARK_01",
-  "version": "0.2",
+  "version": "0.3",
   "category": "sparkling",
   "name": "Espumante Seco e Refrescante",
   "customerSummary": "Um espumante fresco, vibrante e com pouca sensação de doçura. Ideal para quem gosta de borbulhas mais secas, com boa acidez e sensação refrescante.",
@@ -18,31 +18,27 @@
   ],
   "mainClues": [
     {
-      "name": "Espumante brasileiro",
-      "note": "Uma das pistas mais úteis para o público brasileiro quando a preferência é por um espumante seco e refrescante. Observar as características descritas pelo produtor."
-    },
-    {
       "name": "Prosecco",
-      "note": "Pode apresentar frescor, fruta, leveza e borbulhas em um estilo mais seco. É importante observar a indicação Brut ou Extra Dry no rótulo, pois Prosecco existe em diferentes níveis de açúcar."
+      "note": "Frescor, fruta, leveza e borbulhas em um estilo mais seco. É importante observar a indicação Brut ou Extra Dry no rótulo, pois Prosecco existe em diferentes níveis de açúcar."
     },
     {
       "name": "Método Charmat no rótulo",
-      "note": "Método Charmat no rótulo é uma boa pista de espumante mais leve e frutado, é o método mais usado no Brasil e também no Prosecco. Já Método Tradicional (ou Champenoise) indica mais estrutura e tempo de elaboração — ver SPARK_02."
+      "note": "Indica um espumante mais leve e frutado. O método é usado no mundo todo, de qualquer origem, então o que vale é procurar a indicação no rótulo, não o país. Já Método Tradicional (ou Champenoise) indica mais estrutura e tempo de elaboração."
     }
   ],
   "additionalClues": [],
   "internalLibrary": [
     {
       "name": "Extra Brut",
-      "note": "Boa pista para quem busca ainda menos sensação de doçura do que em muitos espumantes Brut."
+      "note": "Ainda menos sensação de doçura do que em muitos espumantes Brut."
     },
     {
       "name": "Brut Nature",
-      "note": "Referência para estilos muito secos, com baixíssima dosagem ou ausência de adição de açúcar no dosage conforme a regulamentação aplicável."
+      "note": "Estilos muito secos, com baixíssima dosagem ou ausência de adição de açúcar no dosage conforme a regulamentação aplicável."
     },
     {
       "name": "Blanc de Blancs",
-      "note": "Pode ser uma característica útil do espumante, mas não deve ser usada como garantia automática de leveza, secura ou pertencimento ao SPARK_01."
+      "note": "Característica útil do espumante, mas não deve ser usada como garantia automática de leveza ou secura."
     }
   ],
   "labelClues": [
@@ -50,7 +46,6 @@
     "Extra Brut",
     "Brut Nature",
     "Espumante Brut",
-    "Prosecco Brut",
     "Método Charmat",
     "seco",
     "fresco",

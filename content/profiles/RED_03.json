@@ -1,6 +1,6 @@
 {
   "id": "RED_03",
-  "version": "0.1",
+  "version": "0.2",
   "category": "red",
   "name": "Tinto Médio e Equilibrado",
   "customerSummary": "Um tinto com boa presença, fruta, frescor e taninos perceptíveis, mas sem ficar pesado demais. Ideal para quem procura equilíbrio entre fruta, estrutura, frescor e maciez.",
@@ -18,11 +18,11 @@
   "mainClues": [
     {
       "name": "Sangiovese / Chianti",
-      "note": "Pode apresentar corpo médio, fruta vermelha, boa acidez, taninos presentes e equilíbrio entre frescor e estrutura."
+      "note": "Corpo médio, fruta vermelha, boa acidez, taninos presentes e equilíbrio entre frescor e estrutura."
     },
     {
       "name": "Tempranillo / Rioja",
-      "note": "Pode oferecer corpo médio, fruta, taninos moderados e alguma complexidade de evolução ou madeira, dependendo do estilo."
+      "note": "Corpo médio, fruta, taninos moderados e alguma complexidade de evolução ou madeira, dependendo do estilo."
     },
     {
       "name": "Valpolicella Ripasso",
@@ -32,45 +32,40 @@
   "additionalClues": [
     {
       "name": "Cabernet Franc",
-      "note": "Pode apresentar fruta vermelha, frescor, taninos moderados e notas herbais ou especiadas, com boa estrutura sem necessariamente muito peso."
+      "note": "Fruta vermelha, frescor, taninos moderados e notas herbais ou especiadas, com boa estrutura sem necessariamente muito peso."
     },
     {
       "name": "Garnacha / Grenache de corpo médio",
-      "note": "Pode oferecer fruta madura, boa concentração, algum frescor e estrutura equilibrada."
+      "note": "Fruta madura, boa concentração, algum frescor e estrutura equilibrada."
     },
     {
       "name": "Côtes du Rhône tinto",
-      "note": "Pode apresentar fruta, especiarias, corpo médio e boa estrutura. O estilo varia conforme o corte e o produtor."
+      "note": "Fruta, especiarias, corpo médio e boa estrutura. O estilo varia conforme o corte e o produtor."
     }
   ],
   "internalLibrary": [
     {
       "name": "Malbec de corpo médio",
-      "note": "Pode oferecer fruta, taninos maduros e estrutura moderada, ficando entre as versões mais macias e as mais concentradas."
+      "note": "Fruta, taninos maduros e estrutura moderada, ficando entre as versões mais macias e as mais concentradas."
     },
     {
       "name": "Nero d'Avola",
-      "note": "Pode apresentar fruta madura, corpo médio, estrutura e boa presença. Exemplares mais concentrados podem migrar para RED_04."
+      "note": "Fruta madura, corpo médio, estrutura e boa presença. Exemplares mais concentrados puxam para um perfil mais intenso."
     },
     {
       "name": "Barbera Superiore",
-      "note": "Pode apresentar fruta, corpo médio, boa intensidade, acidez evidente e maior complexidade."
+      "note": "Fruta, corpo médio, boa intensidade, acidez evidente e maior complexidade."
     },
     {
       "name": "Tintos equilibrados do Douro",
-      "note": "Podem apresentar corpo médio, fruta e estrutura equilibrada, com variação relevante conforme o corte."
+      "note": "Corpo médio, fruta e estrutura equilibrada, com variação relevante conforme o corte."
     },
     {
       "name": "Cortes com Touriga Nacional",
-      "note": "Podem oferecer fruta, aroma e estrutura quando a Touriga Nacional está integrada em cortes equilibrados."
+      "note": "Fruta, aroma e estrutura quando a Touriga Nacional está integrada em cortes equilibrados."
     }
   ],
   "labelClues": [
-    "Sangiovese",
-    "Chianti",
-    "Tempranillo",
-    "Rioja",
-    "Valpolicella Ripasso",
     "Cabernet Franc",
     "Garnacha",
     "Grenache",

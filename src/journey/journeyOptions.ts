@@ -24,7 +24,7 @@ export const WINE_TYPE_OPTIONS: readonly QuestionOption<WineTypeId>[] = [
   { id: "white", label: "Branco" },
   { id: "rose", label: "Rosé" },
   { id: "sparkling", label: "Espumante" },
-  { id: "unknown", label: "Não sei — me ajude a decidir" },
+  { id: "unknown", label: "Não sei, me ajude a decidir" },
 ];
 
 /**

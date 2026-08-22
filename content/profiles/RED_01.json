@@ -1,6 +1,6 @@
 {
   "id": "RED_01",
-  "version": "0.1",
+  "version": "0.2",
   "category": "red",
   "name": "Tinto Leve e Vivo",
   "customerSummary": "Um tinto mais leve, fresco e fácil de beber, com fruta presente e taninos delicados. Ideal para quem quer beber vinho tinto sem muita sensação de peso ou secura na boca.",
@@ -17,29 +17,29 @@
   "mainClues": [
     {
       "name": "Pinot Noir",
-      "note": "Pode ser uma boa pista para tintos mais delicados, frutados, frescos e com taninos menos agressivos. O estilo pode variar, portanto não é garantia automática de leveza."
+      "note": "Costuma dar tintos mais delicados, frutados, frescos e com taninos menos agressivos. O estilo pode variar, portanto não é garantia automática de leveza."
     },
     {
       "name": "Gamay / Beaujolais",
-      "note": "Excelente pista para fruta vermelha, frescor, corpo mais leve, taninos delicados e boa facilidade de beber."
+      "note": "Traz fruta vermelha, frescor, corpo mais leve, taninos delicados e boa facilidade de beber."
     },
     {
       "name": "Bardolino DOC / Bardolino Classico",
-      "note": "Excelente referência italiana para este perfil. Tende a apresentar corpo leve, frescor, fruta, boa acidez e taninos mais macios."
+      "note": "Tende a apresentar corpo leve, frescor, fruta, boa acidez e taninos mais macios. É uma das referências italianas mais próximas deste perfil."
     }
   ],
   "additionalClues": [
     {
       "name": "Valpolicella DOC / Valpolicella Classico",
-      "note": "Pode funcionar muito bem quando elaborado em estilo jovem, fresco, frutado e pouco concentrado. Não confundir com Valpolicella Ripasso ou Amarone."
+      "note": "Funciona muito bem quando elaborado em estilo jovem, fresco, frutado e pouco concentrado."
     },
     {
       "name": "Schiava / Vernatsch",
-      "note": "Pode apresentar corpo leve, fruta fresca, taninos moderados, delicadeza e boa facilidade de beber."
+      "note": "Corpo leve, fruta fresca, taninos moderados, delicadeza e boa facilidade de beber."
     },
     {
       "name": "Frappato",
-      "note": "Pode apresentar perfume, fruta vermelha, frescor, corpo relativamente leve e boa fluidez."
+      "note": "Perfume, fruta vermelha, frescor, corpo relativamente leve e boa fluidez."
     }
   ],
   "internalLibrary": [
@@ -49,22 +49,18 @@
     },
     {
       "name": "Pelaverga / Verduno Pelaverga",
-      "note": "Pode apresentar frescor, fruta, especiarias e perfil elegante, porém tende a ser menos fácil de encontrar."
+      "note": "Frescor, fruta, especiarias e perfil elegante, porém tende a ser menos fácil de encontrar."
     },
     {
       "name": "Rossese di Dolceacqua",
-      "note": "Referência de tinto delicado, fragrante, fresco e de estrutura relativamente leve."
+      "note": "Tinto delicado, fragrante, fresco e de estrutura relativamente leve."
     },
     {
       "name": "Ciliegiolo",
-      "note": "Pode aparecer em estilos frutados, suculentos, frescos e relativamente leves, com variação conforme produtor e região."
+      "note": "Aparece em estilos frutados, suculentos, frescos e relativamente leves, com variação conforme produtor e região."
     }
   ],
   "labelClues": [
-    "Pinot Noir",
-    "Gamay",
-    "Beaujolais",
-    "Bardolino",
     "Valpolicella",
     "Schiava",
     "Vernatsch",

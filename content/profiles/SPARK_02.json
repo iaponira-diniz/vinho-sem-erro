@@ -1,6 +1,6 @@
 {
   "id": "SPARK_02",
-  "version": "0.2",
+  "version": "0.3",
   "category": "sparkling",
   "name": "Espumante Estruturado (Mais Presença à Mesa)",
   "customerSummary": "Um espumante mais estruturado e complexo, com notas de pão, torrada ou fruta madura, e corpo suficiente para acompanhar pratos com mais sabor, inclusive carnes e feijoada.",
@@ -17,15 +17,15 @@
   "mainClues": [
     {
       "name": "Champagne",
-      "note": "Referência mundial de espumante produzido pelo método tradicional. Pode apresentar acidez, estrutura, fruta e notas de pão, brioche ou evolução, com boa capacidade de acompanhar pratos de mais presença."
+      "note": "Acidez, estrutura, fruta e notas de pão, brioche ou evolução, com boa capacidade de acompanhar pratos de mais presença. É a referência mundial do método tradicional."
     },
     {
       "name": "Cava",
-      "note": "Espanhol, produzido pelo método tradicional. Pode oferecer estrutura, fruta e complexidade, geralmente a um custo mais acessível que o Champagne."
+      "note": "Espanhol, produzido pelo método tradicional. Estrutura, fruta e complexidade."
     },
     {
       "name": "Franciacorta",
-      "note": "Referência italiana para espumantes estruturados e complexos, elaborados pelo método tradicional."
+      "note": "Espumantes estruturados e complexos, elaborados pelo método tradicional. É a referência italiana mais próxima deste perfil."
     },
     {
       "name": "Trento DOC",
@@ -33,16 +33,12 @@
     },
     {
       "name": "Espumante brasileiro de método tradicional",
-      "note": "Denominações como Vale dos Vinhedos e Pinto Bandeira são referências brasileiras para espumantes estruturados, produzidos pelo método tradicional, com potencial de acompanhar pratos mais robustos."
+      "note": "Denominações como Vale dos Vinhedos e Pinto Bandeira produzem espumantes estruturados, com potencial de acompanhar pratos mais robustos."
     }
   ],
   "additionalClues": [],
   "internalLibrary": [],
   "labelClues": [
-    "Champagne",
-    "Cava",
-    "Franciacorta",
-    "Trento DOC",
     "Método Tradicional",
     "Método Champenoise",
     "Vale dos Vinhedos",
@@ -53,9 +49,9 @@
     "brioche"
   ],
   "avoid": [
-    "Espumantes simples de Método Charmat como indicação principal deste perfil — ver SPARK_01.",
-    "Espumantes rosé frutados como indicação principal deste perfil — ver SPARK_04.",
-    "Estilos doces ou Demi-Sec como indicação principal deste perfil — ver SPARK_03.",
+    "Espumantes simples de Método Charmat como indicação principal deste perfil. Ver SPARK_01.",
+    "Espumantes rosé frutados como indicação principal deste perfil. Ver SPARK_04.",
+    "Estilos doces ou Demi-Sec como indicação principal deste perfil. Ver SPARK_03.",
     "Não usar preço alto como sinônimo automático deste perfil."
   ],
   "backupProfileId": "SPARK_01",

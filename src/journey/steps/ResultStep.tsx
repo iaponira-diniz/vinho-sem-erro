@@ -49,16 +49,14 @@ export function ResultStep({ profileId, routeContext, onBack, onRestart }: Resul
 
       <div className="route-context">
         <div className="route-context-item">
-          <span className="route-context-label">Seu momento</span>
+          <span className="route-context-label">SEU MOMENTO</span>
           <span className="route-context-value">{presentation.reasonLabel}</span>
         </div>
       </div>
 
-      <p className="route-reason-message">{presentation.reasonMessage}</p>
-
       {profile.mainClues.length > 0 && (
         <section className="result-block">
-          <h3>Boas pistas para procurar</h3>
+          <h3>Boas pistas</h3>
           <ul className="clue-list">
             {profile.mainClues.map((clue) => (
               <li key={clue.name}>
@@ -97,16 +95,11 @@ export function ResultStep({ profileId, routeContext, onBack, onRestart }: Resul
         </section>
       )}
 
-      {profile.avoid.length > 0 && (
-        <section className="result-block result-block--muted">
-          <h3>Talvez evite começar por</h3>
-          <ul className="avoid-list">
-            {profile.avoid.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </section>
-      )}
+      {/*
+        `profile.avoid` existe nos JSONs como nota interna de curadoria
+        (ex.: linha de corte do Demi-Sec no SPARK_04) e não é exibido:
+        é instrução para o sistema, não texto para a cliente.
+      */}
 
       {presentation.discoveryOptions.length > 0 && (
         <details className="result-block">

@@ -1,6 +1,6 @@
 {
   "id": "RED_02",
-  "version": "0.1",
+  "version": "0.2",
   "category": "red",
   "name": "Tinto Macio e Frutado",
   "customerSummary": "Um tinto com fruta evidente, sensação mais redonda na boca e taninos que não incomodam. Ideal para quem gosta de vinho saboroso e envolvente, mas não quer aquela sensação muito seca ou áspera na boca.",
@@ -18,53 +18,50 @@
   "mainClues": [
     {
       "name": "Merlot",
-      "note": "Pode ser uma excelente pista para vinhos frutados, redondos, macios e fáceis de beber. Também pode produzir estilos mais potentes, portanto não é garantia automática de maciez."
+      "note": "Costuma dar vinhos frutados, redondos, macios e fáceis de beber. Também pode produzir estilos mais potentes, portanto não é garantia automática de maciez."
     },
     {
       "name": "Montepulciano d'Abruzzo",
-      "note": "Excelente referência italiana para fruta, maciez e presença. Pode apresentar corpo médio, fruta vermelha e escura e taninos equilibrados."
+      "note": "Corpo médio, fruta vermelha e escura e taninos equilibrados. É uma das referências italianas mais diretas para fruta, maciez e presença."
     },
     {
       "name": "Tempranillo jovem",
-      "note": "Pode apresentar fruta, corpo médio, taninos acessíveis e boa facilidade de beber quando elaborado em estilo jovem e com pouca influência de madeira."
+      "note": "Fruta, corpo médio, taninos acessíveis e boa facilidade de beber quando elaborado em estilo jovem e com pouca influência de madeira."
     }
   ],
   "additionalClues": [
     {
       "name": "Garnacha / Grenache",
-      "note": "Pode apresentar fruta madura, textura agradável e taninos relativamente macios. Alguns estilos podem ser mais alcoólicos ou concentrados."
+      "note": "Fruta madura, textura agradável e taninos relativamente macios. Alguns estilos podem ser mais alcoólicos ou concentrados."
     },
     {
       "name": "Malbec jovem e macio",
-      "note": "Pode oferecer fruta, maciez, taninos maduros e textura redonda quando elaborado em estilo jovem e acessível."
+      "note": "Fruta, maciez, taninos maduros e textura redonda quando elaborado em estilo jovem e acessível."
     },
     {
       "name": "Barbera frutada",
-      "note": "Pode apresentar bastante fruta, taninos discretos e facilidade de beber, embora sua acidez possa ser mais evidente."
+      "note": "Bastante fruta, taninos discretos e facilidade de beber, embora sua acidez possa ser mais evidente."
     }
   ],
   "internalLibrary": [
     {
       "name": "Primitivo jovem",
-      "note": "Pode funcionar em estilos mais frutados e acessíveis, mas versões muito concentradas podem migrar para perfis mais intensos."
+      "note": "Funciona em estilos mais frutados e acessíveis, mas versões muito concentradas puxam para um perfil mais intenso."
     },
     {
       "name": "Dolcetto",
-      "note": "Pode apresentar fruta e corpo moderado, embora os taninos possam ser perceptíveis."
+      "note": "Fruta e corpo moderado, embora os taninos possam ser perceptíveis."
     },
     {
       "name": "Nero d'Avola",
-      "note": "Pode produzir versões frutadas e redondas, mas alguns exemplares apresentam maior corpo, álcool e estrutura."
+      "note": "Produz versões frutadas e redondas, mas alguns exemplares apresentam maior corpo, álcool e estrutura."
     },
     {
       "name": "Ciliegiolo",
-      "note": "Pode aparecer em estilos frutados, suculentos e macios, transitando entre RED_01 e RED_02 conforme produtor e região."
+      "note": "Aparece em estilos frutados, suculentos e macios, transitando entre um tinto mais leve e este perfil conforme produtor e região."
     }
   ],
   "labelClues": [
-    "Merlot",
-    "Montepulciano d'Abruzzo",
-    "Tempranillo",
     "Garnacha",
     "Grenache",
     "Malbec",

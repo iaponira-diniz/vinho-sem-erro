@@ -1,6 +1,6 @@
 {
   "id": "SPARK_03",
-  "version": "0.2",
+  "version": "0.3",
   "category": "sparkling",
   "name": "Espumante Suave e Doce",
   "customerSummary": "Um espumante perfumado, frutado e com doçura perceptível, equilibrada por uma boa sensação de frescor. Ideal para quem realmente gosta de espumantes mais doces e aromáticos.",
@@ -19,44 +19,42 @@
   "mainClues": [
     {
       "name": "Espumante Moscatel brasileiro",
-      "note": "Uma das principais referências deste perfil para o público brasileiro. Pode apresentar grande intensidade aromática, flores, fruta, doçura perceptível e boa sensação de frescor."
+      "note": "Grande intensidade aromática, flores, fruta, doçura perceptível e boa sensação de frescor. É uma das principais referências deste perfil para o público brasileiro."
     },
     {
       "name": "Asti Spumante DOCG",
-      "note": "Excelente referência italiana para um espumante doce, aromático e fresco, produzido com Moscato Bianco e frequentemente associado a flores, pêssego, damasco e frutas cítricas."
+      "note": "Espumante doce, aromático e fresco, produzido com Moscato Bianco e frequentemente associado a flores, pêssego, damasco e frutas cítricas. É a referência italiana clássica deste perfil."
     },
     {
       "name": "Outros Espumantes Moscatéis",
-      "note": "Podem apresentar grande intensidade aromática, flores, fruta, doçura perceptível e frescor. É importante observar o tipo específico do produto."
+      "note": "Grande intensidade aromática, flores, fruta, doçura perceptível e frescor. É importante observar o tipo específico do produto."
     }
   ],
   "additionalClues": [
     {
       "name": "Espumante Demi-Sec aromático",
-      "note": "Pode funcionar para quem gosta de doçura perceptível, embora Demi-Sec indique principalmente nível de açúcar e não determine sozinho todo o perfil aromático ou sensorial."
+      "note": "Funciona para quem gosta de doçura perceptível, embora Demi-Sec indique principalmente nível de açúcar e não determine sozinho todo o perfil aromático ou sensorial."
     },
     {
       "name": "Prosecco Demi-Sec",
-      "note": "Pode apresentar fruta, flores, leveza e maior percepção de açúcar, funcionando como alternativa quando disponível."
+      "note": "Fruta, flores, leveza e maior percepção de açúcar, funcionando como alternativa quando disponível."
     },
     {
       "name": "Lambrusco doce / amabile",
-      "note": "Pode apresentar fruta, doçura e perfil fácil de beber. Deve ser identificado corretamente porque Lambrusco também existe em estilos secos."
+      "note": "Fruta, doçura e perfil fácil de beber. Deve ser identificado corretamente porque Lambrusco também existe em estilos secos."
     }
   ],
   "internalLibrary": [
     {
       "name": "Moscatel de Farroupilha",
-      "note": "Referência brasileira importante para a biblioteca interna de espumantes Moscatéis, associada a uma região reconhecida pela produção de uvas e vinhos moscatéis."
+      "note": "Referência brasileira importante entre os espumantes Moscatéis, associada a uma região reconhecida pela produção de uvas e vinhos moscatéis."
     },
     {
       "name": "Moscato d'Asti",
-      "note": "Pode aparecer futuramente como alternativa doce, aromática e levemente efervescente, mas não deve ser classificado simplesmente como espumante dentro do SPARK_03."
+      "note": "Alternativa doce, aromática e levemente efervescente, mas não deve ser classificada simplesmente como espumante."
     }
   ],
   "labelClues": [
-    "Moscatel",
-    "Asti Spumante DOCG",
     "Moscato",
     "Demi-Sec",
     "doce",

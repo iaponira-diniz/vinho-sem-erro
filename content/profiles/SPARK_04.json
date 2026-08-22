@@ -1,6 +1,6 @@
 {
   "id": "SPARK_04",
-  "version": "0.1",
+  "version": "0.2",
   "category": "sparkling",
   "name": "Espumante Rosé e Frutado",
   "customerSummary": "Um espumante fresco, perfumado e cheio de fruta, com borbulhas agradáveis e um estilo fácil de beber. Sempre seco, sem sensação de doçura.",
@@ -19,43 +19,40 @@
   "mainClues": [
     {
       "name": "Espumante Rosé",
-      "note": "Excelente pista para fruta vermelha, frescor, boa acidez e perfil aromático, sempre em estilo seco, sem doçura evidente."
+      "note": "Fruta vermelha, frescor, boa acidez e perfil aromático, sempre em estilo seco, sem doçura evidente."
     },
     {
       "name": "Prosecco Rosé",
-      "note": "Pode apresentar fruta, flores, leveza, frescor e perfil fácil de beber. A versão rosé do Prosecco é regulamentada como seca — observar a indicação Brut no rótulo."
+      "note": "Fruta, flores, leveza, frescor e perfil fácil de beber."
     },
     {
       "name": "Cava Rosado",
-      "note": "Pode apresentar fruta vermelha, frescor, boa acidez e perfil seco, funcionando bem para quem quer um espumante rosé frutado sem doçura evidente."
+      "note": "Fruta vermelha, frescor, boa acidez e perfil seco, funcionando bem para quem quer um espumante rosé frutado sem doçura evidente."
     }
   ],
   "additionalClues": [
     {
       "name": "Espumante Rosé brasileiro",
-      "note": "Pode ser uma ótima pista para fruta, frescor, aromas de frutas vermelhas e boa facilidade de beber, sempre em perfil seco."
+      "note": "Fruta, frescor, aromas de frutas vermelhas e boa facilidade de beber, sempre em perfil seco."
     }
   ],
   "internalLibrary": [
     {
       "name": "Champagne Rosé",
-      "note": "Pode oferecer fruta vermelha, frescor, complexidade e maior profundidade, mas normalmente pertence a uma faixa de preço superior."
+      "note": "Fruta vermelha, frescor, complexidade e maior profundidade, mas normalmente pertence a uma faixa de preço superior."
     },
     {
       "name": "Franciacorta Rosé",
-      "note": "Pode funcionar como opção italiana mais sofisticada para quem procura fruta, frescor, estrutura e complexidade."
+      "note": "Opção italiana mais sofisticada para quem procura fruta, frescor, estrutura e complexidade."
     },
     {
       "name": "Lambrusco seco e frutado",
-      "note": "Pode apresentar grande expressão de fruta e frescor, mas o estilo precisa ser identificado corretamente porque Lambrusco existe em diferentes níveis de açúcar e efervescência — priorizar sempre a versão seca."
+      "note": "Grande expressão de fruta e frescor, mas o estilo precisa ser identificado corretamente porque Lambrusco existe em diferentes níveis de açúcar e efervescência. Priorizar sempre a versão seca."
     }
   ],
   "labelClues": [
     "Rosé",
     "Brut",
-    "Espumante Rosé",
-    "Prosecco Rosé",
-    "Cava Rosado",
     "frutado",
     "aromático",
     "floral",

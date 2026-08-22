@@ -1,6 +1,6 @@
 {
   "id": "ROSE_01",
-  "version": "0.1",
+  "version": "0.2",
   "category": "rose",
   "name": "Rosé Seco e Refrescante",
   "customerSummary": "Um rosé fresco, frutado e fácil de beber, com boa acidez e sem doçura evidente. Ideal para quem quer um vinho descontraído e versátil, mas ainda com bastante sabor.",
@@ -18,47 +18,43 @@
   "mainClues": [
     {
       "name": "Rosé da Provence",
-      "note": "Excelente referência para um rosé seco, fresco, delicado e frutado. Pode apresentar leveza, boa acidez e grande facilidade de beber."
+      "note": "Rosé seco, fresco, delicado e frutado, com leveza, boa acidez e grande facilidade de beber. É a referência mais clássica deste perfil."
     },
     {
       "name": "Grenache / Garnacha Rosé",
-      "note": "Pode apresentar fruta vermelha, morango, framboesa, notas cítricas, frescor e corpo leve a médio. O estilo varia conforme região e elaboração."
+      "note": "Fruta vermelha, morango, framboesa, notas cítricas, frescor e corpo leve a médio. O estilo varia conforme região e elaboração."
     },
     {
       "name": "Pinot Noir Rosé",
-      "note": "Pode apresentar delicadeza, fruta vermelha, boa acidez, frescor e corpo relativamente leve."
+      "note": "Delicadeza, fruta vermelha, boa acidez, frescor e corpo relativamente leve."
     }
   ],
   "additionalClues": [
     {
       "name": "Cerasuolo d'Abruzzo",
-      "note": "Rosé italiano geralmente mais intenso na cor e no sabor, podendo apresentar cereja, fruta, frescor, boa presença e perfil seco. É um bom exemplo de que rosé mais escuro não significa necessariamente doce ou pesado."
+      "note": "Rosé italiano geralmente mais intenso na cor e no sabor, com cereja, fruta, frescor, boa presença e perfil seco. É um bom exemplo de que rosé mais escuro não significa necessariamente doce ou pesado."
     },
     {
       "name": "Bardolino Chiaretto",
-      "note": "Pode apresentar frescor, fruta delicada, notas cítricas, perfil seco e leveza, sendo uma referência interessante do Vêneto."
+      "note": "Frescor, fruta delicada, notas cítricas, perfil seco e leveza, sendo uma referência interessante do Vêneto."
     },
     {
       "name": "Sangiovese Rosato",
-      "note": "Pode apresentar fruta vermelha, boa acidez, frescor, perfil seco e boa vocação gastronômica."
+      "note": "Fruta vermelha, boa acidez, frescor, perfil seco e boa vocação gastronômica."
     }
   ],
   "internalLibrary": [
     {
       "name": "Negroamaro Rosato",
-      "note": "Pode apresentar fruta, maior intensidade, corpo um pouco maior e boa presença, mantendo frescor quando bem equilibrado."
+      "note": "Fruta, maior intensidade, corpo um pouco maior e boa presença, mantendo frescor quando bem equilibrado."
     },
     {
       "name": "Tavel",
-      "note": "Pode produzir rosés mais intensos, estruturados, gastronômicos e de maior corpo. Manter como referência secundária porque pode ultrapassar a ideia central de leveza do ROSE_01."
+      "note": "Rosés mais intensos, estruturados, gastronômicos e de maior corpo, podendo ir além da leveza que define esta Rota."
     }
   ],
   "labelClues": [
-    "Provence",
     "Côtes de Provence",
-    "Grenache",
-    "Garnacha",
-    "Pinot Noir",
     "Cerasuolo d'Abruzzo",
     "Chiaretto",
     "Sangiovese Rosato",
