@@ -6,7 +6,7 @@
 **Status:** MVP em desenvolvimento
 **Objetivo:** permitir que outra IA ou desenvolvedor continue o projeto sem depender do histórico das conversas anteriores.
 **Última auditoria de código:** feita por leitura direta do working tree (`git diff`, `npm test`, `npm run build`) — não por suposição a partir deste documento.
-**Último commit conhecido antes desta atualização documental:** `912d372` (`feat: refine MVP journey and purchase guidance`) — publicado em `origin/main`.
+**Último commit conhecido antes desta atualização documental:** `20c60cf` (`feat: rework sparkling wine profiles (Método Charmat vs Tradicional split, new SPARK_04 rosé profile)`) — publicado em `origin/main`. Commit anterior relevante: `912d372` (`feat: refine MVP journey and purchase guidance`).
 
 ---
 
@@ -49,7 +49,7 @@ Este projeto possui cinco estados diferentes:
 
 O Vinho Sem Erro já possui um MVP funcional em React/Vite com:
 
-* banco de 11 perfis de vinho;
+* banco de 12 perfis de vinho;
 * motor determinístico de recomendação;
 * apresentação contextual por ocasião;
 * microdiagnóstico;
@@ -61,13 +61,11 @@ O Vinho Sem Erro já possui um MVP funcional em React/Vite com:
 * GitHub configurado;
 * testes automatizados.
 
-A reestruturação de jornada conhecida como "Fase 14" — remoção da tela de intenção, reordenação da jornada, preço como complemento opcional pós-resolução, resolução direta do rosé, remoção de `rose_sweet`/`unsupported`, correção do bug vertical da Home, refinamento visual (Fraunces/Manrope/paleta) — e, junto com ela, a correção dos 11 `askPhrase` (remoção da redundância com "nessa faixa de preço") **já estão implementadas, testadas, commitadas e enviadas para `origin/main`** no commit `912d372` (`feat: refine MVP journey and purchase guidance`). O working tree ficou limpo (`working tree clean`) logo após esse commit e esse push.
+A reestruturação de jornada conhecida como "Fase 14" — remoção da tela de intenção, reordenação da jornada, preço como complemento opcional pós-resolução, resolução direta do rosé, remoção de `rose_sweet`/`unsupported`, correção do bug vertical da Home, refinamento visual (Fraunces/Manrope/paleta) — e, junto com ela, a correção dos 11 `askPhrase` (remoção da redundância com "nessa faixa de preço") **já estão implementadas, testadas, commitadas e enviadas para `origin/main`** no commit `912d372` (`feat: refine MVP journey and purchase guidance`).
 
-Existe uma pendência real, não implementada:
+A decisão funcional/enológica dos espumantes, que ficou pendente por várias rodadas de análise, **foi tomada, implementada, testada e enviada** no commit `20c60cf` (`feat: rework sparkling wine profiles`). Detalhes completos na seção "ESPUMANTES" abaixo. Não existe mais nenhuma pendência funcional/enológica em aberto.
 
-* Uma pendência de **decisão funcional**: a revisão da lógica de espumantes (pergunta e possivelmente SPARK_02) segue em aberto, sem nenhuma alteração de código feita.
-
-Além disso, existe uma nova frente estratégica registrada nesta atualização documental, ainda **sem nenhuma implementação técnica**:
+Existe uma nova frente estratégica registrada nesta atualização documental, ainda **sem nenhuma implementação técnica**:
 
 * 🟣 **"Encontrar vinhos para comprar"** — funcionalidade planejada para, depois do diagnóstico e da resolução do perfil, mostrar opções reais de vinhos compatíveis e links para lojas. Ver seção "NOVA FRENTE ESTRATÉGICA" mais abaixo, e as seções correspondentes em `docs/PRODUCT_SPEC.md` e `docs/TECH_SPEC.md`.
 
@@ -209,7 +207,7 @@ Não existe atualmente:
 * persistência de feedback;
 * persistência de sessão.
 
-Não iniciar essa etapa antes de resolver a decisão dos espumantes e validar a nova frente "Encontrar vinhos para comprar" (ver seções correspondentes mais abaixo). A jornada funcional (Fase 14 + correção dos askPhrases) já está commitada e publicada — isso não é mais o bloqueio.
+Não iniciar essa etapa antes de validar a nova frente "Encontrar vinhos para comprar" (ver seção correspondente mais abaixo). A jornada funcional (Fase 14 + correção dos askPhrases) e a decisão dos espumantes já estão commitadas e publicadas — não são mais o bloqueio.
 
 ---
 
@@ -235,7 +233,7 @@ Não remover os arquivos antigos automaticamente. Fazer a retirada em etapa cont
 
 ✅ IMPLEMENTADO
 
-Existem 11 perfis em `content/profiles/`:
+Existem **12 perfis** em `content/profiles/`:
 
 ```text
 RED_01 — Tinto Leve e Vivo
@@ -249,14 +247,15 @@ WHITE_03 — Branco Cremoso e Estruturado
 
 ROSE_01 — Rosé Seco e Refrescante
 
-SPARK_01 — Espumante Seco e Refrescante
-SPARK_02 — Espumante Frutado e Aromático
-SPARK_03 — Espumante Doce e Aromático
+SPARK_01 — Espumante Seco e Refrescante            (version 0.2)
+SPARK_02 — Espumante Estruturado (Mais Presença à Mesa)  (version 0.2)
+SPARK_03 — Espumante Suave e Doce                  (version 0.2)
+SPARK_04 — Espumante Rosé e Frutado                (version 0.1, novo)
 ```
 
-Todos utilizam versão `"0.1"`.
+Os perfis de tinto, branco e rosé continuam na versão `"0.1"`. Os três perfis de espumante existentes subiram para `"0.2"` na decisão dos espumantes (commit `20c60cf`), e SPARK_04 nasceu em `"0.1"`.
 
-Nenhum dos 11 arquivos JSON de perfil foi alterado durante a Fase 14 propriamente dita (confirmado por `git diff --stat` no momento da Fase 14 — `content/profiles/` não aparecia na lista). Em etapa separada e posterior, os 11 `askPhrase` foram corrigidos para remover a redundância com "nessa faixa de preço" — ver seção "ASKPHRASES — PENDÊNCIA RESOLVIDA". Nenhum outro campo dos 11 perfis foi tocado nessa correção.
+Nenhum dos JSONs de perfil foi alterado durante a Fase 14 propriamente dita. Em etapa separada e posterior, os `askPhrase` foram corrigidos para remover a redundância com "nessa faixa de preço" — ver seção "ASKPHRASES — PENDÊNCIA RESOLVIDA". Depois disso, apenas os quatro perfis de espumante foram alterados, na decisão descrita na seção "ESPUMANTES".
 
 Não reescrever os perfis automaticamente para encaixar alterações de interface.
 
@@ -301,7 +300,7 @@ Função: `evaluateMicroDiagnosis(...)`
 
 O motor possui árvore de perguntas orientada a dados (`QUESTION_TREE`) e resolve perfis. Na Fase 14, o status `unsupported` e o nó de rosé doce foram removidos por completo — hoje só existem os estados `"question"` e `"resolved"`.
 
-A lógica de espumante dentro dessa árvore (`sparklingSweetness`, `aromaticStyleAnyBubbles`, opção `sparkling_dry` em `styleAnyBubbles`) **não foi alterada** — segue com o eixo de doçura considerado inadequado. Ver seção "ESPUMANTES" abaixo antes de mexer nesses nós.
+A lógica de espumante dentro dessa árvore foi atualizada na decisão dos espumantes (commit `20c60cf`): `sparklingSweetness` virou `sparklingOccasion` (eixo ocasião/uso, não mais açúcar) e `aromaticStyleAnyBubbles` passou a apontar para SPARK_04. Ver seção "ESPUMANTES" abaixo.
 
 ---
 
@@ -325,27 +324,32 @@ TESTES
 
 # 14. TESTES — ESTADO ATUAL CONFIRMADO POR EXECUÇÃO REAL
 
-Resultado da última execução (`npm test -- --run`):
+Resultado da última execução (`npm test -- --run`), após a decisão dos espumantes:
 
 ```text
 Test Files  4 passed (4)
-     Tests  113 passed (113)
+     Tests  118 passed (118)
 ```
 
-A queda de **123 para 113 testes é esperada** e não é um problema — decorre da remoção de:
+Histórico da contagem, para não assustar quem comparar com documentos antigos:
 
-* testes de `rose_sweet` e do status `unsupported` no microdiagnóstico (nó que deixou de existir);
-* o bloco `describe("buildRoutePresentation — budgetLabel")` inteiro em `buildRoutePresentation.test.ts` (o campo `budgetLabel` foi removido, então o teste que o cobria também foi removido, não deixado quebrado).
+* **123** — antes da Fase 14;
+* **113** — após a Fase 14, queda esperada pela remoção dos testes de `rose_sweet`/`unsupported` e do bloco `describe("buildRoutePresentation — budgetLabel")` (o campo foi removido, então o teste foi removido junto, não deixado quebrado);
+* **118** — após a decisão dos espumantes (commit `20c60cf`), pelas novas ramificações de espumante (SPARK_04 e as opções extras de `sparklingOccasion`).
 
-Não é necessário "recuperar" o número 123 — o Handoff anterior já previa essa queda e instruía a não mantê-la artificialmente.
+Não é necessário "recuperar" nenhum número anterior. Cobertura coerente importa mais que quantidade fixa.
 
-Build atual (`npm run build`):
+Build atual (`npm run build`), no estado do commit `20c60cf`:
 
 ```text
-✓ built in 522ms
+✓ 55 modules transformed.
+dist/index.html                   0.77 kB │ gzip:  0.41 kB
+dist/assets/index-B5ZfiXoS.css    9.17 kB │ gzip:  2.44 kB
+dist/assets/index-DSvxVsI2.js   250.90 kB │ gzip: 76.04 kB
+✓ built in 1.00s
 ```
 
-`tsc -b && vite build` sem erros. Saída: `dist/index.html` (0.77 kB), `dist/assets/index-*.css` (9.17 kB), `dist/assets/index-*.js` (249.52 kB).
+`tsc -b && vite build` sem erros. Baseline anterior (Fase 14, commit `912d372`): 54 módulos, JS 249.52 kB / gzip 75.56 kB, CSS 9.17 kB. O crescimento do JS vem do SPARK_04 e das novas opções de espumante. O hash do arquivo JS muda a cada build de conteúdo — comparar tamanho, não nome.
 
 ---
 
@@ -399,7 +403,7 @@ A faixa de preço era mencionada duas vezes na mesma frase.
 
 IMPORTANTE:
 
-Esta correção é puramente textual/genérica em todos os 11 perfis, incluindo os três de espumante. Ela **não representa nenhuma decisão conceitual sobre espumantes** — a revisão da pergunta/eixo de diferenciação dos espumantes continua **🔴 PENDENTE**, exatamente como antes. Ver seção "ESPUMANTES" abaixo.
+Esta correção foi puramente textual/genérica e **não representou nenhuma decisão conceitual sobre espumantes** — a decisão conceitual veio depois, em etapa própria e isolada (commit `20c60cf`, ver seção "ESPUMANTES"). Os `askPhrase` dos quatro perfis de espumante foram reescritos naquela etapa, e nenhum deles contém mais "nessa faixa de preço".
 
 ---
 
@@ -407,53 +411,60 @@ Esta correção é puramente textual/genérica em todos os 11 perfis, incluindo 
 ESPUMANTES
 ==================================================
 
-# 18. ESPUMANTES — STATUS GERAL
+# 18. ESPUMANTES — ✅ DECIDIDO, IMPLEMENTADO, COMMITADO E ENVIADO (commit 20c60cf)
 
-🔴 PENDENTE DE DECISÃO FUNCIONAL/ENOLÓGICA
+A decisão funcional/enológica dos espumantes foi tomada e aplicada. **O bloqueio anterior sobre `src/journey/journeyOptions.ts`, `rules/microDiagnosis/questionTree.ts` e `content/profiles/SPARK_02.json` não existe mais** — esses arquivos podem ser alterados normalmente, seguindo apenas as regras gerais de alteração controlada deste documento (analisar, reportar impacto, obter aprovação, escopo pequeno).
 
-Confirmado por auditoria: **nenhuma lógica de espumantes foi alterada durante a Fase 14, nem durante a correção dos askPhrases.** `content/profiles/SPARK_01.json`, `SPARK_02.json` e `SPARK_03.json` só receberam a correção textual genérica do `askPhrase` descrita na seção "ASKPHRASES — PENDÊNCIA RESOLVIDA" — nenhum outro campo mudou. Em `src/journey/journeyOptions.ts`, `PALATE_TITLES.sparkling` e as 4 opções de `PALATE_OPTIONS_BY_WINE_TYPE.sparkling` seguem idênticas ao estado anterior (o único diff nesse arquivo é a remoção de `rose` do tipo `PalateAskedWineTypeId`). Em `rules/microDiagnosis/questionTree.ts`, os nós `sparklingSweetness` e `aromaticStyleAnyBubbles` seguem com prompt e opções idênticos.
+## Os 4 perfis de espumante, como ficaram
 
-NÃO IMPLEMENTAR NOVA LÓGICA DE ESPUMANTES AUTOMATICAMENTE.
+* **SPARK_01 — "Espumante Seco e Refrescante"** (`version 0.2`): seco e refrescante, para brindar/dias de calor. Pistas de **Método Charmat**: Espumante brasileiro, Prosecco, e o próprio termo "Método Charmat" no rótulo. Cava, Champagne, Franciacorta e Trento DOC saíram daqui (foram para SPARK_02). `backupProfileId: null` — **sem fallback**.
+* **SPARK_02 — "Espumante Estruturado (Mais Presença à Mesa)"** (`version 0.2`): **reescrito por completo**. Método tradicional, com corpo para acompanhar pratos de mais sabor (inclusive carnes e feijoada). Pistas: Champagne, Cava, Franciacorta, Trento DOC e espumante brasileiro de método tradicional (denominações Vale dos Vinhedos e Pinto Bandeira). `backupProfileId: "SPARK_01"`. O conteúdo antigo (rosé/frutado/morango) **não pertence mais a este ID** — migrou para SPARK_04.
+* **SPARK_03 — "Espumante Suave e Doce"** (`version 0.2`): apenas **renomeado** (era "Espumante Doce e Aromático"). Conteúdo, pistas e askPhrase preservados. `backupProfileId: null` — **sem fallback**, porque doce não aceita substituto de outro estilo; se não encontrar, a orientação é procurar outra opção dentro do próprio estilo Moscatel/Asti.
+* **SPARK_04 — "Espumante Rosé e Frutado"** (`version 0.1`, **perfil novo**): fresco, perfumado, cheio de fruta, fácil de beber — **sempre seco**, sem sensação de doçura. Pistas: Espumante Rosé, Prosecco Rosé, Cava Rosado. `backupProfileId: "SPARK_01"`.
 
-## Pergunta atual dos espumantes
+## Linha de corte editorial
 
-A jornada atual possui pergunta equivalente a "Que tipo de espumante parece mais gostoso?", com opções girando em torno de seco / frutado / doce / não sei. O microdiagnóstico também usa doçura como eixo em `sparklingSweetness` e `aromaticStyleAnyBubbles`. Essa abordagem foi considerada inadequada.
+**Tudo a partir de Demi-Sec pertence ao SPARK_03** — nunca ao SPARK_04 nem a nenhum outro perfil de espumante. Registrado no campo `avoid` do SPARK_04.
 
-## Princípio já decidido conceitualmente
+## Pergunta da jornada
 
-* frutado NÃO significa doce;
-* aromático NÃO significa doce;
-* açúcar não deve ser o principal eixo para diferenciar estilos não-doces;
-* evitar "pouca sensação de açúcar";
-* evitar "mais forte" quando a intenção é estrutura/corpo;
-* doce continua sendo escolha legítima e separada.
-
-## Direção em estudo (NÃO aprovada para implementação)
-
-> Como você quer aproveitar esse espumante?
-
-Com conceitos como: leve e fresco (brindar/aperitivo/beliscar) / mais presença à mesa (acompanhar pratos com mais sabor) / doce e aromático (sobremesa ou preferência deliberada) / não sei.
-
-## Conclusões já documentadas da análise (preservadas, ainda válidas)
-
-* **SPARK_01** ("Espumante Seco e Refrescante") sustenta majoritariamente uma experiência leve/fresca/aperitivo/brindar/beliscar. Ressalva: algumas pistas adicionais (Champagne Brut, Franciacorta Brut, Trento DOC Brut) têm leitura mais gastronômica — considerar na revisão futura.
-* **SPARK_02** ("Espumante Frutado e Aromático") **NÃO sustenta automaticamente** "mais encorpado e gastronômico". O perfil é hoje construído em torno de espumante rosé, frutas vermelhas, floral, morango, framboesa, cereja, "fácil de beber", "descontraído" — nada sobre corpo, estrutura ou harmonização com pratos de mais presença. Não mapear uma nova opção gastronômica para esse perfil sem revisão enológica explícita.
-* **SPARK_03** ("Espumante Doce e Aromático") continua conceitualmente coerente com doce/aromático/sobremesa/preferência deliberada por doce.
-* O fallback "Não sei" dos espumantes ainda usa o mesmo eixo de doçura (`sparklingSweetness`) e ainda precisa ser redesenhado em torno de sensação/ocasião/forma de consumo — não implementar até a decisão sobre os perfis estar concluída.
-
-## Arquivos potencialmente impactados (nenhum alterado até agora)
+Passou de 3 para **4 opções** (mais "Não sei"), sob o novo título "Como você quer aproveitar esse espumante?":
 
 ```text
-src/journey/journeyOptions.ts
-rules/microDiagnosis/questionTree.ts
-rules/microDiagnosis/types.ts
-rules/microDiagnosis/evaluateMicroDiagnosis.test.ts
-rules/recommendation/palateOptions.ts
-rules/recommendation/resolveProfile.ts
-content/profiles/SPARK_02.json
+1. Leve e fresco, ótimo pra brindar ou dias de calor   → SPARK_01
+2. Mais estruturado, com corpo e presença à mesa       → SPARK_02
+3. Rosé, frutado e fácil de beber, sempre seco         → SPARK_04
+4. Doce, perfumado e bem frutado                       → SPARK_03
+5. Não sei                                             → microdiagnóstico
 ```
 
-NÃO alterar esses arquivos por causa dos espumantes sem aprovação funcional explícita. A nova frente "Encontrar vinhos para comprar" (ver seção correspondente mais abaixo) **não deve ser misturada** com a decisão pendente dos espumantes — são pendências independentes.
+O eixo deixou de ser doçura e passou a ser **ocasião/uso**, conforme os princípios já decididos (frutado não significa doce; aromático não significa doce; açúcar não é o eixo para diferenciar estilos não-doces; doce continua sendo escolha legítima e separada).
+
+## Microdiagnóstico ("Não sei")
+
+O nó `sparklingSweetness` foi renomeado para `sparklingOccasion` e reescrito — não pergunta mais sobre açúcar. As opções são: brindar/sem compromisso → SPARK_01; acompanhar refeição robusta → SPARK_02; fruta e leveza tipo rosé → SPARK_04; mais doce → SPARK_03; "ainda não sei" → SPARK_01 (fallback mais seguro/genérico). O nó `aromaticStyleAnyBubbles` também foi corrigido: a opção de espumante frutado agora aponta para SPARK_04, não mais para SPARK_02.
+
+## Arquivos alterados nesta decisão (commit 20c60cf)
+
+```text
+content/profiles/SPARK_01.json
+content/profiles/SPARK_02.json
+content/profiles/SPARK_03.json
+content/profiles/SPARK_04.json   (novo)
+content/profiles/index.ts
+rules/recommendation/types.ts
+rules/recommendation/palateOptions.ts
+rules/recommendation/resolveProfile.ts
+rules/recommendation/resolveProfile.test.ts
+rules/recommendation/README.md
+rules/microDiagnosis/types.ts
+rules/microDiagnosis/questionTree.ts
+rules/microDiagnosis/evaluateMicroDiagnosis.test.ts
+rules/microDiagnosis/README.md
+src/journey/journeyOptions.ts
+```
+
+`PalateOptionId` perdeu `sparkling_fruity_aromatic` e ganhou `sparkling_structured_traditional` e `sparkling_rose_fruity`. Testes: **118/118 passando**. Build: sucesso.
 
 ---
 
@@ -466,12 +477,15 @@ GITHUB / DEPLOY
 Último commit publicado conhecido no remoto (`origin/main`) no momento desta atualização documental:
 
 ```text
-912d372 feat: refine MVP journey and purchase guidance
+20c60cf feat: rework sparkling wine profiles (Método Charmat vs Tradicional split, new SPARK_04 rosé profile)
 ```
 
 Commits anteriores:
 
 ```text
+6a1be6b docs: add OFFER_REFERENCE.md and reference it in TECH_SPEC
+2c7853b docs: plan wine purchase recommendations
+912d372 feat: refine MVP journey and purchase guidance
 0f05e4b docs: add product technical and handoff specifications
 ba5726e fix: add Vercel SPA rewrite
 16583f8 feat: establish Vinho Sem Erro MVP foundation
@@ -479,9 +493,9 @@ ba5726e fix: add Vercel SPA rewrite
 
 IMPORTANTE — este é o ponto central desta seção:
 
-* **GitHub já contém a Fase 14 e a correção dos askPhrases.** O commit `912d372` foi enviado com sucesso para `origin/main` (`0f05e4b..912d372  main -> main`), e o working tree ficou clean logo em seguida.
-* Esta atualização documental (a que você está lendo agora) é **posterior** ao commit `912d372` e **ainda não foi commitada** — ela existe apenas nos arquivos `docs/PRODUCT_SPEC.md`, `docs/TECH_SPEC.md` e `docs/HANDOFF.md` do working tree local. Rodar `git status` deve mostrar esses três arquivos como `modified`, sem nenhuma outra alteração.
-* **O deploy no Vercel a partir do commit `912d372` não foi confirmado manualmente** nesta atualização documental. Presume-se que o push disparou o deploy automático, mas isso deve ser verificado antes de comunicar a Fase 14 como "no ar" para qualquer pessoa fora da equipe técnica.
+* **GitHub já contém a Fase 14, a correção dos askPhrases e a decisão dos espumantes.** O commit `20c60cf` foi enviado com sucesso para `origin/main` (`6a1be6b..20c60cf  main -> main`), e o working tree ficou clean logo em seguida.
+* Esta atualização documental (a que você está lendo agora) é **posterior** ao commit `20c60cf` e **ainda não foi commitada** — ela existe apenas no arquivo `docs/HANDOFF.md` do working tree local. Rodar `git status` deve mostrar só esse arquivo como `modified`, sem nenhuma outra alteração.
+* **Os deploys no Vercel a partir desses commits não foram confirmados manualmente** em nenhuma destas atualizações documentais. Presume-se que os pushes dispararam deploys automáticos, mas isso deve ser verificado antes de comunicar qualquer mudança como "no ar" para pessoas fora da equipe técnica.
 * Antes de trabalhar, sempre confirmar via `git status` e `git log -3 --oneline` se existem commits posteriores a este documento.
 
 ---
@@ -490,7 +504,6 @@ IMPORTANTE — este é o ponto central desta seção:
 
 Não implementar ainda:
 
-* nova lógica de espumantes;
 * Supabase;
 * API;
 * banco;
@@ -519,21 +532,21 @@ npm test -- --run
 npm run build
 ```
 
-Não alterar nada. Confirmar que o estado bate com este documento (Fase 14 e correção dos askPhrases já commitadas e enviadas como `912d372`; espumantes pendente; "Encontrar vinhos para comprar" apenas documentada).
+Não alterar nada. Confirmar que o estado bate com este documento (Fase 14 e correção dos askPhrases em `912d372`; decisão dos espumantes em `20c60cf`; "Encontrar vinhos para comprar" apenas documentada, sem código).
 
-## Etapa 2 — Espumantes
+**A decisão dos espumantes está concluída** — não é mais o próximo passo. O próximo passo é a validação de fontes reais para "Encontrar vinhos para comprar".
 
-Resolver a decisão funcional/enológica dos espumantes (pergunta + eventual revisão de SPARK_02), como etapa própria e isolada.
-
-## Etapa 3 — Validar fontes reais para "Encontrar vinhos para comprar"
+## Etapa 2 — Validar fontes reais para "Encontrar vinhos para comprar"
 
 Não implementar a funcionalidade ainda. Seguir a investigação descrita na seção "PRÓXIMO EXPERIMENTO" mais abaixo antes de desenhar qualquer integração técnica.
 
-## Etapa 4 — Só depois da jornada, conteúdo e fontes de produto validadas: Supabase
+## Etapa 3 — Só depois da jornada, conteúdo e fontes de produto validadas: Supabase
 
 ---
 
 # 22. NÃO MISTURAR ESPUMANTES COM AS OUTRAS PENDÊNCIAS
+
+> **Seção histórica — concluída.** Esta regra foi escrita quando a decisão dos espumantes ainda estava pendente e valia como restrição ativa. Ela foi cumprida: os espumantes saíram em etapa própria e isolada, no commit `20c60cf`, separado da Fase 14 (`912d372`). O texto original fica preservado abaixo como registro de como a separação foi conduzida. Generalizar esta regra para outras pendências seria uma mudança de processo do projeto — decisão da Iaponira, não efeito colateral de atualização de documentação.
 
 A revisão dos espumantes não bloqueia o commit da Fase 14 (Home, intent, preço, rosé, unsupported, visual) nem a correção dos askPhrases — são independentes. Mas nenhuma alteração de espumantes deve ser feita "junto" silenciosamente com outro commit. Criar etapa separada.
 
@@ -561,28 +574,29 @@ Testar manualmente em 375px e desktop.
 
 # 24. TESTE MANUAL MÍNIMO
 
-Verificar: `/`; `/app`; refresh `/app`; primeira pergunta (sem botão Voltar); voltar; tinto; branco; rosé (deve ir direto para orçamento, sem pergunta de paladar); espumante atual; "Não sei"; complemento de orçamento (sem numeração de progresso); resultado (sem "Seu orçamento" no topo); "Pode pedir assim" (prefixo "Quero gastar..."); feedback; recomeçar.
+Verificar: `/`; `/app`; refresh `/app`; primeira pergunta (sem botão Voltar); voltar; tinto; branco; rosé (deve ir direto para orçamento, sem pergunta de paladar); **espumante nas 4 novas opções (leve e fresco → SPARK_01; presença à mesa → SPARK_02; rosé frutado → SPARK_04; doce → SPARK_03)**; **"Não sei" de espumante (as 5 opções de `sparklingOccasion`, incluindo "Ainda não sei" → SPARK_01)**; complemento de orçamento (sem numeração de progresso); resultado (sem "Seu orçamento" no topo); "Pode pedir assim" (prefixo "Quero gastar..."); feedback; recomeçar.
+
+Pendência conhecida: a jornada de espumante pós-`20c60cf` foi validada por testes automatizados e build, **mas ainda não foi testada manualmente em navegador**.
 
 ---
 
 # 25. REGRA PARA COMMITS
 
-Não fazer um commit enorme contendo UX + Supabase + Cloudflare + banco + espumantes + CSS ao mesmo tempo. Preferir commits pequenos e temáticos. Como a Fase 14 já está pronta no working tree como um bloco coeso, uma divisão razoável seria algo como:
+Não fazer um commit enorme contendo UX + Supabase + Cloudflare + banco + conteúdo enológico + CSS ao mesmo tempo. Preferir commits pequenos e temáticos, como os que já estão no histórico:
 
 ```text
-fix: correct home vertical alignment
-refactor: simplify rose journey and remove unsupported path
-refactor: reorder journey and move budget after profile resolution
-style: apply visual refinement (Fraunces, Manrope, new palette)
+feat: refine MVP journey and purchase guidance
+docs: plan wine purchase recommendations
+feat: rework sparkling wine profiles (...)
 ```
 
-Isso é uma sugestão de organização, não uma instrução para commitar agora — commit só acontece com pedido explícito.
+Commit só acontece com pedido explícito do responsável pelo produto.
 
 ---
 
 # 26. ESTADO DE DEPLOY VERSUS ESTADO LOCAL
 
-Ver seção "GITHUB / DEPLOY" acima — é o ponto mais importante deste documento no momento: o Vercel está atrás do working tree local. Git local é a fonte imediata de verdade, não a interface do Vercel.
+Ver seção "GITHUB / DEPLOY" acima. O GitHub está em dia com o código local (`20c60cf`), mas **nenhum deploy do Vercel foi confirmado manualmente** ao longo destas etapas. Git local e `origin/main` são a fonte imediata de verdade; a interface do Vercel não foi verificada.
 
 ---
 
@@ -594,10 +608,10 @@ Mesmo este HANDOFF, atualizado após auditoria real, pode ficar desatualizado as
 
 # 28. PRÓXIMO MARCO TÉCNICO
 
-A jornada funcional V1 já está implementada, testada, commitada e enviada (Fase 14 completa, com a correção dos askPhrases, no commit `912d372`). O que falta antes do próximo marco:
+A jornada funcional V1 está implementada, testada, commitada e enviada (Fase 14 + correção dos askPhrases em `912d372`), e a decisão dos espumantes também (`20c60cf`). O que falta antes do próximo marco:
 
-* confirmar o deploy no Vercel a partir de `912d372`;
-* resolver a decisão dos espumantes (antes do beta amplo);
+* confirmar o deploy no Vercel a partir de `20c60cf`;
+* testar manualmente a nova jornada de espumante (4 opções + "Não sei") em 375px e desktop — nenhuma validação em navegador foi feita para a mudança dos espumantes, só testes automatizados e build;
 * validar pelo menos uma fonte real de produtos antes de prometer "Encontrar vinhos para comprar" comercialmente (ver seção correspondente).
 
 ---
@@ -672,15 +686,16 @@ RESUMO FINAL
 
 # 34. RESUMO FINAL DE STATUS
 
-## ✅ Implementado, testado, commitado e enviado (`912d372`)
+## ✅ Implementado, testado, commitado e enviado
+
+Base e Fase 14 (commit `912d372`):
 
 * React + TypeScript + Vite
 * Git
 * GitHub
 * Vercel
 * SPA rewrite
-* motor de recomendação original
-* 11 perfis
+* motor de recomendação
 * feedback de clareza V1
 * refinamento visual (Fraunces, Manrope, nova paleta, ajustes da tela de resultado, feedback visual)
 * Fase 14 completa (jornada nova, remoção de IntentStep, botão Voltar corrigido)
@@ -690,17 +705,18 @@ RESUMO FINAL
 * remoção de `RoutePresentation.budgetLabel` e de "Seu orçamento" do resultado
 * novos prefixos "Quero gastar..."
 * correção do bug vertical da Home
-* correção dos 11 `askPhrase` (remoção da redundância com "nessa faixa de preço", sem tocar em nenhum outro campo)
-* 113/113 testes passando
-* build aprovado (`npm run build` sem erros)
-* working tree clean confirmado logo após o commit `912d372`
+* correção dos `askPhrase` (remoção da redundância com "nessa faixa de preço")
 
-## 🔴 Pendente de decisão funcional/enológica
+Decisão dos espumantes (commit `20c60cf`):
 
-* nova lógica dos espumantes (pergunta e eixo de diferenciação)
-* papel real de SPARK_02 (não é automaticamente "mais encorpado e gastronômico")
-* eventual segundo estilo não-doce de espumante
-* novo fallback "Não sei" dos espumantes, sem eixo de açúcar
+* 12 perfis no total — SPARK_04 ("Espumante Rosé e Frutado") criado
+* SPARK_01 reposicionado em Método Charmat (Espumante brasileiro, Prosecco), sem fallback
+* SPARK_02 reescrito como "Espumante Estruturado (Mais Presença à Mesa)", método tradicional, fallback SPARK_01
+* SPARK_03 renomeado para "Espumante Suave e Doce", sem fallback
+* pergunta da jornada de espumante com 4 opções + "Não sei", eixo ocasião/uso em vez de açúcar
+* microdiagnóstico `sparklingSweetness` → `sparklingOccasion`, sem eixo de açúcar
+* linha de corte editorial: a partir de Demi-Sec é sempre SPARK_03
+* 118/118 testes passando, build aprovado, working tree clean após o commit
 
 ## 🟣 Nova frente estratégica (documentada, sem código)
 
@@ -711,6 +727,8 @@ RESUMO FINAL
 
 ## ⏳ Futuro
 
+* testar manualmente em navegador a nova jornada de espumante (`20c60cf`)
+* confirmar o deploy no Vercel
 * validar pelo menos uma fonte real de produtos antes de assumir "Encontrar vinhos para comprar" como promessa comercial de lançamento
 * Supabase integrado
 * Vercel Functions
