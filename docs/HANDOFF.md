@@ -127,7 +127,7 @@ result
 
 IMPORTANTE — o que isso significa na prática:
 
-Nada da lista acima precisa ser reimplementado nem recommitado. O commit `912d372` já está em `origin/main`. O push deve disparar automaticamente um novo deploy no Vercel (não verificado manualmente nesta atualização documental — confirmar no painel do Vercel ou visitando o site publicado antes de assumir que já está no ar). Ver seção "GITHUB / DEPLOY" mais abaixo.
+Nada da lista acima precisa ser reimplementado nem recommitado. O commit `912d372` já está em `origin/main` e chegou a produção pelo auto-deploy do Vercel. Ver seção "GITHUB / DEPLOY" mais abaixo.
 
 ---
 
@@ -159,7 +159,7 @@ O repositório está conectado ao GitHub.
 
 # 5. ESTADO DO VERCEL
 
-✅ CONECTADO AO GITHUB — deploy do commit `912d372` presumivelmente disparado automaticamente pelo push, mas **não confirmado manualmente** nesta atualização documental. Confirmar no painel do Vercel ou visitando o site publicado antes de assumir que a Fase 14 já está no ar.
+✅ CONECTADO AO GITHUB, COM AUTO-DEPLOY CONFIRMADO FUNCIONANDO. A lista de deployments do Vercel foi verificada: todos os commits enviados aparecem deployados com status Ready, com builds entre 5 e 8 segundos, e `e3698d4` estava em Production no momento da verificação.
 
 O projeto está conectado ao GitHub e publicado no Vercel.
 
@@ -499,7 +499,7 @@ IMPORTANTE — este é o ponto central desta seção:
 
 * **GitHub já contém a Fase 14, a correção dos askPhrases e a decisão dos espumantes.** O commit `20c60cf` foi enviado com sucesso para `origin/main` (`6a1be6b..20c60cf  main -> main`), e o working tree ficou clean logo em seguida.
 * Esta atualização documental (a que você está lendo agora) é **posterior** ao commit `20c60cf` e **ainda não foi commitada** — ela existe apenas no arquivo `docs/HANDOFF.md` do working tree local. Rodar `git status` deve mostrar só esse arquivo como `modified`, sem nenhuma outra alteração.
-* **Os deploys no Vercel a partir desses commits não foram confirmados manualmente** em nenhuma destas atualizações documentais. Presume-se que os pushes dispararam deploys automáticos, mas isso deve ser verificado antes de comunicar qualquer mudança como "no ar" para pessoas fora da equipe técnica.
+* **O auto-deploy do Vercel está confirmado funcionando.** A lista de deployments foi verificada: todos os commits enviados aparecem com status Ready, builds entre 5 e 8 segundos, e `e3698d4` estava em Production no momento da verificação. `e808b47` foi enviado depois dessa checagem e deve ter seguido o mesmo caminho automático, mas não foi olhado individualmente.
 * Antes de trabalhar, sempre confirmar via `git status` e `git log -3 --oneline` se existem commits posteriores a este documento.
 
 ---
@@ -582,7 +582,9 @@ Verificar: `/`; `/app`; refresh `/app`; primeira pergunta (sem botão Voltar); v
 
 Na tela de resultado, conferir também: "Boas pistas" (título curto), ausência do bloco "Talvez evite começar por", ausência do parágrafo de instrução abaixo de "SEU MOMENTO", e o separador entre o cabeçalho e o primeiro bloco.
 
-Pendência conhecida: a jornada de espumante pós-`20c60cf` e a revisão da tela de resultado foram validadas por testes automatizados e build, **mas nenhuma das duas foi testada manualmente em navegador**.
+A jornada de espumante pós-`20c60cf` já foi verificada em navegador, em produção: a pergunta de espumante com as 5 opções foi confirmada visualmente.
+
+Pendência conhecida: a revisão da tela de resultado (`e808b47`) foi validada por testes automatizados e build, **mas ainda não foi testada manualmente em navegador**.
 
 ---
 
@@ -602,7 +604,7 @@ Commit só acontece com pedido explícito do responsável pelo produto.
 
 # 26. ESTADO DE DEPLOY VERSUS ESTADO LOCAL
 
-Ver seção "GITHUB / DEPLOY" acima. O GitHub está em dia com o código local (`20c60cf`), mas **nenhum deploy do Vercel foi confirmado manualmente** ao longo destas etapas. Git local e `origin/main` são a fonte imediata de verdade; a interface do Vercel não foi verificada.
+Ver seção "GITHUB / DEPLOY" acima. O GitHub está em dia com o código local, e o auto-deploy do Vercel foi verificado: o que é enviado para `origin/main` chega a produção sozinho, com status Ready. Git local e `origin/main` continuam sendo a fonte imediata de verdade sobre o código; o Vercel reflete o que já foi enviado.
 
 ---
 
@@ -614,10 +616,9 @@ Mesmo este HANDOFF, atualizado após auditoria real, pode ficar desatualizado as
 
 # 28. PRÓXIMO MARCO TÉCNICO
 
-A jornada funcional V1 está implementada, testada, commitada e enviada (Fase 14 + correção dos askPhrases em `912d372`), e a decisão dos espumantes também (`20c60cf`). O que falta antes do próximo marco:
+A jornada funcional V1 está implementada, testada, commitada e enviada (Fase 14 + correção dos askPhrases em `912d372`), a decisão dos espumantes também (`20c60cf`), e a revisão da tela de resultado também (`e808b47`). O auto-deploy do Vercel está confirmado funcionando e a jornada de espumante já foi verificada em navegador. O que falta antes do próximo marco:
 
-* confirmar o deploy no Vercel a partir de `20c60cf`;
-* testar manualmente a nova jornada de espumante (4 opções + "Não sei") em 375px e desktop — nenhuma validação em navegador foi feita para a mudança dos espumantes, só testes automatizados e build;
+* testar manualmente a tela de resultado revisada (`e808b47`) em 375px e desktop — validada só por testes automatizados e build;
 * validar pelo menos uma fonte real de produtos antes de prometer "Encontrar vinhos para comprar" comercialmente (ver seção correspondente).
 
 ---
@@ -746,8 +747,7 @@ Revisão da tela de resultado:
 
 ## ⏳ Futuro
 
-* testar manualmente em navegador a nova jornada de espumante (`20c60cf`) e a tela de resultado revisada
-* confirmar o deploy no Vercel
+* testar manualmente em navegador a tela de resultado revisada (`e808b47`)
 * validar pelo menos uma fonte real de produtos antes de assumir "Encontrar vinhos para comprar" como promessa comercial de lançamento
 * Supabase integrado
 * Vercel Functions
